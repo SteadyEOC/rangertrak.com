@@ -14,10 +14,9 @@
 # means the version in package-lock.json (wrangler 4) is the version that deploys.
 name: Deploy to Cloudflare
 
-# Push trigger OFF until cut-over (N17 step 5): the private repo still deploys this same
-# Worker. At cut-over, restore `push: branches: [main]` here and delete the private
-# repo's deploy.yml in the same hour.
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 concurrency:
