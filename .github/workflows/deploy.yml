@@ -1,0 +1,63 @@
+# Build-free deploy: this repo is static files plus one plain-JS worker.js (no build step),
+# so there is nothing to compile. One exception, made 2026-10-05: styles.css is minified in
+# the runner just before deploy (PageSpeed: 10.4 KB -> 4.9 KB gzipped; most of the source is
+# comments that explain the CSS, and those stay in git). public/ on disk is never touched,
+# so local preview is the readable file. The app's
+# equivalent workflow runs a typecheck and 80 unit tests first; there is no source here for
+# either to act on, and adding a token build step to look symmetrical would only add a way
+# for the deploy to fail.
+#
+# `npm ci` is the one exception, and it is not symmetry - it is load-bearing. wrangler-action
+# only uses a local wrangler if one is already installed; with an empty node_modules it falls
+# back to its own hardcoded wrangler 3, which predates static-asset Workers (this repo's
+# assets binding and not_found_handling need wrangler 4). Installing first
+# means the version in package-lock.json (wrangler 4) is the version that deploys.
+name: Deploy to Cloudflare
+
+# Push trigger OFF until cut-over (N17 step 5): the private repo still deploys this same
+# Worker. At cut-over, restore `push: branches: [main]` here and delete the private
+# repo's deploy.yml in the same hour.
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-site
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      # fetch-depth: 0 is load-bearing, not habit. check-site.js asserts the field guide's
+      # printed "last updated" date against that file's own last commit date, and under the
+      # default shallow clone `git log` for a single path can come back empty - which would
+      # turn that assertion into a check that silently always passes.
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install wrangler
+        run: npm ci
+
+      # Minifies in place in the runner's checkout only. esbuild is a pinned devDependency.
+      # No target, so it removes whitespace and comments without lowering any CSS syntax.
+      - name: Minify styles.css
+        run: npx esbuild public/assets/styles.css --minify --outfile=public/assets/styles.css --allow-overwrite
+
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      # A green deploy does not mean the hostname serves this site - see tools/check-site.js
+      # for the specific way that goes wrong here (the old .com -> .org redirect).
+      - name: Verify rangertrak.com actually serves the site
+        run: node tools/check-site.js
