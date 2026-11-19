@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Release notes for app 1.0.0-beta.2, published 2026-11-08 (blog session). Shots: tools/capture-beta2-shots.mjs;
+     hero: design/heroes/beta2-whats-new.html. -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RangerTrak Beta 2: What's New - RangerTrak Field Notes</title>
+<meta name="description" content="RangerTrak 1.0.0-beta.2: the map moves to Leaflet 2 with a fullscreen button, a Show on map box with a heat map and range rings, clue headings, the RangerTrak SitRep, a version on every printout, and a ready-built web zip and Board kit on every release.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RangerTrak Beta 2: What's New">
+<meta property="og:description" content="The map moves to Leaflet 2, testers' problems became features, and every printout now says which version made it.">
+<meta property="og:url" content="https://rangertrak.com/blog/beta-2-whats-new.html">
+<meta property="article:published_time" content="2026-11-09T06:31:37Z">
+<meta property="og:image" content="https://rangertrak.com/blog/img/beta2-hero.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="840">
+<meta property="og:image:alt" content="RangerTrak Beta 2 release notes, version 1.0.0-beta.2: a checklist card of what's new, from Leaflet 2 and the Show on map box to clue headings, the RangerTrak SitRep, a version on every printout, and the web zip and Board kit.">
+<link rel="alternate" type="application/rss+xml" title="RangerTrak Field Notes" href="../feed.xml">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/styles.css">
+<script src="../assets/lightbox.js" defer></script>
+<script src="../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="top-bar">
+  <div class="top-bar__inner">
+    <a class="brand" href="/">
+      <svg class="brand-icon" width="24" height="40" viewBox="0 0 155 260" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-linejoin="round">
+          <path d="M 52 239 L 18.4 175.8 A 38 38 0 1 1 85.6 175.8 Z" stroke-width="12" />
+          <path d="M 52 96 L 52 150" stroke-width="5" stroke-linecap="round" />
+        </g>
+        <rect x="44" y="142" width="16" height="58" rx="6" fill="currentColor" />
+        <circle cx="52" cy="88" r="8" fill="currentColor" />
+        <g fill="var(--chrome)">
+          <rect x="47.5" y="158" width="9" height="4" rx="2" />
+          <rect x="47.5" y="170" width="9" height="4" rx="2" />
+          <rect x="47.5" y="182" width="9" height="4" rx="2" />
+        </g>
+        <g class="brand-signal" fill="none" stroke-width="7" stroke-linecap="round"
+          vector-effect="non-scaling-stroke">
+          <path class="wave wave-1" transform="translate(52,88) scale(0.80) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+          <path class="wave wave-2" transform="translate(52,88) scale(1.30) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+          <path class="wave wave-3" transform="translate(52,88) scale(1.85) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+        </g>
+      </svg>
+      RangerTrak&trade;</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="top-nav" aria-label="Menu">&#9776;</button>
+    <noscript><style>.top-nav{display:flex!important;flex-wrap:wrap!important;}.nav-toggle{display:none!important;}</style></noscript>
+    <nav class="top-nav" id="top-nav" aria-label="Main">
+      <a href="/">Home</a>
+      <a href="../about.html">What it does</a>
+      <a href="../blog.html" aria-current="page">Blog</a>
+      <a href="../field-guide.html">Field Guide</a>
+      <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Tour</a>
+      <a href="../feedback.html">Feedback</a>
+      <a href="https://github.com/SteadyEOC/RangerTrak" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg class="icon-github" width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.02 1.93-.02 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg></a>
+      <a class="cta" href="https://rangertrak.org" target="_blank" rel="noopener">Open RangerTrak &rarr;</a>
+    </nav>
+  </div>
+</div>
+
+<div class="shell">
+<main id="main" class="post">
+  <p class="post-kicker">Release notes</p>
+  <h1>RangerTrak Beta 2: What&rsquo;s New</h1>
+  <p class="post-meta">By John Cornelison, <a href="https://www.qrz.com/db/KE7KDQ" target="_blank" rel="noopener">KE7KDQ</a> &middot; <time datetime="2026-11-08">November 8, 2026</time> &middot; about a 5-minute read</p>
+
+  <figure class="post-hero">
+    <img src="img/beta2-hero.jpg" srcset="img/beta2-hero-480.jpg 480w, img/beta2-hero-800.jpg 800w, img/beta2-hero.jpg 1600w" sizes="min(calc(100vw - 2.5rem), 46rem)" width="1600" height="840"
+      alt="RangerTrak Beta 2 release notes, version 1.0.0-beta.2: a checklist card of what&rsquo;s new, from Leaflet 2 and the Show on map box to clue headings, the RangerTrak SitRep, a version on every printout, and the web zip and Board kit." />
+  </figure>
+
+  <div class="post-intro">
+    <p><strong>RangerTrak</strong> is a free, open-source radio log and map for the scribe at a
+      CERT, ACS/ARES, SAR or wildland-fire command post. Log who, where, when and what off the
+      radio; it maps them. It works offline once set up, and prints the Form 309 Communications Log, ICS-213 and ICS-214. I built it.
+      It&rsquo;s AGPL and will stay free. Try it at
+      <a href="https://rangertrak.org" target="_blank" rel="noopener">rangertrak.org</a>, no
+      account or install needed, and
+      <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">take the tour</a> to learn it.</p>
+  </div>
+
+  <p>
+    <a href="https://github.com/SteadyEOC/RangerTrak/releases/tag/v1.0.0-beta.2" target="_blank" rel="noopener">RangerTrak 1.0.0-beta.2</a>
+    is out. The <a href="beta-what-changed-since-the-alpha.html">first beta</a> went out on
+    October 28 and said that from then on the changes would be fixes. Most of these are fixes, but
+    not all. Testers kept running into the same few problems, mostly on the map, and some of the
+    answers turned out to be new features. The biggest change is underneath: the maps now run on
+    Leaflet 2.
+  </p>
+  <p>
+    It&rsquo;s still a beta. It&rsquo;s ready to try in a drill, not yet for a real call-out, and
+    until it is, keep the paper log beside it.
+  </p>
+
+  <h2>The short version</h2>
+  <ul>
+    <li><strong>The map is new underneath</strong>: Leaflet 2, a fullscreen button, and a
+      smaller first download.</li>
+    <li><strong>One Show on map box</strong> holds Ranger paths, a new heat map, range rings and
+      the status filters.</li>
+    <li><strong>A clue heading</strong>: which way the tracks were going, drawn as an arrow on the map.</li>
+    <li><strong>The RangerTrak SitRep</strong> is the new name for the Mission summary.</li>
+    <li><strong>Every printout says which version made it.</strong></li>
+    <li><strong>AAR notes speak HSEEP</strong>: an optional capability element on each note, and an
+      improvement plan modelled on FEMA&rsquo;s.</li>
+    <li><strong>Field phones</strong> show the clock, whether they&rsquo;re online, and how many
+      reports haven&rsquo;t been sent.</li>
+    <li><strong>Your own copy</strong>: every release now carries a ready-built web zip and the
+      Board kit, with a page on how to use them.</li>
+    <li><strong>Search Help and the tour</strong>, offline.</li>
+  </ul>
+
+  <h2>The map, underneath: Leaflet 2</h2>
+  <figure class="sidenote">
+    <a href="img/beta2-map.jpg"><img src="img/beta2-map.jpg" srcset="img/beta2-map-480.jpg 480w, img/beta2-map-800.jpg 800w, img/beta2-map.jpg 1400w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="1400" height="801" loading="lazy"
+      alt="The Vashon demo on the Map page, drawn by Leaflet 2: a Filters on chip reading Showing: latest per ranger, the fullscreen button under the zoom buttons, and a faint blue heat map around each cluster of reports." /></a>
+    <figcaption>Leaflet 2 on the Map page. The fullscreen button is under + and &minus;; the Filters on chip stays in view.</figcaption>
+  </figure>
+  <p>
+    RangerTrak&rsquo;s map is drawn by <a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a>,
+    the open-source map library behind a great many web maps. Leaflet 2 is its first major version
+    since 2016, and RangerTrak now runs on it. You shouldn&rsquo;t notice much, which is the point,
+    but three things do show:
+  </p>
+  <ul>
+    <li><strong>A fullscreen button</strong> on the map. The filter chips stay in view, so a
+      filtered map still says it&rsquo;s filtered. On an iPhone the map fills the window instead.</li>
+    <li><strong>A smaller first download.</strong> The map code now loads only when you open a
+      map, so the app starts with about 36 kB less to fetch (376 kB, down from 412).</li>
+    <li><strong>Screen readers announce a cluster of map markers by what it holds</strong>, for
+      example &ldquo;10 radio log entries, 2 clues.&rdquo;</li>
+  </ul>
+  <p>
+    Leaflet 2 is itself still in beta, and RangerTrak moved early, with small patches to two
+    add-ons so they fit. Every automated map test passes. If a map does something odd, it&rsquo;s
+    most likely this change, so please tell me.
+  </p>
+
+  <h2>Watching the mission</h2>
+  <figure class="sidenote">
+    <a href="img/beta2-map-boxes.jpg"><img src="img/beta2-map-boxes.jpg" srcset="img/beta2-map-boxes-480.jpg 480w, img/beta2-map-boxes-800.jpg 800w, img/beta2-map-boxes.jpg 1400w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="1400" height="683" loading="lazy"
+      alt="The Show on map box with Ranger paths, Latest per ranger and Heat map ticked, a Statuses list, a Needs attention button and the Range rings slider set to Off; below it the Offline maps box, amber, saying nothing is saved on this device yet." /></a>
+    <figcaption>Show on map, and Offline maps in amber: nothing saved for this area yet.</figcaption>
+  </figure>
+  <ul>
+    <li><strong>Show on map.</strong> The controls under the map are regrouped. Zoom to extent
+      and Print map sit right under it. Beside them, one <strong>Show on map</strong> box holds
+      what belongs to your mission: Ranger paths, Latest per ranger, Selected entries, the heat map,
+      range rings and statuses. The layers menu keeps the base maps and the reference overlays.</li>
+    <li><strong>Trails are now Ranger paths</strong>, so they aren&rsquo;t confused with the
+      hiking trails overlay.</li>
+    <li><strong>A heat map</strong> shows where reports cluster. At field zoom each report&rsquo;s
+      patch grows as you zoom in, so the markers don&rsquo;t hide it.</li>
+    <li><strong>Range rings</strong> are one slider: Off, Auto, or a fixed distance.</li>
+    <li><strong>Pick any mix of statuses</strong> to show, for example Need rest/food together
+      with Evidence report. A <em>Needs attention</em> button picks the urgent ones in one
+      click. The Mission page&rsquo;s &ldquo;Flag on map&rdquo; column is now called
+      <strong>Needs attention</strong> too, so it matches.</li>
+    <li><strong>Offline maps</strong> has its own box: green when this area&rsquo;s map is saved
+      for offline use, amber when it isn&rsquo;t. A save no longer stops at the first map tile
+      that fails to download. It keeps going and tells you how it did.</li>
+    <li><strong>Add place</strong> moved next to Import places, in the places panel.</li>
+    <li><strong>Current op period</strong> entries are marked on the Radio Log, and one chip
+      shows only those. The count, export, print and map follow.</li>
+  </ul>
+
+  <h2>Logging a report</h2>
+  <figure class="sidenote">
+    <a href="img/beta2-clue-heading.jpg"><img src="img/beta2-clue-heading.jpg" srcset="img/beta2-clue-heading-480.jpg 480w, img/beta2-clue-heading-800.jpg 800w, img/beta2-clue-heading.jpg 1200w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="1200" height="243" loading="lazy"
+      alt="Entry with Include evidence/clue at a different location ticked: Distance 200 meters, Bearing 120 and Heading 45 degrees." /></a>
+    <figcaption>A clue 200 m away on a bearing of 120&deg;, with tracks heading 45&deg;.</figcaption>
+  </figure>
+  <ul>
+    <li><strong>A clue heading</strong>, for search teams: which way the tracks, drag marks or
+      subject were going, in degrees from true north (0 to 359). It&rsquo;s optional. It draws as
+      an arrow at the clue on the map, and shows on the Radio Log, the 309, the CSV export and
+      the printed map&rsquo;s legend.</li>
+    <li><strong>Entry keeps the report you were typing</strong> if you go to another page and come
+      back. A tester had to check the map before she could finish a report and lost what she had
+      typed. It&rsquo;s kept in memory only, so reloading the page clears it.</li>
+    <li><strong>&ldquo;Operator&rdquo; is now &ldquo;Prepared by (your name or call sign)&rdquo;</strong>,
+      the same words the printed map sheet uses, and it fills in the sheet&rsquo;s Prepared by line.</li>
+  </ul>
+
+  <h2>Rangers and teams</h2>
+  <ul>
+    <li><strong>Delete selected rangers.</strong> Before, one row added by mistake could only go
+      with <em>Delete all</em>. Now select the rows and delete just those; it names them and asks
+      first. Their reports keep their call signs.</li>
+    <li><strong>Shared IDs and call signs are marked in red</strong>, with a note when you hover.
+      They&rsquo;re still allowed.</li>
+  </ul>
+
+  <h2>On paper</h2>
+  <ul>
+    <li><strong>Print map works in Simple view</strong> too, and <strong>Ctrl+P</strong> on the
+      Map page prints the map sheet. Before, Ctrl+P printed the app&rsquo;s header with no map.</li>
+    <li><strong>No more blank pages</strong> at the end of a printed map. The legend gets its own
+      page only when it won&rsquo;t fit on the map, and when it does fit, it sits where it covers
+      the fewest markers.</li>
+    <li><strong>Every printout says which RangerTrak version made it</strong>, with the RangerTrak
+      mark: the map sheet, Form 309, ICS-213, ICS-214, SitRep, roster and places sheets, and the
+      After Action report. When a page from last month&rsquo;s drill turns up, you can tell which
+      build printed it.</li>
+  </ul>
+
+  <h2>The RangerTrak SitRep</h2>
+  <figure class="sidenote">
+    <a href="../img/guide/mission-summary.jpg"><img src="../img/guide/mission-summary.jpg" srcset="../img/guide/mission-summary-480.jpg 480w, ../img/guide/mission-summary-800.jpg 800w, ../img/guide/mission-summary.jpg 1400w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="1400" height="766" loading="lazy"
+      alt="The RangerTrak SitRep for the Vashon demo: the mission's op period, journal stamp and a Made by line naming RangerTrak 1.0.0-beta.2, totals, and a bar chart of messages per hour with those needing attention in red." /></a>
+    <figcaption>The RangerTrak SitRep, from the Vashon demo. Its Made by line names the version.</figcaption>
+  </figure>
+  <p>
+    The Mission summary is now the <strong>RangerTrak SitRep</strong>: messages per hour, traffic by
+    team, and what needs attention, all from this radio log. It isn&rsquo;t an ICS-209 and
+    doesn&rsquo;t try to be. You can reach it from the Mission page and the mission panel in the
+    header, as well as from the Radio Log.
+  </p>
+
+  <h2>After the mission: AAR notes that speak HSEEP</h2>
+  <figure class="sidenote">
+    <a href="img/beta2-aar-capability.jpg"><img src="img/beta2-aar-capability.jpg" srcset="img/beta2-aar-capability-480.jpg 480w, img/beta2-aar-capability-800.jpg 800w, img/beta2-aar-capability.jpg 1400w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="1400" height="341" loading="lazy"
+      alt="An AAR note on the AAR notes page, Vashon demo: the observation 'Relief operators at Net Control had not run the net before and missed two check-ins in the first hour', About This incident, Area Communications, Capability element Training, Owner Net manager, and the recommendation 'Run a 20-minute practice net for relief operators before the next drill.'" /></a>
+    <figcaption>An AAR note with its new Capability element, from the Vashon demo.</figcaption>
+  </figure>
+  <p>
+    If your group writes its after-action reports to FEMA&rsquo;s HSEEP, each AAR note now has an
+    optional <strong>Capability element</strong>: Planning, Organization, Equipment, Training or
+    Exercise, the five HSEEP uses (POETE). The printed improvement plan is modelled on HSEEP&rsquo;s
+    AAR/IP, with HSEEP&rsquo;s own column names in small type under ours: Observation is the issue or
+    area for improvement, Recommendation the corrective action, Owner the responsible organization or
+    point of contact. The capability element is in the spreadsheet export and the SitRep too.
+  </p>
+  <p>
+    It is a starting point for your AAR/IP, not the finished document. Leave the field blank if your
+    group doesn&rsquo;t use HSEEP; nothing else changes. More in
+    <a href="hseep-improvement-plan.html">What You Said You&rsquo;d Fix</a>.
+  </p>
+
+  <h2>More than one device</h2>
+  <ul>
+    <li><strong>The Board kit.</strong> The RangerTrak Board, the read-only command-post Wi-Fi
+      server from the last post, now comes ready to run. Download the Board kit from the <a href="https://github.com/SteadyEOC/RangerTrak/releases/tag/v1.0.0-beta.2" target="_blank" rel="noopener">release</a>,
+      unzip it on a laptop with Node.js 24 or newer, and double-click <em>Start RangerTrak Board</em>. The Mission page&rsquo;s
+      Board card now says that this computer can run it, and links the kit.</li>
+    <li><strong>A field phone shows the clock</strong>, Online or Offline, and how many reports are
+      on the phone and how many haven&rsquo;t been sent. The mission timers and panels a phone
+      doesn&rsquo;t need are gone.</li>
+    <li><strong>Leave field mode</strong> is in the phone&rsquo;s menu now, not buried in Help, and
+      it warns you if any reports haven&rsquo;t been sent.</li>
+    <li><strong>Merging checks report times.</strong> The command post warns, but still merges,
+      when a packet has reports from before the mission started or more than 10 minutes in the
+      future. A phone with the wrong clock is the usual cause.</li>
+  </ul>
+
+  <h2>Running your own copy</h2>
+  <p>
+    RangerTrak is AGPL, so you can always run your own copy. Now it&rsquo;s easier: every release
+    on GitHub carries a <strong>ready-built web zip</strong> that any web server can host, beside
+    the Board kit. The new
+    <a href="https://rangertrak.org/self-hosting/" target="_blank" rel="noopener">self-hosting page</a>
+    explains both. The zip leaves out the base map, so a group loads a map file for its own area.
+    Most groups don&rsquo;t need any of this, since rangertrak.org works offline once it&rsquo;s set up,
+    but some teams and agencies want the app on their own server.
+  </p>
+
+  <h2>Finding your way</h2>
+  <ul>
+    <li><strong>Search Help</strong>: one box finds an answer across every Help tab and each
+      screen&rsquo;s Guide, offline.</li>
+    <li><strong>The tour</strong> shows one module at a time, with a side menu, a search box and
+      tick boxes for the steps you&rsquo;ve done. The printed checklist shows them too. Search for a
+      step&rsquo;s number, such as T3.4, and that step comes first.</li>
+    <li><strong>Help&rsquo;s tabs are in a better order</strong>: After mission now comes before
+      Your data, and About sits near the end, just before Contact us.</li>
+    <li><strong>A mistyped address</strong> gets &ldquo;Station not found. Say again?&rdquo;, a
+      guess at the page you meant, and a Help search using the words in the address.</li>
+  </ul>
+
+  <h2>When something goes wrong</h2>
+  <p>
+    Debug mode is gone. When the app hits an error now, it offers <strong>Report it</strong>,
+    which opens Help &rarr; Contact us with a draft already written. You can add a diagnostic
+    report if you choose: preview it first, since it may include text from warnings. It asks at
+    most three times in a session, and <em>Don&rsquo;t show again</em> turns it off until you close the tab.
+    Nothing is sent unless you send it.
+  </p>
+
+  <h2>Also</h2>
+  <p>
+    Releases are now about weekly, but rangertrak.org updates whenever a fix is ready, so the
+    footer and Help show both the version and the build, for example &ldquo;Version
+    1.0.0-beta.2 (build 2026-11-07 &hellip;)&rdquo;. Please quote it when you report something.
+    Entry draws faster on first load. And there were many bug fixes; the
+    <a href="https://github.com/SteadyEOC/RangerTrak/blob/main/CHANGELOG.md" target="_blank" rel="noopener">changelog</a>
+    has every one.
+  </p>
+  <p>All 1,464 unit tests pass on every deploy, beta.2 included.</p>
+
+  <h2>Thank you</h2>
+  <p>
+    To the testers who wrote to me after the first beta: much of this list started as one of your
+    sentences. The deleted-ranger button, the report Entry now keeps, and the regrouped map
+    controls were all yours.
+  </p>
+
+  <h2>What&rsquo;s next</h2>
+  <p>
+    Fixes, and the Board on real devices, before an upcoming exercise. 1.0 is still planned for
+    November, after that exercise. From 1.0 on, backups made with it will restore in every later
+    version.
+  </p>
+
+  <section class="try-it" aria-labelledby="try-heading">
+    <h2 id="try-heading">Take the tour</h2>
+    <p>
+      New to RangerTrak, or coming back after the first beta?
+      <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Take the RangerTrak Tour</a>:
+      nine hands-on modules, now one per page, with a box to tick for each step. Back up any real
+      radio reports before starting!
+    </p>
+  </section>
+
+  <section class="tell-me" aria-labelledby="tell-heading">
+    <h2 id="tell-heading">Tell me</h2>
+    <ol>
+      <li><strong>Does the new Show on map box make sense the first time you see it?</strong></li>
+      <li><strong>Did the map do anything odd?</strong> Quote the build from the footer.</li>
+    </ol>
+    <p>
+      Use the <a href="../feedback.html">feedback form</a> (start with &ldquo;Beta 2&rdquo;),
+      <strong>Help</strong> &rarr; Contact us inside the app, reply on LinkedIn, or email
+      <a class="js-mail" data-u="RangerTrak" data-d="steadyeoc.com" data-subject="RangerTrak%20beta%202">RangerTrak [at] steadyeoc [dot] com</a>.
+    </p>
+  </section>
+
+  <p class="post-next">
+    <strong>Next in Field Notes:</strong> <em>Field Phones, Up Close</em>.
+  </p>
+  <p class="post-next">
+    <strong>The next release:</strong> <em><a href="beta-3-whats-new.html">RangerTrak Beta 3: What&rsquo;s New</a></em>.
+  </p>
+</main>
+
+
+</div>
+
+<footer class="site-footer">
+  <p>RangerTrak&trade; &mdash; &copy; 2019&ndash;2026 John Cornelison, AGPL v3</p>
+  <p>
+    <a href="../blog.html">Blog</a> &middot; <a href="../feed.xml">RSS</a> &middot;
+    <a href="../field-guide.html">Field Guide</a> &middot;
+    <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Tour</a> &middot; <a href="../feedback.html">Feedback</a> &middot;
+    <a class="js-mail" data-u="RangerTrak" data-d="steadyeoc.com">RangerTrak [at] steadyeoc [dot] com</a>
+    &middot;
+    <a href="../feedback.html#support">Support</a>
+  </p>
+  <p class="footer-privacy">This site counts visits with Cloudflare&rsquo;s cookie-free
+    analytics. The RangerTrak app keeps your mission on your device. When online, it fetches
+    map images and looks up addresses for report locations.
+    <a href="../privacy.html">Privacy</a></p>
+</footer>
+</body>
+</html>

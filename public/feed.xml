@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>RangerTrak Field Notes</title>
+    <link>https://rangertrak.com/blog.html</link>
+    <atom:link href="https://rangertrak.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <description>A short series introducing RangerTrak, the free offline radio log and map for CERT, ACS/ARES and SAR command posts.</description>
+    <language>en-us</language>
+    <item>
+      <title>RangerTrak Beta 3: What's New</title>
+      <link>https://rangertrak.com/blog/beta-3-whats-new.html</link>
+      <guid>https://rangertrak.com/blog/beta-3-whats-new.html</guid>
+      <pubDate>Mon, 16 Nov 2026 02:43:29 GMT</pubDate>
+      <description>Release notes for RangerTrak 1.0.0-beta.3: field phones keep a list, My reports, and take receipts from the command post; ICS-213RR resource requests on FEMA's form; the ranger's notes in map popups; a setup guide for RangerView; and Leaflet 2.0.0-beta.4 under the map.</description>
+    </item>
+    <item>
+      <title>What You Said You'd Fix: AAR Notes in FEMA's HSEEP Shape</title>
+      <link>https://rangertrak.com/blog/hseep-improvement-plan.html</link>
+      <guid>https://rangertrak.com/blog/hseep-improvement-plan.html</guid>
+      <pubDate>Sat, 14 Nov 2026 02:37:33 GMT</pubDate>
+      <description>RangerTrak's AAR notes now take FEMA HSEEP's capability element (POETE), and the printed improvement plan is modelled on the HSEEP AAR/IP, so a CERT, ACS or SAR group's hot-wash notes fit a county exercise's improvement plan without retyping.</description>
+    </item>
+    <item>
+      <title>RangerTrak Beta 2: What's New</title>
+      <link>https://rangertrak.com/blog/beta-2-whats-new.html</link>
+      <guid>https://rangertrak.com/blog/beta-2-whats-new.html</guid>
+      <pubDate>Mon, 09 Nov 2026 06:31:37 GMT</pubDate>
+      <description>Release notes for RangerTrak 1.0.0-beta.2: the map moves to Leaflet 2 with a fullscreen button, one Show on map box with a heat map and range rings, clue headings, the RangerTrak SitRep, a version on every printout, and a web zip and Board kit on every release.</description>
+    </item>
+    <item>
+      <title>After the Mission: Summaries, AAR and the Final Report</title>
+      <link>https://rangertrak.com/blog/09-after-the-mission.html</link>
+      <guid>https://rangertrak.com/blog/09-after-the-mission.html</guid>
+      <pubDate>Mon, 02 Nov 2026 22:00:00 GMT</pubDate>
+      <description>Part 9 of Field Notes: the debrief summary, AAR notes as an improvement-plan table, the ICS-214 on FEMA's form, the roster changes for your coordinator, and clearing the laptop without losing the record.</description>
+    </item>
+    <item>
+      <title>RangerTrak Beta: What Changed Since the Alpha</title>
+      <link>https://rangertrak.com/blog/beta-what-changed-since-the-alpha.html</link>
+      <guid>https://rangertrak.com/blog/beta-what-changed-since-the-alpha.html</guid>
+      <pubDate>Wed, 28 Oct 2026 23:38:07 GMT</pubDate>
+      <description>Release notes: RangerTrak is in beta, version 1.0.0-beta.1. 97 releases in four weeks, in the order a mission runs, and a hands-on tour to try them.</description>
+    </item>
+    <item>
+      <title>Shift Change: Op Periods, Scribes and Laptops</title>
+      <link>https://rangertrak.com/blog/08-shift-change.html</link>
+      <guid>https://rangertrak.com/blog/08-shift-change.html</guid>
+      <pubDate>Wed, 21 Oct 2026 23:30:00 GMT</pubDate>
+      <description>Part 8: the end of an operational period. A two-minute brief for the next scribe, the period's 309 communications log and ICS-214 on paper, and the log moved to another laptop without a lost or doubled entry.</description>
+    </item>
+    <item>
+      <title>Your Roster Is Already in a Spreadsheet</title>
+      <link>https://rangertrak.com/blog/07-your-roster-is-already-in-a-spreadsheet.html</link>
+      <guid>https://rangertrak.com/blog/07-your-roster-is-already-in-a-spreadsheet.html</guid>
+      <pubDate>Mon, 19 Oct 2026 23:07:00 GMT</pubDate>
+      <description>Part 7: bring the Excel or CSV lists your group already keeps into RangerTrak, see what will change before anything does, and never lose a phone number to a blank cell.</description>
+    </item>
+    <item>
+      <title>What's Missing, and Who Decides</title>
+      <link>https://rangertrak.com/blog/06-whats-missing-and-who-decides.html</link>
+      <guid>https://rangertrak.com/blog/06-whats-missing-and-who-decides.html</guid>
+      <pubDate>Fri, 16 Oct 2026 02:00:00 GMT</pubDate>
+      <description>Part 6: the gaps I haven't closed yet, stated plainly, the commitments that won't change, and an invitation to put RangerTrak through a real tabletop.</description>
+    </item>
+    <item>
+      <title>More Than One Laptop</title>
+      <link>https://rangertrak.com/blog/05-more-than-one-laptop.html</link>
+      <guid>https://rangertrak.com/blog/05-more-than-one-laptop.html</guid>
+      <pubDate>Mon, 12 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Part 5: a ranger's own phone sending its reports home, a Report Packet that only ever adds, setup files for a new device, and an optional live view for the command post.</description>
+    </item>
+    <item>
+      <title>From Radio Log to Form 309 and ICS-213</title>
+      <link>https://rangertrak.com/blog/04-radio-log-to-ics-309-and-213.html</link>
+      <guid>https://rangertrak.com/blog/04-radio-log-to-ics-309-and-213.html</guid>
+      <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Part 4: correcting the Radio Log as you go, why a note is not a message, and printing the same reports onto FEMA's own ICS-213 and a real Form 309 Communications Log.</description>
+    </item>
+    <item>
+      <title>However They Read It Out</title>
+      <link>https://rangertrak.com/blog/03-however-they-read-it-out.html</link>
+      <guid>https://rangertrak.com/blog/03-however-they-read-it-out.html</guid>
+      <pubDate>Mon, 05 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Part 3: positions in whatever format the radio gives you, converted on the device with no signal, the pin-in-the-water check, and the two maps that both work offline.</description>
+    </item>
+    <item>
+      <title>Hot, Warm, Cold</title>
+      <link>https://rangertrak.com/blog/02-hot-warm-cold.html</link>
+      <guid>https://rangertrak.com/blog/02-hot-warm-cold.html</guid>
+      <pubDate>Tue, 29 Sep 2026 16:00:00 GMT</pubDate>
+      <description>Part 2: the five minutes of preparation that decide whether RangerTrak works when the network goes down, and an airplane-mode test to run on your own device. Published with the alpha.</description>
+    </item>
+    <item>
+      <title>The Paper Log, Without the Paper</title>
+      <link>https://rangertrak.com/blog/01-the-paper-log-without-the-paper.html</link>
+      <guid>https://rangertrak.com/blog/01-the-paper-log-without-the-paper.html</guid>
+      <pubDate>Mon, 14 Sep 2026 16:00:00 GMT</pubDate>
+      <description>Part 1: what RangerTrak is, who it's for, a ten-minute tour with demo data, and what I need to hear from people who run real radio nets.</description>
+    </item>
+  </channel>
+</rss>

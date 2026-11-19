@@ -1,0 +1,1229 @@
+/*
+ * RangerTrak public site (rangertrak.com) - live since 2026-09-01.
+ *
+ * Palette is lifted directly from src/styles/_chrome.scss's "command" skin (the app's
+ * default) - not a new brand, the same one - so this site and the PWA read as one product
+ * rather than two. Kept as a handful of custom properties rather than pulling in the app's
+ * whole token/skin system, since this is one small static site, not another Angular surface.
+ */
+
+:root {
+  color-scheme: light dark;
+
+  --ground: #EDF1F5;
+  --surface: #FFFFFF;
+  --surface-2: #E1E8EF;
+  --ink: #0B1F33;
+  --ink-2: #41556B;
+  --line: #DAE2EA;
+  --line-strong: #BCC9D6;
+  --chrome: #12263F;
+  --chrome-ink: #EAF1F8;
+  --accent: #0B5FA8;
+  --accent-ink: #FFFFFF;
+  /* RangerTrak's mark colour - the waves leaving the antenna. Not an accent:
+     it is 2.99:1 on white and would fail as link or button text. Use --accent
+     for anything interactive. Kept identical in light and dark because it is
+     the product's identity and has to match the favicon, the app's navbar and
+     the home-screen tile. Same value as the app's --rt-signal. */
+  --signal: #F0700A;
+  --notice: #FFF8E1;
+  --notice-ink: #5C4400;
+  --notice-line: #D9A300;
+  --radius: 6px;
+  --radius-lg: 10px;
+  --max-width: 46rem;
+  --danger: #B3261E;
+  --danger-ink: #7A1610;
+  --danger-line: #E0A199;
+  --danger-bg: #FCEDEB;
+  /* Colored cards (John, 2026-09-30: "I love the colored version"). The app's own Radio Log
+     status colours, so a newcomer meets the palette they'll see in the app. No red: in the
+     app red means Urgent or overdue, so it is never decoration here. */
+  --st-checkin: #2E5AA0;
+  --st-location: #2E7266;
+  --st-rest: #4A7A2A;
+  --st-normal: #55606B;
+  --pill-ink: #FFFFFF;
+  /* The app's plum for "Advanced" (E-207 Simple view / Full view): Full view material only. */
+  --advanced: #8E2470;
+  /* The paper card: the manila of a printed ICS form. */
+  --paper: #F8F0DC;
+  --paper-ink: #4A3B1E;
+  --paper-rule: rgba(120, 95, 40, .16);
+  --paper-line: #D9C79A;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ground: #0B1119;
+    --surface: #141C26;
+    --surface-2: #1D2733;
+    --ink: #E7EEF6;
+    --ink-2: #A6B7C8;
+    --line: #232F3D;
+    --line-strong: #35465A;
+    --chrome: #060B12;
+    --chrome-ink: #DCE7F2;
+    --accent: #6BA8F0;
+    --accent-ink: #04182F;
+    /* deliberately NOT lightened for dark mode - see the light block */
+    --signal: #F0700A;
+    --notice: #2A2110;
+    --notice-ink: #F6DFA0;
+    --notice-line: #8A6100;
+    --danger: #FF8A80;
+    --danger-ink: #FFD9D4;
+    --danger-line: #7A2E27;
+    --danger-bg: #2A1512;
+    --st-checkin: #6E9BE0;
+    --st-location: #5FB3A4;
+    --st-rest: #8CC06A;
+    --st-normal: #9AA6B2;
+    --advanced: #F08BC9;
+    --pill-ink: #0B1119;
+    --paper: #2A2418;
+    --paper-ink: #EBDDBA;
+    --paper-rule: rgba(235, 221, 186, .08);
+    --paper-line: #5A4A28;
+  }
+}
+
+* { box-sizing: border-box; }
+
+/* Base text size, modestly bigger for readability (John, 2026-09-28): 16px -> 17px. A
+   percentage, not a fixed px, so it still scales from whatever size a visitor's browser
+   or OS is already set to, rather than overriding it. Every other size on this site is in
+   rem or em, so this one change moves the whole page up together. */
+html {
+  font-size: 106.25%;
+}
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font: 1rem/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+a { color: var(--accent); }
+a:hover { text-decoration: none; }
+
+h1, h2, h3 { line-height: 1.2; }
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--surface);
+  color: var(--ink);
+  padding: 0.6em 1em;
+  border-radius: var(--radius);
+  z-index: 100;
+}
+.skip-link:focus { left: 0.5em; top: 0.5em; }
+
+/* ── Top bar ─────────────────────────────────────────────────────────── */
+
+/* Stays visible while scrolling a long page (the Field Guide, blog posts), rather than
+   scrolling away with the first screen. z-index high enough to clear the sticky .toc
+   (z:auto) and the lightbox dialog is higher still, so an opened image still sits on top. */
+.top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--chrome);
+  color: var(--chrome-ink);
+}
+
+/* So an in-page anchor jump (the Field Guide's table of contents, a "#support" link from
+   the footer) lands with the target heading clear of the sticky top bar, not hidden under
+   it. Both properties do the same job; scroll-padding-top covers a browser-native jump
+   (e.g. a bookmark or address-bar hash) and scroll-margin-top covers the heading itself
+   however it was scrolled to. */
+html {
+  scroll-padding-top: 4.5rem;
+}
+h1[id], h2[id], h3[id], section[id] {
+  scroll-margin-top: 4.5rem;
+}
+
+.top-bar__inner {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0.9em 1.25em;
+  display: flex;
+  align-items: center;
+  gap: 1.5em;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  color: var(--chrome-ink);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin-right: auto;
+}
+.brand:hover { text-decoration: none; }
+.brand svg { flex: none; }
+
+/* Blog figures. Images are captured at 2x and scaled down here, so they stay sharp on a
+   retina display while never forcing a horizontal scroll on a phone - the whole site is
+   built to a 46rem measure and an unconstrained screenshot would blow straight through it. */
+figure {
+  margin: 1.75rem 0;
+}
+
+figure img {
+  display      : block;
+  width        : 100%;
+  height       : auto;
+  border       : 1px solid var(--line);
+  border-radius: var(--radius);
+  background   : var(--surface);
+}
+
+figcaption {
+  margin-top: 0.5rem;
+  font-size : 0.9rem;
+  color     : var(--ink-2);
+}
+.brand .brand-signal { stroke: var(--signal); }
+
+/* The app's mark (navbar.component.html): the three signal waves pulse in turn, forever.
+   The app itself animates on events only since bde809f (2026-09-29); the site keeps the
+   endless pulse on purpose (John, 2026-09-29: "the site needs to be lively").
+   Still for anyone who asks for reduced motion. */
+.brand-icon .wave {
+  --rt-period: 18s;
+  animation: rt-signal var(--rt-period) ease-in-out infinite;
+}
+.brand-icon .wave-1 { animation-delay: calc(var(--rt-period) / -1.5); }
+.brand-icon .wave-2 { animation-delay: calc(var(--rt-period) / -3); }
+
+@keyframes rt-signal {
+  0%   { opacity: 0.32; }
+  15%  { opacity: 1; }
+  40%  { opacity: 1; }
+  100% { opacity: 0.32; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-icon .wave { animation: none; }
+}
+
+.top-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.25em;
+  flex-wrap: wrap;
+}
+
+.top-nav a {
+  color: var(--chrome-ink);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+.top-nav a:hover,
+.top-nav a[aria-current="page"] { text-decoration: underline; }
+
+/* The GitHub nav link is an icon only (its accessible name comes from aria-label/title,
+   not visible text) - centre it on the same line as the text links beside it. */
+.top-nav a[aria-label="GitHub"] {
+  display: flex;
+  align-items: center;
+}
+.icon-github { display: block; }
+
+.top-nav .cta {
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 0.5em 1em;
+  border-radius: var(--radius);
+  font-weight: 600;
+}
+.top-nav .cta:hover { text-decoration: none; filter: brightness(1.08); }
+
+/* Menu button - hidden on desktop; the narrow-viewport media query below turns it on and
+   collapses .top-nav behind it. JS (site.js) toggles .top-nav's .is-open class; the
+   per-page <noscript> in each top bar overrides this back to a plain wrapped row with the
+   button hidden when JS is off, so the nav is never stuck behind a button that can't work. */
+.nav-toggle {
+  display: none;
+  width: 2.25em;
+  height: 2.25em;
+  margin-left: auto;
+  background: transparent;
+  border: 1px solid var(--chrome-ink);
+  border-radius: var(--radius);
+  color: var(--chrome-ink);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+@media (max-width: 40em) {
+  .top-bar__inner { padding: 0.75em 1em; }
+  .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
+  .top-nav {
+    display: none;
+    flex-basis: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.6em;
+    margin-top: 0.6em;
+  }
+  .top-nav.is-open { display: flex; }
+  .top-nav .cta { order: -1; text-align: center; }
+  .top-nav a[aria-label="GitHub"] { justify-content: center; }
+}
+
+/* ── Layout ──────────────────────────────────────────────────────────── */
+
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+
+.hero {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 3rem 1.25rem 2rem;
+  text-align: center;
+}
+.hero h1 { font-size: 2.1rem; margin: 0 0 0.5em; }
+.hero p.lede { font-size: 1.15rem; color: var(--ink-2); max-width: 42rem; margin: 0 auto 1.5em; }
+
+.hero-ctas {
+  display: flex;
+  gap: 0.75em;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 0.5em;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.7em 1.4em;
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+.btn:hover { text-decoration: none; }
+.btn--primary { background: var(--accent); color: var(--accent-ink); }
+.btn--primary:hover { filter: brightness(1.08); }
+.btn--outline { background: transparent; color: var(--ink); border-color: var(--line-strong); }
+.btn--outline:hover { background: var(--surface-2); }
+
+.hero-note { color: var(--ink-2); font-size: 0.9rem; }
+.hero-note--strong { color: var(--ink); font-size: 1.1rem; font-weight: 700; margin-top: 1.25rem; }
+
+/* Home page release status: Alpha -> Beta -> 1.0, current stage highlighted. The states
+   are set by hand in index.html (see the comment there). */
+.release-status {
+  max-width: 38rem;
+  margin: 1.75rem auto 0;
+  padding: 0.9em 1.1em;
+  text-align: left;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--signal);
+  border-radius: var(--radius);
+}
+.release-status__head { margin: 0 0 0.6em; }
+.release-status__note { margin: 0.6em 0 0; font-size: 0.95rem; color: var(--ink-2); }
+
+.release-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.release-steps li {
+  flex: 1 1 8rem;
+  display: flex;
+  flex-direction: column;
+  padding: 0.45em 0.7em;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--ground);
+  color: var(--ink-2);
+}
+.release-steps .step-name { font-weight: 700; }
+.release-steps .step-when { font-size: 0.85rem; }
+.release-steps li.is-current {
+  border-color: var(--accent);
+  background: var(--surface-2);
+  color: var(--ink);
+  box-shadow: inset 0 -3px 0 var(--accent);
+}
+.release-steps li.is-done { color: var(--ink-2); }
+.release-steps li.is-done .step-name::after { content: " \2713"; color: var(--accent); }
+
+/* display: flow-root gives every section its own block-formatting context, so a floated
+   figure.sidenote inside it is contained there rather than (per the float spec) stacking,
+   via clear:right, below every earlier sidenote on the whole page regardless of which
+   section it's actually in. Without this, about.html's later sections - shorter, with no
+   sidenote of their own - rendered far taller than their own text, because main() had to
+   stay tall enough for a sidenote float left over from an earlier section: a big empty gap
+   above the footer. Every page with sectioned sidenotes benefits, not just about.html. */
+section { margin: 3rem 0; display: flow-root; }
+section h2 { font-size: 1.4rem; border-bottom: 1px solid var(--line); padding-bottom: 0.4em; }
+/* Short reference pages (privacy): tighter rhythm, so a short page doesn't read as long. */
+.doc-compact section { margin: 1.6rem 0; }
+.doc-compact section h2 { margin: 0 0 0.6em; font-size: 1.25rem; }
+.doc-compact section h2 + p, .doc-compact section h2 + ul, .doc-compact section h2 + ol { margin-top: 0.5em; }
+.doc-compact .notice { margin-bottom: 0; }
+/* Home page: the closing "More:" line sits close under the last section. */
+main.home > section:last-of-type { margin-bottom: 1.5rem; }
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 1.1em 1.25em;
+}
+.card h3 { margin-top: 0; font-size: 1.05rem; }
+/* The home page's paper-vs-RangerTrak pair: the RangerTrak card gets the accent edge. */
+.card--accent { border-top: 4px solid var(--accent); }
+
+/* ---- Colored cards (2026-09-30) ----
+   A tone sets --tone; anything inside picks it up.
+   --tone-bar is the title-bar fill: the light-mode shade in both themes, so its white text
+   keeps its contrast in dark mode (where --tone itself gets lighter). */
+.tone-checkin  { --tone: var(--st-checkin);  --tone-bar: #2E5AA0; }
+.tone-location { --tone: var(--st-location); --tone-bar: #2E7266; }
+.tone-rest     { --tone: var(--st-rest);     --tone-bar: #4A7A2A; }
+.tone-normal   { --tone: var(--st-normal);   --tone-bar: #55606B; }
+.tone-chrome   { --tone: var(--chrome);      --tone-bar: #12263F; }
+/* The brand's signal orange: borders and dots only (2.99:1 on white, never text). */
+.tone-signal   { --tone: var(--signal);      --tone-bar: #12263F; }
+
+/* A feature group (about.html): coloured dot on the heading, coloured top edge on its cards. */
+.feature-group[class*="tone-"]::before {
+  content: ""; display: inline-block; width: .7em; height: .7em; border-radius: 50%;
+  background: var(--tone); margin-right: .45em; vertical-align: .05em;
+}
+.card-grid[class*="tone-"] > .card { border-top: 4px solid var(--tone); }
+
+/* A card with a coloured title bar (home page setup cards, the RangerTrak card). */
+.card--bar { padding: 0; overflow: hidden; border-color: var(--line-strong); }
+.card--bar > .card-bar {
+  background: var(--tone-bar, #12263F); color: #FFFFFF;
+  display: flex; align-items: center; gap: .55em; padding: .65em 1.25em;
+}
+.card--bar > .card-bar h3 { margin: 0; color: inherit; font-size: 1.05rem; }
+.card--bar > .card-body { padding: 1em 1.25em 1.1em; }
+
+/* Home page setup (John, 2026-10-16): the command post is the main event, full width with a
+   bigger diagram. The optional extras (field phones, RangerView) moved to devices.html 11-18; one line points there. */
+.card--main { margin-top: 1.25rem; }
+.card--main + .hero-ctas { margin-top: 1.25rem; }
+.card--main .card-body { font-size: 1.05rem; }
+.card--main .card-lead { margin-top: 0; font-weight: 600; }
+.card--main h4 { margin: .5em 0 .25em; font-size: 1rem; color: var(--ink-2); }
+.card--main ul { margin: 0; padding-left: 1.2em; }
+.card--main li { margin: .2em 0; }
+@media (min-width: 40em) { .card-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; } }
+.extras-more { margin-top: 1.25rem; font-size: .95rem; color: var(--ink-2); }
+.card-waves { flex: none; }
+
+/* The paper card: looks like the printed form it is. */
+.card--paper {
+  background-color: var(--paper); color: var(--paper-ink); border-color: var(--paper-line);
+  background-image: repeating-linear-gradient(to bottom, transparent 0 1.55em, var(--paper-rule) 1.55em calc(1.55em + 1px));
+  background-position: 0 3.1em;
+}
+.card--paper h3, .card--paper .card-list { color: var(--paper-ink); }
+.card-formhead {
+  display: flex; justify-content: space-between; gap: .5em; font-size: .72rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; border-bottom: 1.5px solid var(--paper-ink);
+  padding-bottom: .35em; margin-bottom: .7em; opacity: .85;
+}
+
+/* Feature list with status-coloured labels (the RangerTrak card). */
+.pill-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .55em; color: var(--ink-2); font-size: .95rem; }
+.pill-list li { display: grid; grid-template-columns: auto 1fr; gap: .6em; align-items: baseline; }
+.pill-list strong { color: var(--ink); }
+.pill {
+  background: var(--tone); color: var(--pill-ink); border-radius: 4px; padding: .15em .45em; min-width: 5.6em;
+  text-align: center; font-size: .68rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+}
+@media (max-width: 30rem) {
+  .pill-list li { grid-template-columns: 1fr; gap: .2em; }
+  .pill { justify-self: start; }
+}
+
+/* Advice band (the "keep paper going" line). */
+.advice {
+  background: var(--notice); color: var(--notice-ink); border-left: 4px solid var(--notice-line);
+  border-radius: var(--radius); padding: .7em 1em; margin-top: 1rem;
+}
+.card-list { margin: 0; padding-left: 1.1em; color: var(--ink-2); font-size: 0.95rem; }
+.card-list li + li { margin-top: 0.4em; }
+.card p { margin-bottom: 0; color: var(--ink-2); font-size: 0.95rem; }
+.card p + p { margin-top: 0.6em; }
+.card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  margin-bottom: 0.75em;
+}
+
+.roles {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+.roles li {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.85em 1em;
+}
+
+blockquote.testimonial {
+  margin: 1.25rem 0 0;
+  padding: 1em 1.25em;
+  border-left: 4px solid var(--accent);
+  background: var(--surface);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-style: italic;
+}
+blockquote.testimonial footer {
+  margin-top: 0.6em;
+  font-style: normal;
+  font-size: 0.9rem;
+  color: var(--ink-2);
+}
+
+.notice {
+  background: var(--notice);
+  color: var(--notice-ink);
+  border: 1px solid var(--notice-line);
+  border-left-width: 5px;
+  border-radius: var(--radius);
+  padding: 0.85em 1.1em;
+  margin: 1em 0;
+}
+.notice strong { display: block; margin-bottom: 0.2em; }
+/* Several pointers in one box (field guide, 2026-11-16): the list's own bold leads stay inline. */
+.notice--list ul { margin: 0.3em 0 0; padding-left: 1.2em; }
+.notice--list li { margin: 0.45em 0; }
+.notice--list li strong { display: inline; margin: 0; }
+
+/* Muted-red warning: for the one thing on this site that must not be typed anywhere public
+   (feedback.html: no names, phone numbers, addresses or real mission detail in a report
+   that becomes a public GitHub issue). Deliberately quieter than a pure red/white error
+   state - this is a standing caution to read once, not an inline validation error - and
+   the dark-mode colours are chosen to keep at least 4.5:1 contrast against --danger-bg. */
+.warn-notice {
+  background: var(--danger-bg);
+  color: var(--danger-ink);
+  border: 1px solid var(--danger-line);
+  border-left-width: 5px;
+  border-radius: var(--radius);
+  padding: 0.85em 1.1em;
+  margin: 1em 0;
+  font-size: 0.95rem;
+}
+.warn-notice strong { color: var(--danger); }
+
+/* -- Lightbox (assets/lightbox.js) ------------------------------------- */
+
+/* <dialog> handles centring and the backdrop natively; this just styles it with the
+   site's own tokens instead of the browser default. */
+.lightbox-dialog {
+  max-width: min(92vw, 60rem);
+  max-height: 90vh;
+  margin: auto;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  color: var(--ink);
+  overflow: visible;
+}
+.lightbox-dialog::backdrop {
+  background: rgba(11, 31, 51, 0.72);
+}
+@media (prefers-color-scheme: dark) {
+  .lightbox-dialog::backdrop { background: rgba(0, 0, 0, 0.8); }
+}
+
+.lightbox-figure {
+  max-height: 90vh;
+  overflow: auto;
+  padding: 1.25rem;
+}
+.lightbox-figure img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(90vh - 2.5rem);
+  height: auto;
+  margin: 0 auto;
+  border-radius: var(--radius);
+}
+.lightbox-caption {
+  margin: 0.75rem 0 0;
+  font-size: 0.85rem;
+  color: var(--ink-2);
+  text-align: center;
+}
+
+/* Close (X), upper left, so it never sits over the top of a tall screenshot the way an
+   upper-right close button would. */
+.lightbox-close {
+  position: absolute;
+  top: -0.9rem;
+  left: -0.9rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--chrome);
+  color: var(--chrome-ink);
+  border: 2px solid var(--surface);
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0;
+}
+.lightbox-close:hover { filter: brightness(1.15); }
+.lightbox-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* "Why it works this way" - one per Field Notes post: the design reasoning behind the
+   feature the post covers, stated plainly. Quieter than .notice; it's reading, not a warning. */
+.design-note {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--line-strong);
+  border-radius: var(--radius);
+  padding: 0.85em 1.1em;
+  margin: 1.5em 0;
+}
+.design-note h2 { font-size: 1.05rem; margin: 0 0 0.4em; }
+.design-note p:last-child { margin-bottom: 0; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+th, td {
+  text-align: left;
+  padding: 0.5em 0.6em;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+th { color: var(--ink); font-weight: 700; }
+
+code { background: var(--surface-2); padding: 0.1em 0.35em; border-radius: 4px; font-size: 0.9em; }
+
+/* ── Feedback form ───────────────────────────────────────────────────── */
+
+.feedback-form {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 1.25em;
+  margin-top: 1.25rem;
+}
+.feedback-form label {
+  display: block;
+  font-weight: 600;
+  margin: 1em 0 0.35em;
+}
+.feedback-form label:first-of-type { margin-top: 0; }
+.feedback-form textarea,
+.feedback-form input[type="text"] {
+  width: 100%;
+  font: inherit;
+  padding: 0.6em 0.7em;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--ground);
+  color: var(--ink);
+}
+.feedback-form textarea { min-height: 7em; resize: vertical; }
+.feedback-form .hint { color: var(--ink-2); font-size: 0.85rem; margin: 0.35em 0 0; }
+.feedback-form .actions { margin-top: 1.1em; display: flex; gap: 0.75em; flex-wrap: wrap; align-items: center; }
+.feedback-form .actions .status { font-size: 0.9rem; color: var(--ink-2); }
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  display: grid;
+  gap: 0.6rem;
+}
+.contact-list li {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.75em 1em;
+}
+
+footer.site-footer {
+  border-top: 1px solid var(--line);
+  margin-top: 3rem;
+  padding: 1.5rem 1.25rem 2.5rem;
+  text-align: center;
+  color: var(--ink-2);
+  font-size: 0.9rem;
+}
+footer.site-footer a { color: var(--ink-2); }
+footer.site-footer p { margin: 0.4em 0; }
+
+/* -- Two-column shell ------------------------------------------------- */
+
+/* Every page: the reading column on the left, a narrower rail on the right. The shell
+   is as wide as the top bar (64rem), so the reading column starts at the same x on
+   every page instead of jumping between centred widths.
+
+   The rail holds ONE of two things per page, never both:
+     - a rolling table of contents (.toc, sticky, scrollspy-lit) on long pages; or
+     - side notes (.sidenote), placed in the article markup right next to the text they
+       illustrate and floated out into the rail, so they sit beside their context.
+   A sticky TOC and floated notes would overlap in the same column, hence the rule.
+   Below 66rem there is no room for two columns: the shell collapses, the TOC hides,
+   and side notes drop back into the text as ordinary small figures. */
+.shell {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 15rem;
+  align-items: start;
+  gap: 2.5rem;
+}
+.shell > main {
+  max-width: none;
+  margin: 0;
+  /* Light bottom padding, and no bottom margin on the last block: the last section's 3rem
+     margin, a 4rem padding here and the footer's 3rem margin used to stack into a big empty
+     band above the footer on every page (John, 2026-10-21). The footer's margin is the gap. */
+  padding: 2rem 0 1.5rem;
+  min-width: 0;
+}
+.shell > main > :last-child { margin-bottom: 0; }
+
+.rail {
+  padding: 2rem 0 4rem;
+  font-size: 0.9rem;
+}
+.rail__heading,
+.toc h2 {
+  margin: 0 0 0.75em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.rail .series-list { padding-left: 1.4em; color: var(--ink-2); }
+.rail .series-list li { margin-bottom: 0.5em; }
+
+/* Side notes: floated right with a negative margin equal to their width plus the gap,
+   so they occupy the rail and take no room from the text beside them. clear keeps
+   consecutive notes stacked rather than overlapping. */
+figure.sidenote {
+  float: right;
+  clear: right;
+  width: 15rem;
+  margin: 0.3rem -17.5rem 1.5rem 0;
+}
+figure.sidenote img { cursor: zoom-in; }
+figure.sidenote figcaption { font-size: 0.82rem; line-height: 1.4; }
+/* A side note that is a box of further reading rather than a picture caption. */
+figure.sidenote--links {
+  background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--st-location);
+  border-radius: var(--radius-lg); padding: 0.8em 0.95em;
+}
+figure.sidenote--links strong { display: block; margin-bottom: 0.35em; font-size: 0.9rem; }
+
+/* Pages with a .toc can't use side notes (see above), so their pictures stay in the reading
+   column (field guide, 2026-10-16: the readiness side note ran over the sticky TOC).
+   .figure-inset floats a small screenshot right, inside the text; .shot-grid lays several
+   screenshots out two to a row. Both drop to one full-width column on a phone. */
+figure.figure-inset {
+  float: right;
+  width: 15rem;
+  margin: 0.3rem 0 1rem 1.5rem;
+}
+figure.figure-inset figcaption,
+.shot-grid figcaption { font-size: 0.82rem; line-height: 1.4; }
+.shot-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+.shot-grid figure { margin: 0; }
+.shot-grid figure.shot-grid__wide { grid-column: 1 / -1; }
+@media (max-width: 40em) {
+  figure.figure-inset { float: none; width: auto; max-width: 22rem; margin: 1.25rem 0; }
+  .shot-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Optional detail folded away (field guide). Closed by default; the summary line says
+   what is inside, so a reader who skips it knows what they skipped. */
+details.fold {
+  margin: 1.25rem 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  padding: 0 1rem;
+}
+details.fold > summary {
+  cursor: pointer;
+  padding: 0.75rem 0;
+  font-weight: 600;
+}
+details.fold > summary:hover { color: var(--accent); }
+details.fold[open] { padding-bottom: 0.5rem; }
+
+.toc {
+  position: sticky;
+  /* Below the sticky top bar (about 4.5rem), not under it: at 1.5rem the first entries
+     scrolled out of sight behind the bar (John, 2026-10-16). */
+  top: 6rem;
+  margin: 2rem 0 4rem;
+  padding-left: 1rem;
+  border-left: 1px solid var(--line);
+  font-size: 0.85rem;
+  /* Its own scrollbar, so a future longer guide can never push entries out of
+     reach below the fold. */
+  max-height: calc(100vh - 7.5rem);
+  overflow-y: auto;
+}
+
+.toc ol { margin: 0; padding: 0; list-style: none; }
+.toc li { margin: 0 0 0.15em; }
+
+.toc a {
+  display: block;
+  padding: 0.3em 0.5em;
+  border-radius: var(--radius);
+  color: var(--ink-2);
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.toc a:hover {
+  background: var(--surface-2);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+/* aria-current is the real state - set by the scrollspy in field-guide.html.
+   This rule only paints it, so the styling cannot drift from what is announced. */
+.toc a[aria-current="true"] {
+  background: var(--surface-2);
+  color: var(--accent);
+  font-weight: 600;
+  box-shadow: inset 2px 0 0 var(--accent);
+}
+
+/* A little air above a heading jumped to from the TOC, rather than flush to the
+   viewport edge. Superseded by the sticky top-bar's own scroll-margin-top rule near the
+   top of this file (4.5rem, so the heading also clears the bar) - kept at that same value
+   here rather than removed, since this selector is more specific and would otherwise win. */
+.shell h2[id] { scroll-margin-top: 4.5rem; }
+
+/* Two columns need 15rem of rail + 2.5rem of gap + a reading column that is still a
+   comfortable ~43rem. Below that, one centred column, as the site was before. */
+@media (max-width: 66rem) {
+  .shell { display: block; max-width: var(--max-width); }
+  .rail { padding: 0 0 3rem; }
+  .toc { display: none; }
+  figure.sidenote {
+    float: none;
+    width: auto;
+    max-width: 30rem;
+    margin: 1.25rem 0 1.5rem;
+  }
+}
+
+/* -- Blog ------------------------------------------------------------- */
+
+/* A post's hero (from Part 3, 2026-09-30): full width of the reading column, under the byline. */
+.post-hero { margin: 1.25rem 0 1.5rem; }
+.post-hero img { display: block; width: 100%; height: auto; border-radius: var(--radius-lg); }
+
+.post-kicker {
+  margin: 0 0 0.3em;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.post h1 { font-size: 2rem; margin: 0 0 0.35em; }
+.post-meta { margin: 0 0 2em; font-size: 0.9rem; color: var(--ink-2); }
+.post h2 { margin-top: 2.2rem; }
+.post section { margin: 2.5rem 0; }
+
+kbd {
+  font: 0.85em ui-monospace, SFMono-Regular, Consolas, monospace;
+  padding: 0.1em 0.4em;
+  border: 1px solid var(--line-strong);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  background: var(--surface);
+}
+
+/* The two fixed blocks every post carries: the hands-on test and the feedback ask. */
+.try-it,
+.tell-me {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  padding: 0.25em 1.4em 1em;
+}
+.try-it h2,
+.tell-me h2 { border-bottom: none; margin-top: 0.8em; }
+.try-it li,
+.tell-me li { margin-bottom: 0.45em; }
+.try-it__note { color: var(--ink-2); font-size: 0.9rem; }
+
+.series-list { color: var(--ink-2); }
+.series-list li[aria-current] { color: var(--ink); }
+.post-next {
+  border-top: 1px solid var(--line);
+  padding-top: 1em;
+  margin-top: 1.5em;
+}
+
+.post-list { list-style: none; padding: 0; margin: 1.5rem 0 0; display: grid; gap: 1rem; }
+.post-list li {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 1em 1.25em;
+}
+.post-list h2 { border-bottom: none; margin: 0 0 0.3em; padding: 0; font-size: 1.25rem; }
+.post-list h2 a { text-decoration: none; }
+.post-list h2 a:hover { text-decoration: underline; }
+.post-list p:last-child { margin-bottom: 0; color: var(--ink-2); }
+/* Thumbnails (John, 2026-09-30: "boring without at least thumbnails"). 16:10 crops of each
+   post's own lead image, in public/blog/img/thumbs/; beside the text, above it on a phone.
+   The whole card is clickable via the title link's ::after. */
+.post-list li.has-thumb { display: grid; grid-template-columns: 12rem 1fr; gap: 1.1em; align-items: start; position: relative; }
+.post-list li.has-thumb > div { min-width: 0; }
+.post-thumb { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover;
+  border-radius: var(--radius); border: 1px solid var(--line); }
+.post-list li.has-thumb h2 a::after { content: ""; position: absolute; inset: 0; }
+.post-list li.has-thumb:hover { border-color: var(--line-strong); }
+@media (max-width: 34rem) { .post-list li.has-thumb { grid-template-columns: 1fr; } }
+
+/* The field guide's "last updated" stamp. Sits directly under the lede rather than in
+   the footer: this page is written to be printed or saved for use with no connection,
+   and a date an operator has to scroll to the end to find is one they will not check. */
+.doc-updated {
+  margin: -0.5em 0 2em;
+  font-size: 0.85rem;
+  color: var(--ink-2);
+}
+
+/* Press page: a plain list of downloadable full-size originals. */
+.press-list { list-style: none; padding: 0; display: grid; gap: 0.75rem; }
+.press-list li { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 0.75em 1em; }
+.press-list h3 { margin: 0 0 0.25em; font-size: 1.05rem; }
+.press-list p { margin: 0; }
+.press-size { color: var(--ink-2); font-size: 0.85rem; white-space: nowrap; }
+/* Thumbnail beside each press item (press/thumbs/, 360px max). Clicking it opens the
+   lightbox; the title link still goes straight to the full-size file. --clear gives the
+   transparent logos a light checkered ground so they read as transparent in both schemes. */
+.press-list li { display: grid; grid-template-columns: 120px 1fr; gap: 1em; align-items: start; }
+.press-thumb {
+  display: flex; align-items: center; justify-content: center;
+  height: 96px; overflow: hidden;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--surface);
+}
+.press-thumb--clear { background: #fff repeating-conic-gradient(#e9eef3 0% 25%, #fff 0% 50%) 0 0 / 12px 12px; }
+.press-thumb--clear img[src$=".svg"] { height: 80%; }
+.press-thumb img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+.press-thumb:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (max-width: 30em) {
+  .press-list li { grid-template-columns: 88px 1fr; gap: 0.75em; }
+  .press-thumb { height: 72px; }
+}
+
+/* Top of every Field Notes post: what RangerTrak is, in one paragraph, plus the series'
+   standing disclosure. Readers arrive from social links knowing nothing, so this comes
+   before the story. Same text on every post; part 1 adds the "rough edges" note. */
+.post-intro {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--signal);
+  border-radius: var(--radius);
+  padding: 0.85em 1.1em;
+  margin: 0 0 1.75em;
+  font-size: 0.97rem;
+}
+.post-intro p { margin: 0.4em 0; }
+
+.footer-privacy { font-size: 0.8rem; max-width: 40rem; margin: 0.9em auto 0 !important; }
+
+/* -- Back to top (assets/site.js) ---------------------------------------
+   Same button as the app's (shared/back-to-top): a round accent arrow, bottom right, shown
+   only once the top of a tall page has scrolled away. At least 44px, clear of an iOS home
+   indicator, and above the sticky top bar; the lightbox is a <dialog>, so it still sits
+   over this. Never printed. */
+.back-to-top {
+  position: fixed;
+  right: calc(1rem + env(safe-area-inset-right, 0px));
+  bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background: var(--accent);
+  color: var(--accent-ink);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 35%);
+}
+.back-to-top[hidden] { display: none; }
+.back-to-top:hover,
+.back-to-top:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+@media print { .back-to-top { display: none; } }
+
+/* about.html's feature tour (2026-09-29, John: "a training tool, not just marketing"):
+   cards grouped under h3 headings by what the scribe is doing, so card titles are h4. */
+.feature-group { margin-top: 2rem; font-size: 1.15rem; }
+.feature-group__intro { color: var(--ink-2); margin-bottom: 0; }
+
+/* Simple view / Full view (E-207, 2026-10-20): about.html is the everyday workflow, full-view.html
+   the extras. The note pointing between them, and Full view's cards, wear the app's plum rule. */
+.view-note {
+  border-left: 4px solid var(--advanced);
+  background: color-mix(in srgb, var(--advanced) 8%, var(--surface));
+  padding: .75em 1em; border-radius: 6px;
+}
+.card-grid.is-advanced > .card { box-shadow: inset 4px 0 0 var(--advanced); }
+.card h4 { margin: 0 0 0.4em; font-size: 1.02rem; }
+
+/* Former style="" attributes, moved here so the Content-Security-Policy (public/_headers)
+   needs no 'unsafe-inline' for styles. Selectors match .hero p.lede's specificity and come
+   later, so they win exactly as the inline styles did. */
+p.lede.lede--sub { color: var(--ink-2); margin-top: -0.5em; }
+.hero-ctas.hero-ctas--start { justify-content: flex-start; }
+h2.h2-spaced { margin-top: 2.5rem; }
+
+/* Lighthouse score badges on the About page (PageSpeed, 2026-10-05). Two-part, shields.io
+   style, but pure CSS: the CSP's img-src 'self' would block shields.io images. Green is the
+   app's "rest" status colour, per the colored-cards rule. */
+.score-badges { list-style: none; margin: 1em 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5em; }
+.score-badges li { display: inline-flex; border-radius: 4px; overflow: hidden; font-size: .8rem; font-weight: 600; line-height: 1.6; }
+.score-badges .badge-key { background: var(--st-normal); color: var(--pill-ink); padding: 0 .55em; }
+.score-badges .badge-val { background: var(--st-rest); color: var(--pill-ink); padding: 0 .55em; font-weight: 700; }
+
+/* Real-world photos (John, 2026-10-16): illustrative, credited, public domain. */
+.photo-band { margin: 1.5rem 0; }
+.photo-band img, .photo-pair img { width: 100%; height: auto; border-radius: var(--radius-lg); display: block; }
+.photo-credit { color: var(--ink-2); font-size: .85em; }
+.photo-pair { display: grid; grid-template-columns: 1fr; gap: 1rem; margin: 1rem 0 1.25rem; }
+.photo-pair figure { margin: 0; }
+@media (min-width: 40em) { .photo-pair { grid-template-columns: repeat(3, 1fr); } }
+.photo-pair figcaption { font-size: .85rem; }
+.photo-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; border-radius: var(--radius-lg); overflow: hidden; }
+.photo-duo img { width: 100%; height: auto; display: block; border-radius: 0; }
+
+/* ── Home: two small screenshots of the real app (John, 2026-11-16) ─────
+   Small by default so the hero stays simple; on a mouse they grow to about twice the size
+   on hover, and a click opens the full-size copy in the lightbox (lightbox.js). On touch
+   screens there is no hover: the click does it. Each grows away from the other's side so
+   neither runs off the page. */
+.screen-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  max-width: 34rem;
+  margin: 1.75rem auto 0.5rem;
+  text-align: left;
+}
+.screen-pair figure { margin: 0; position: relative; }
+.screen-pair a { display: block; }
+.screen-pair img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  box-shadow: 0 1px 3px rgba(11, 31, 51, .12);
+  cursor: zoom-in;
+  background: var(--surface);
+}
+.screen-pair figcaption { font-size: 0.82rem; line-height: 1.35; color: var(--ink-2); margin-top: 0.4em; }
+@media (hover: hover) and (min-width: 50em) {
+  .screen-pair img { transition: transform .22s ease, box-shadow .22s ease; transform-origin: left top; }
+  .screen-pair figure:last-child img { transform-origin: right top; }
+  .screen-pair figure:hover { z-index: 5; }
+  .screen-pair figure:hover img {
+    transform: scale(2);
+    box-shadow: 0 10px 30px rgba(11, 31, 51, .35);
+  }
+}
+@media (prefers-reduced-motion: reduce) { .screen-pair img { transition: none; } }
+
+/* ── Snapshot: a one-line "what it's for" callout (John, 2026-11-16) ────
+   Short, plain statements of what RangerTrak is for, set where they fit the topic.
+   Use sparingly: one per section at most, a handful per page. */
+.snapshot {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  max-width: 30rem;
+  margin: 1.25rem 0 1.5rem;
+  padding: 0.55em 0.95em;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--signal);
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 1.02rem;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.snapshot::before {
+  content: "";
+  flex: none;
+  width: 18px;
+  height: 18px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Ccircle cx='5' cy='15' r='2.2' fill='%23F0700A'/%3E%3Cpath d='M5 9.5a5.5 5.5 0 0 1 5.5 5.5M5 4.5A10.5 10.5 0 0 1 15.5 15' fill='none' stroke='%23F0700A' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.snapshot p { margin: 0; }
+
+/* ── Field Guide: a spiral-bound notebook (John, 2026-11-16) ────────────
+   The page sits on a sheet with a row of wire coils down its left edge. Light touch: the
+   coils are a strip of one repeated SVG, mid-grey so they read in light and dark. Gone on
+   a phone (no room) and in print. */
+main.binder {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px var(--radius-lg) var(--radius-lg) 4px;
+  box-shadow: 0 1px 4px rgba(11, 31, 51, .08);
+  padding: 2rem 2rem 1.5rem 2.75rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+main.binder::before {
+  content: "";
+  position: absolute;
+  top: 1rem;
+  bottom: 1rem;
+  left: -17px;
+  width: 44px;
+  pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='40'%3E%3Cellipse cx='31' cy='21' rx='4' ry='4' fill='%230B1F33' fill-opacity='.35'/%3E%3Cpath d='M31 21 C 29 7, 7 5, 5 15 C 4 22, 11 27, 19 26' fill='none' stroke='%23565F69' stroke-width='3.4' stroke-linecap='round'/%3E%3Cpath d='M29.5 17 C 26 9, 10 8, 7.5 15' fill='none' stroke='%23C9D1D9' stroke-width='1' stroke-linecap='round'/%3E%3C/svg%3E") 0 0 / 44px 40px repeat-y;
+}
+@media (max-width: 40em) {
+  main.binder { padding: 1.5rem 1rem 1rem; border-radius: var(--radius-lg); }
+  main.binder::before { display: none; }
+}
+@media print {
+  main.binder { border: 0; box-shadow: none; padding: 0; background: none; }
+  main.binder::before { display: none; }
+}
+
+/* -- Features pages: one nav across four pages, folding cards (John, 2026-11-16) --------
+   about.html (Everyday), full-view.html (Full menus), devices.html (More than one device)
+   and practice.html (Practice and training) share .features-nav at the top of main: the
+   four pages as tabs, then the current page's sections as chips. Plain links, no script.
+   It wraps on a phone rather than scrolling sideways. */
+.features-nav {
+  margin: 0 0 1.75rem;
+  padding: 0.6rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  font-size: 0.9rem;
+}
+.features-nav__pages { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0; padding: 0; list-style: none; }
+.features-nav__pages a {
+  display: block;
+  padding: 0.4em 0.8em;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--ink-2);
+  text-decoration: none;
+  line-height: 1.25;
+}
+.features-nav__pages a:hover { background: var(--surface-2); color: var(--ink); }
+.features-nav__pages .num { font-weight: 700; margin-right: 0.35em; color: var(--ink-2); }
+.features-nav__pages a[aria-current="page"] {
+  background: var(--surface-2);
+  border-color: var(--accent);
+  color: var(--ink);
+  font-weight: 600;
+  box-shadow: inset 0 -3px 0 var(--accent);
+}
+.features-nav__sections {
+  display: flex; flex-wrap: wrap; gap: 0.25rem 0.9rem;
+  margin: 0.55rem 0 0; padding: 0.5rem 0.3rem 0; list-style: none;
+  border-top: 1px solid var(--line);
+  font-size: 0.85rem;
+}
+.features-nav__sections a { color: var(--ink-2); }
+.features-nav__sections a:hover { color: var(--accent); }
+.shell h3[id] { scroll-margin-top: 5rem; }
+/* "Next page" line at the foot of each features page. */
+.features-next { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--line); font-weight: 600; }
+
+/* Folding cards: site.js wraps a long card's text in .card-fold and adds a More button,
+   so a card shows its title and about three lines until opened. With JS off nothing is
+   wrapped and every card shows in full. */
+.card-fold { position: relative; }
+/* Three lines of .card p (0.95rem at body line-height 1.55), then the fade. */
+.card-fold.is-folded { max-height: 4.42em; overflow: hidden; }
+.card-fold.is-folded::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1.6em;
+  background: linear-gradient(to bottom, transparent, var(--surface));
+  pointer-events: none;
+}
+.card-more {
+  margin-top: 0.45em; padding: 0.15em 0; border: 0; background: none;
+  color: var(--accent); font: inherit; font-size: 0.88rem; font-weight: 600; cursor: pointer;
+}
+.card-more:hover { text-decoration: underline; }
+/* A planned card: dashed edge, a small label, so "coming" never reads as shipped. */
+.card--planned { border-style: dashed; }
+.card-tag {
+  display: inline-block; margin-left: 0.4em; padding: 0.05em 0.45em;
+  border: 1px solid var(--line-strong); border-radius: var(--radius);
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--ink-2); vertical-align: 0.15em;
+}
+@media print {
+  .card-fold.is-folded { max-height: none; overflow: visible; }
+  .card-fold.is-folded::after, .card-more, .features-nav { display: none; }
+}

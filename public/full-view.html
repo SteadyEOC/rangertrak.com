@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--
+  Part of the rangertrak.com front door - see index.html's header comment for the full
+  scope note.
+
+  Full view (2026-10-20, John; E-207 / ADR D-62, AAR 10): the app now opens in Simple view (now Easy menus),
+  so about.html keeps the everyday workflow and this page holds the extras. The split follows
+  the app's own list, ADVANCED_FEATURES in rangertrak-ORG-site/src/app/domain/view.ts: a card
+  moves here when its control is on that list. Same content rules as about.html. Name: "Full
+  view" (Q11, kept 2026-10-20); renamed "Full menus" 2026-11-16 to match the app (Easy menus / Full menus). URL kept; "Advanced" only as a label, never "Pro" or "mode".
+-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Full menus - RangerTrak</title>
+<meta name="description" content="RangerTrak's Full menus: tactical call signs, photos, every location format, the printed map sheet, the ICS-214, device encryption and the other extras beyond the everyday workflow. All free.">
+<!-- Open Graph / Twitter. Added 2026-09-22: these three pages had no og tags at
+     all, so a shared link rendered with no title, description or picture. -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rangertrak.com/full-view.html">
+<meta property="og:title" content="Full menus - RangerTrak">
+<meta property="og:description" content="RangerTrak's Full menus: tactical call signs, photos, every location format, the printed map sheet, the ICS-214, device encryption and the other extras beyond the everyday workflow. All free.">
+<meta property="og:image" content="https://rangertrak.com/assets/og-rangertrak.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="RangerTrak: your team&rsquo;s radio reports, made actionable. rangertrak.com">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/styles.css">
+<script src="assets/lightbox.js" defer></script>
+<script src="assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="top-bar">
+  <div class="top-bar__inner">
+    <a class="brand" href="/">
+      <svg class="brand-icon" width="24" height="40" viewBox="0 0 155 260" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-linejoin="round">
+          <path d="M 52 239 L 18.4 175.8 A 38 38 0 1 1 85.6 175.8 Z" stroke-width="12" />
+          <path d="M 52 96 L 52 150" stroke-width="5" stroke-linecap="round" />
+        </g>
+        <rect x="44" y="142" width="16" height="58" rx="6" fill="currentColor" />
+        <circle cx="52" cy="88" r="8" fill="currentColor" />
+        <g fill="var(--chrome)">
+          <rect x="47.5" y="158" width="9" height="4" rx="2" />
+          <rect x="47.5" y="170" width="9" height="4" rx="2" />
+          <rect x="47.5" y="182" width="9" height="4" rx="2" />
+        </g>
+        <g class="brand-signal" fill="none" stroke-width="7" stroke-linecap="round"
+          vector-effect="non-scaling-stroke">
+          <path class="wave wave-1" transform="translate(52,88) scale(0.80) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+          <path class="wave wave-2" transform="translate(52,88) scale(1.30) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+          <path class="wave wave-3" transform="translate(52,88) scale(1.85) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+        </g>
+      </svg>
+      RangerTrak&trade;
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="top-nav" aria-label="Menu">&#9776;</button>
+    <noscript><style>.top-nav{display:flex!important;flex-wrap:wrap!important;}.nav-toggle{display:none!important;}</style></noscript>
+    <nav class="top-nav" id="top-nav" aria-label="Main">
+      <a href="/">Home</a>
+      <a href="about.html">What it does</a>
+      <a href="blog.html">Blog</a>
+      <a href="field-guide.html">Field Guide</a>
+      <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Tour</a>
+      <a href="feedback.html">Feedback</a>
+      <a href="https://github.com/SteadyEOC/RangerTrak" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg class="icon-github" width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.02 1.93-.02 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg></a>
+      <a class="cta" href="https://rangertrak.org" target="_blank" rel="noopener">Open RangerTrak &rarr;</a>
+    </nav>
+  </div>
+</div>
+
+<div class="shell">
+<main id="main">
+
+  <h1>Full menus: the extras</h1>
+  <p class="lede">
+    Everything beyond the everyday workflow. Start with <a href="about.html">What it does</a>;
+    come here when your group wants more. It&rsquo;s the same free app with more on screen.
+  </p>
+
+  <nav class="features-nav" aria-label="Features pages">
+    <ul class="features-nav__pages">
+      <li><a href="about.html"><span class="num">1</span>Everyday</a></li>
+      <li><a href="full-view.html" aria-current="page"><span class="num">2</span>Full menus</a></li>
+      <li><a href="devices.html"><span class="num">3</span>More than one device</a></li>
+      <li><a href="practice.html"><span class="num">4</span>Practice and training</a></li>
+    </ul>
+    <ul class="features-nav__sections" aria-label="On this page">
+      <li><a href="#views-heading">Easy and Full menus</a></li>
+      <li><a href="#before">Before the mission</a></li>
+      <li><a href="#entry">Logging a report</a></li>
+      <li><a href="#maps">Maps</a></li>
+      <li><a href="#protect">Protecting the data</a></li>
+      <li><a href="#after">After the mission</a></li>
+    </ul>
+  </nav>
+
+  <section aria-labelledby="views-heading">
+    <h2 id="views-heading">Easy menus and Full menus</h2>
+    <p>
+      A new install of RangerTrak opens in <strong>Easy menus</strong>: the controls a scribe
+      needs to log reports, watch the map and print the Form 309 Communications Log, and nothing else. Starting out,
+      that&rsquo;s all you need. <strong>Full menus</strong> adds everything on this page.
+    </p>
+    <p>
+      Switch any time with the <strong>Full menus</strong> button at the top of Entry, Map, Mission
+      or Rangers &amp; Teams, the pages that have extras. Its outline and dot turn plum when Full
+      menus is on and stay grey when it&rsquo;s off. In Full menus, each extra has a thin plum
+      edge down its left side, like the cards below, so you can always tell the everyday controls
+      from the extras. The choice is per device: the command-post laptop can show everything while
+      a newcomer&rsquo;s phone stays simple. A coordinator&rsquo;s Setup file can suggest Easy or Full menus
+      for the phones they prepare; the person&rsquo;s own choice wins after that.
+    </p>
+    <p class="view-note">
+      <strong>Easy menus never hides your data.</strong> An extra stays on screen whenever the
+      mission is using it: set up a tactical call sign or attach a photo, and it shows in both
+      views. Switching changes nothing and deletes nothing. Warnings, the readiness dot, backup and
+      storage protection show in both. And every extra is free, like the rest of RangerTrak:
+      Full menus is not a paid tier.
+    </p>
+  </section>
+
+  <section aria-labelledby="extras-heading">
+    <h2 id="extras-heading">The extras</h2>
+
+    <h3 id="before" class="feature-group tone-signal">Before the mission</h3>
+    <div class="card-grid card-grid--fold tone-signal is-advanced">
+      <div class="card">
+        <h4>Setup files</h4>
+        <p>A coordinator can bundle the roster (with photos), named places and mission settings into one file and hand it to the scribe, from the Setup file card on the Mission page. Loading one <em>merges</em> into what&rsquo;s already there, so a rangers-only file and a places-only file can both be loaded. Loaded the wrong one? <em>Undo last import</em> (Mission &gt; Data safety) puts things back the way they were, for 24 hours.</p>
+      </div>
+      <div class="card">
+        <h4>Layers</h4>
+        <p>Places load from a spreadsheet, a Google My Maps export or a GeoJSON file, on the Map page. Give an import a name, such as &ldquo;Fernhollow CERT&rdquo; or &ldquo;Shelters&rdquo;, and RangerTrak remembers it as a layer: load a newer copy later and it asks whether to remove anyone who is no longer on it. Layers can be exported and printed from Rangers &amp; Teams.</p>
+      </div>
+      <div class="card">
+        <h4>Statuses and places</h4>
+        <p>Status names and colors are yours to edit, and they become the buttons on the entry screen and the colors on the map. Named places, such as the command post or a staging area, show on both maps, sorted into categories you can edit too.</p>
+      </div>
+    </div>
+
+    <h3 id="entry" class="feature-group tone-checkin">Logging a report</h3>
+    <div class="card-grid card-grid--fold tone-checkin is-advanced">
+      <div class="card">
+        <h4>Tactical calls, from and to</h4>
+        <p>List the mission&rsquo;s tactical call signs on the Mission page, such as Command Post or Rim Team 1, and say who is operating each. On the entry screen, <em>From</em> and <em>To station</em> take a tactical call or a ranger. The Radio Log and the printed 309 show both ends the same way, such as &ldquo;Rim Team 1 (K7ABC)&rdquo;.</p>
+      </div>
+      <div class="card">
+        <h4>Every location format</h4>
+        <p>Decimal degrees, degrees and decimal minutes, degrees-minutes-seconds, USNG/MGRS and UTM: the same five, in the same order, on the entry screen, the map and places. Full menus puts a picker on the entry screen, so a report can be typed in whatever format it was read out in; the Mission page sets the one it starts on. A Maidenhead grid locator or a Plus Code goes in the address box, and works offline.</p>
+      </div>
+      <div class="card">
+        <h4>Photos, video and audio</h4>
+        <p><em>Attach</em> adds files to a report; on a phone it can open the camera. The original is kept exactly as it came, with a fingerprint that shows a copy is identical. For a big file there&rsquo;s <em>Smaller copy</em>: much quicker to send, but without fine detail. Hover a report&rsquo;s 📎 to peek at its pictures.</p>
+      </div>
+      <div class="card">
+        <h4>Evidence or a clue</h4>
+        <p>Alt+click the small map on the entry screen to mark evidence or a clue at a second spot, apart from where the team is standing.</p>
+      </div>
+      <div class="card">
+        <h4>ICS-213 messages</h4>
+        <p>Tick &ldquo;Also generate an ICS-213&rdquo; on a report and it becomes a message on the Messages page, printed or saved as a PDF on FEMA&rsquo;s own form, with the reply section left blank for the recipient. Keep a list of the usual recipients, and turn on auto-print to print every 213 the moment you submit it.</p>
+      </div>
+      <div class="card">
+        <h4>ICS-213RR resource requests</h4>
+        <p>Tick &ldquo;Also generate an ICS-213RR&rdquo; to ask Logistics for supplies: up to nine items (quantity, kind, description, type, needed by), a priority, where to deliver it and the on-site contact. It prints from the Messages page on FEMA&rsquo;s form, leaving the Logistics and Finance parts blank, with our message number in the margins. Field phones never show it.</p>
+      </div>
+    </div>
+
+    <figure class="sidenote">
+      <a href="img/guide/map-sheet-vashon.jpg"><img src="img/guide/map-sheet-vashon.jpg" srcset="img/guide/map-sheet-vashon-480.jpg 480w, img/guide/map-sheet-vashon-800.jpg 800w, img/guide/map-sheet-vashon.jpg 1470w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="1470" height="1088" loading="lazy"
+        alt="A printed RangerTrak map sheet of Vashon Island from the Vashon demo, with a title box, a legend listing each team and ranger with their entry counts, statuses, overdue shading bands and places, a USNG grid, range rings, a north arrow and a Prepared by line." /></a>
+      <figcaption>The printed map sheet, from the Vashon demo. The legend lists every team on the map with its number of entries.</figcaption>
+    </figure>
+    <h3 id="maps" class="feature-group tone-location">Maps</h3>
+    <div class="card-grid card-grid--fold tone-location is-advanced">
+      <div class="card">
+        <h4>The alternative map</h4>
+        <p>A second map that also works offline. It has a low-detail world map built in; demo missions bring street detail for their own area, and for yours you can load a map file.</p>
+      </div>
+      <div class="card">
+        <h4>Map layers</h4>
+        <p>On the topographic map, the layers box (top right) adds a USNG / MGRS grid, working offline, plus a satellite view, marked hiking trails and terrain shading when you&rsquo;re online. Under the map, the Show on map box adds range rings around the command post and a heat map.</p>
+      </div>
+      <div class="card">
+        <h4>A printed map sheet</h4>
+        <p>Print map gives a finished landscape map sheet for the packet with your 309 and 213s: a title box with the mission, operational period and printed time; the map filling the page, with a north arrow, scale bar, map credit and latitude/longitude marks round the edge; and a &ldquo;Prepared by&rdquo; line. The legend floats on the map where it hides no markers, and doubles as a roll call: every team and ranger on the map with how many entries each has, plus the statuses, overdue shading and places. On a crowded map it moves to a second page, and a filtered map says &ldquo;Filtered&rdquo; in its title box. Every report prints as its own marker, so a PDF can be zoomed. The button takes a few seconds to fetch a more detailed map for paper (offline it uses your saved area), so use it rather than the browser&rsquo;s own Print.</p>
+      </div>
+    </div>
+
+
+    <h3 id="protect" class="feature-group tone-normal">Protecting the data</h3>
+    <div class="card-grid card-grid--fold tone-normal is-advanced">
+      <div class="card">
+        <h4>Device encryption</h4>
+        <p>The roster, reports, notes, photos and attached files can be locked on the device behind a passphrase that the app asks for each time it opens. It protects a lost or stolen device, not an unlocked one, and a forgotten passphrase can&rsquo;t be recovered.</p>
+      </div>
+    </div>
+
+    <h3 id="after" class="feature-group tone-normal">After the mission</h3>
+    <div class="card-grid card-grid--fold tone-normal is-advanced">
+      <div class="card">
+        <h4>ICS-214 activity log</h4>
+        <p>The same <em>AAR/214</em> button at the top of every page also takes an <em>ICS-214 line</em>: what you did and when, with a time you can change. The After Action page collects them, and <em>Export ICS-214</em> fills in FEMA&rsquo;s own fillable 214, offline: your name, ICS position and home agency, up to eight Resources Assigned, and the lines for this operational period or all of them. 214 lines are your own unit log, not radio traffic, so they never show on the 309, the map or the summary. They are in the mission backup, but not in Report Packets or hand-overs: each device keeps its own 214. In Easy menus, After Action joins the menu once there is a 214 line.</p>
+      </div>
+    </div>
+
+    <p>
+      Each of these is explained in the
+      <a href="https://rangertrak.org/help" target="_blank" rel="noopener">in-app Help</a>,
+      which always matches the app. Phones, several scribes and big screens are on
+      <a href="devices.html">More than one device</a>.
+    </p>
+  </section>
+
+  <section aria-labelledby="self-hosting-heading">
+    <h2 id="self-hosting-heading">Running your own server or offline hub?</h2>
+    <div class="card card--bar tone-chrome card--main" id="self-hosting">
+      <div class="card-bar"><h3>Host it yourself</h3></div>
+      <div class="card-body">
+        <p class="card-lead">Run RangerTrak from your own server or an offline hub.</p>
+        <p>Each release on GitHub includes a ready-built zip: a folder of plain web files, with no
+          database and no server code. Put it on a web server your devices can reach, such as a
+          club server or a hub on a local network, and they install RangerTrak from there. Each
+          device still keeps its own data: rosters and radio logs never go to your server.</p>
+        <ul class="card-list">
+          <li><strong>HTTPS, with a certificate your devices trust.</strong> Over plain http the app
+            opens, but the offline install, encryption and GPS don&rsquo;t work.</li>
+          <li><strong>Its own hostname</strong>, served at the root, not in a subfolder.</li>
+          <li><strong>No map file comes with it.</strong> For offline street detail, load a map file
+            for your area on each device. The standard map needs the Internet.</li>
+          <li><strong>A separate copy.</strong> A tablet that opens both yours and rangertrak.org
+            keeps two separate missions. Move one across with a mission backup.</li>
+          <li><strong>Same license.</strong> Unchanged, keep the LICENSE file with it. If you change
+            it, offer your users the source.</li>
+        </ul>
+        <p>This is not <a href="devices.html#screens">RangerView</a>: a hosted copy
+          serves the app, not your mission.</p>
+        <p><a href="https://rangertrak.org/self-hosting/" target="_blank" rel="noopener">How to host it</a>
+          (server settings, with Caddy and nginx examples) &middot;
+          <a href="https://github.com/SteadyEOC/RangerTrak/releases/latest" target="_blank" rel="noopener">Download the zip</a></p>
+      </div>
+    </div>
+  </section>
+
+  <p class="features-next">Next: <a href="devices.html">3. More than one device &rarr;</a></p>
+
+</main>
+</div>
+
+<footer class="site-footer">
+  <p>RangerTrak&trade; &mdash; &copy; 2019&ndash;2026 John Cornelison, AGPL v3</p>
+  <p>
+    <a href="https://github.com/SteadyEOC/RangerTrak" target="_blank" rel="noopener">GitHub</a> &middot;
+    <a href="blog.html">Blog</a> &middot;
+    <a href="field-guide.html">Field Guide</a> &middot;
+    <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Tour</a> &middot;
+    <a href="feedback.html">Feedback</a> &middot;
+    <a href="press.html">Press &amp; images</a> &middot;
+    <a class="js-mail" data-u="RangerTrak" data-d="steadyeoc.com">RangerTrak [at] steadyeoc [dot] com</a>
+    &middot;
+    <a href="feedback.html#support">Support</a>
+  </p>
+  <p class="footer-privacy">This site counts visits with Cloudflare&rsquo;s cookie-free
+    analytics. The RangerTrak app keeps your mission on your device. When online, it fetches
+    map images and looks up addresses for report locations.
+    <a href="privacy.html">Privacy</a></p>
+</footer>
+
+</body>
+</html>

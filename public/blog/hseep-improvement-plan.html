@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Published 2026-11-13 (blog session; first out 11-09 by mistake, retracted, republished on John's date). App feature
+     E-133 (6e3751ef). Shots: tools/capture-aar-capability.mjs (Vashon demo, live 1.0.0-beta.2 build 2026-11-09 4ec1935);
+     hero: design/heroes/hseep-improvement-plan.html. -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What You Said You'd Fix: AAR Notes in FEMA's HSEEP Shape - RangerTrak Field Notes</title>
+<meta name="description" content="RangerTrak's AAR notes now take FEMA HSEEP's capability element (POETE), and the printed improvement plan is modelled on the HSEEP AAR/IP, so a CERT, ACS or SAR group's hot-wash notes fit a county exercise's improvement plan without retyping.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="What You Said You'd Fix: AAR Notes in FEMA's HSEEP Shape">
+<meta property="og:description" content="Hot-wash notes that already fit an HSEEP improvement plan: issue, corrective action, capability element and owner.">
+<meta property="og:url" content="https://rangertrak.com/blog/hseep-improvement-plan.html">
+<meta property="article:published_time" content="2026-11-14T02:37:33Z">
+<meta property="og:image" content="https://rangertrak.com/blog/img/hseep-hero.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="840">
+<meta property="og:image:alt" content="What You Said You'd Fix: a printed RangerTrak improvement plan modelled on FEMA's HSEEP AAR/IP, with made-up notes, beside HSEEP's five capability elements.">
+<link rel="alternate" type="application/rss+xml" title="RangerTrak Field Notes" href="../feed.xml">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/styles.css">
+<script src="../assets/lightbox.js" defer></script>
+<script src="../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="top-bar">
+  <div class="top-bar__inner">
+    <a class="brand" href="/">
+      <svg class="brand-icon" width="24" height="40" viewBox="0 0 155 260" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-linejoin="round">
+          <path d="M 52 239 L 18.4 175.8 A 38 38 0 1 1 85.6 175.8 Z" stroke-width="12" />
+          <path d="M 52 96 L 52 150" stroke-width="5" stroke-linecap="round" />
+        </g>
+        <rect x="44" y="142" width="16" height="58" rx="6" fill="currentColor" />
+        <circle cx="52" cy="88" r="8" fill="currentColor" />
+        <g fill="var(--chrome)">
+          <rect x="47.5" y="158" width="9" height="4" rx="2" />
+          <rect x="47.5" y="170" width="9" height="4" rx="2" />
+          <rect x="47.5" y="182" width="9" height="4" rx="2" />
+        </g>
+        <g class="brand-signal" fill="none" stroke-width="7" stroke-linecap="round"
+          vector-effect="non-scaling-stroke">
+          <path class="wave wave-1" transform="translate(52,88) scale(0.80) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+          <path class="wave wave-2" transform="translate(52,88) scale(1.30) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+          <path class="wave wave-3" transform="translate(52,88) scale(1.85) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+        </g>
+      </svg>
+      RangerTrak&trade;</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="top-nav" aria-label="Menu">&#9776;</button>
+    <noscript><style>.top-nav{display:flex!important;flex-wrap:wrap!important;}.nav-toggle{display:none!important;}</style></noscript>
+    <nav class="top-nav" id="top-nav" aria-label="Main">
+      <a href="/">Home</a>
+      <a href="../about.html">What it does</a>
+      <a href="../blog.html" aria-current="page">Blog</a>
+      <a href="../field-guide.html">Field Guide</a>
+      <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Tour</a>
+      <a href="../feedback.html">Feedback</a>
+      <a href="https://github.com/SteadyEOC/RangerTrak" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg class="icon-github" width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.02 1.93-.02 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg></a>
+      <a class="cta" href="https://rangertrak.org" target="_blank" rel="noopener">Open RangerTrak &rarr;</a>
+    </nav>
+  </div>
+</div>
+
+<div class="shell">
+<main id="main" class="post">
+  <p class="post-kicker">Field Notes</p>
+  <h1>What You Said You&rsquo;d Fix: AAR Notes in FEMA&rsquo;s HSEEP Shape</h1>
+  <p class="post-meta">By John Cornelison, <a href="https://www.qrz.com/db/KE7KDQ" target="_blank" rel="noopener">KE7KDQ</a> &middot; <time datetime="2026-11-13">November 13, 2026</time> &middot; about a 4-minute read</p>
+
+  <figure class="post-hero">
+    <img src="img/hseep-hero.jpg" srcset="img/hseep-hero-480.jpg 480w, img/hseep-hero-800.jpg 800w, img/hseep-hero.jpg 1600w" sizes="min(calc(100vw - 2.5rem), 46rem)" width="1600" height="840"
+      alt="What You Said You&rsquo;d Fix: a printed RangerTrak improvement plan modelled on FEMA&rsquo;s HSEEP AAR/IP, with made-up notes, each with a capability element and an owner, beside HSEEP&rsquo;s five capability elements: Planning, Organization, Equipment, Training and Exercise." />
+  </figure>
+
+  <div class="post-intro">
+    <p><strong>RangerTrak</strong> is a free, open-source radio log and map for the scribe at a
+      CERT, ACS/ARES, SAR or wildland-fire command post. Log who, where, when and what off the
+      radio; it maps them. It works offline once set up, and prints the Form 309 Communications Log, ICS-213 and ICS-214. I built it.
+      It&rsquo;s AGPL and will stay free. Try it at
+      <a href="https://rangertrak.org" target="_blank" rel="noopener">rangertrak.org</a>, no
+      account or install needed, and
+      <a href="https://rangertrak.org/tour/#m7" target="_blank" rel="noopener">take the tour</a> to learn it.</p>
+  </div>
+
+  <p>
+    Every drill ends with a hot wash, and every hot wash turns up the same kind of list. The
+    generator cord didn&rsquo;t reach the table. The relief operator had never run a net. A team
+    went out without the latest clue. Someone writes it on the whiteboard, someone photographs the
+    whiteboard, and next year&rsquo;s drill finds the same three things.
+  </p>
+  <p>
+    Noticing usually isn&rsquo;t the problem. The hard part is who owns each fix, and whether
+    anyone checks that it happened.
+  </p>
+
+  <h2>FEMA&rsquo;s name for checking</h2>
+  <p>
+    FEMA calls it <strong>improvement planning</strong>. It&rsquo;s the last step of
+    <strong>HSEEP</strong>, the Homeland Security Exercise and Evaluation Program, the doctrine
+    most county and state exercises follow. An HSEEP after-action report ends with an improvement
+    plan, and the pair is the <strong>AAR/IP</strong>. The improvement plan is a table: one row per
+    issue, the corrective action, the kind of fix it is, who is responsible, and when it starts
+    and finishes. The rows are tracked until they&rsquo;re done, and the next exercise is a chance
+    to test them.
+  </p>
+  <p>
+    The &ldquo;kind of fix&rdquo; column is the <strong>capability element</strong>, and HSEEP has
+    five: Planning, Organization, Equipment, Training and Exercise, often shortened to POETE. It
+    sounds bureaucratic, but it answers a useful question: is this a plan to rewrite, a role to
+    assign, gear to buy, people to train, or something to practise again?
+  </p>
+
+  <h2>Where RangerTrak fits</h2>
+  <figure class="sidenote">
+    <a href="img/beta2-aar-capability.jpg"><img src="img/beta2-aar-capability.jpg" srcset="img/beta2-aar-capability-480.jpg 480w, img/beta2-aar-capability-800.jpg 800w, img/beta2-aar-capability.jpg 1400w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="1400" height="341" loading="lazy"
+      alt="An AAR note on the AAR notes page, Vashon demo: the observation 'Relief operators at Net Control had not run the net before and missed two check-ins in the first hour', About This incident, Area Communications, Capability element Training, Owner Net manager, and the recommendation 'Run a 20-minute practice net for relief operators before the next drill.'" /></a>
+    <figcaption>An AAR note with its capability element, from the Vashon demo.</figcaption>
+  </figure>
+  <p>
+    <a href="09-after-the-mission.html">Part 9</a> covered AAR notes. During the mission, the
+    <strong>AAR/214</strong> button at the top of every page catches a line in the moment, without
+    leaving the radio log. At the debrief, the <strong>AAR notes</strong> page lets you give each
+    note an area, a recommendation and an owner.
+  </p>
+  <p>
+    Beta 2 brings that page closer to HSEEP. Each note now has an optional
+    <strong>Capability element</strong>, a pick-list of the five. <strong>Print</strong> turns
+    this incident&rsquo;s notes into an improvement plan modelled on HSEEP&rsquo;s AAR/IP, with
+    HSEEP&rsquo;s column names in small type under ours:
+  </p>
+  <ul>
+    <li><strong>Observation</strong> is HSEEP&rsquo;s issue or area for improvement.</li>
+    <li><strong>Recommendation</strong> is the corrective action.</li>
+    <li><strong>Owner</strong> is the primary responsible organization or point of contact.</li>
+  </ul>
+  <figure>
+    <a href="img/hseep-improvement-plan.jpg"><img src="img/hseep-improvement-plan.jpg" srcset="img/hseep-improvement-plan-480.jpg 480w, img/hseep-improvement-plan-800.jpg 800w, img/hseep-improvement-plan.jpg 1400w" sizes="min(calc(100vw - 2.5rem), 46rem)" width="1400" height="295" loading="lazy"
+      alt="A printed RangerTrak improvement plan, 'Improvement plan modelled on FEMA's HSEEP AAR/IP', with three made-up notes. Columns: Observation (Issue / area for improvement), Area, Capability element (POETE), Recommendation (Corrective action), Owner (Primary responsible organization / POC) and Noted at. Rows: staging had no briefer, Organization, owner Team coordinator; the laptop ran on battery because the generator cord was short, Equipment, owner Equipment lead; relief operators missed check-ins, Training, owner Net manager. The footer names RangerTrak 1.0.0-beta.2." /></a>
+    <figcaption>The printed improvement plan, from three made-up notes on the Vashon demo.</figcaption>
+  </figure>
+  <p>
+    The capability element is in the AAR spreadsheet export and the RangerTrak SitRep too. If your
+    group doesn&rsquo;t use HSEEP, leave it blank; nothing else changes.
+  </p>
+
+  <h2>Why a volunteer group would bother</h2>
+  <p>
+    When your CERT, ACS or SAR team takes part in a county exercise, your observations are one
+    input to the exercise&rsquo;s AAR/IP. Whoever writes it has to turn a dozen groups&rsquo; notes
+    into rows. Rows that already say issue, corrective action, capability element and owner can go
+    straight in. Nobody has to retype a photo of a whiteboard.
+  </p>
+  <p>
+    If your group runs its own drills, the same table is a fair improvement plan on its own. It is
+    short enough to go through at the next meeting, and specific enough that &ldquo;someone
+    should&rdquo; becomes a name.
+  </p>
+  <p>
+    A paper hot-wash sheet with the same four columns works too, and it&rsquo;s still the backup
+    when the laptop is dead. What RangerTrak adds is the notes you caught during the mission,
+    already typed, with the time each was noticed.
+  </p>
+
+  <h2>What it leaves out, on purpose</h2>
+  <p>
+    It doesn&rsquo;t track corrective actions to completion, and it isn&rsquo;t going to.
+    HSEEP&rsquo;s template also has start and completion dates and a core capability column, and
+    those aren&rsquo;t here either. RangerTrak is the log for one mission. Following each fix through
+    to done takes months of meetings, and it belongs wherever your group already keeps things
+    between drills: a spreadsheet, the meeting minutes, the coordinator&rsquo;s inbox. The export
+    gets the rows there.
+  </p>
+  <p>
+    It doesn&rsquo;t write the AAR/IP document either. That report belongs to whoever runs the
+    exercise. What they need from your group is the rows, and the printout and the spreadsheet
+    are the rows.
+  </p>
+
+  <section class="try-it" aria-labelledby="try-heading">
+    <h2 id="try-heading">Try it in five minutes</h2>
+    <ol>
+      <li>Open <a href="https://rangertrak.org" target="_blank" rel="noopener">rangertrak.org</a>
+        in a spare browser profile, so nothing of yours is replaced, and use <strong>Load a demo</strong> on the Entry page.</li>
+      <li>Press <strong>AAR/214</strong> and add two AAR notes about the mission.</li>
+      <li>On the <strong>AAR notes</strong> page, give one an area, a capability element, a
+        recommendation and an owner.</li>
+      <li>Press <strong>Print</strong> to see the improvement plan, and <strong>Export</strong> for the spreadsheet.</li>
+      <li>For the guided version, <a href="https://rangertrak.org/tour/#m7" target="_blank" rel="noopener">take
+        the tour</a>: module 7, <em>After the mission</em>.</li>
+    </ol>
+  </section>
+
+  <section class="tell-me" aria-labelledby="tell-heading">
+    <h2 id="tell-heading">Tell me</h2>
+    <ol>
+      <li><strong>Does your group get asked for input to a county AAR/IP?</strong> In what form,
+        and who asks?</li>
+      <li><strong>Where does your group keep its fix list between drills</strong>, and who checks it?</li>
+      <li><strong>Which capability element comes up most</strong> in your hot washes? My guess is
+        Training, then Equipment.</li>
+    </ol>
+    <p>
+      Use the <a href="../feedback.html">feedback form</a> (start with &ldquo;HSEEP&rdquo;),
+      <strong>Help</strong> &rarr; <strong>Contact us</strong> inside the app, reply on LinkedIn, or email
+      <a class="js-mail" data-u="RangerTrak" data-d="steadyeoc.com" data-subject="RangerTrak%20HSEEP">RangerTrak [at] steadyeoc [dot] com</a>.
+    </p>
+  </section>
+
+  <p class="post-next">
+    <strong>Next in Field Notes:</strong> <em>Field Phones, Up Close</em>.
+  </p>
+</main>
+
+
+</div>
+
+<footer class="site-footer">
+  <p>RangerTrak&trade; &mdash; &copy; 2019&ndash;2026 John Cornelison, AGPL v3</p>
+  <p>
+    <a href="../blog.html">Blog</a> &middot; <a href="../feed.xml">RSS</a> &middot;
+    <a href="../field-guide.html">Field Guide</a> &middot;
+    <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Tour</a> &middot; <a href="../feedback.html">Feedback</a> &middot;
+    <a class="js-mail" data-u="RangerTrak" data-d="steadyeoc.com">RangerTrak [at] steadyeoc [dot] com</a>
+    &middot;
+    <a href="../feedback.html#support">Support</a>
+  </p>
+  <p class="footer-privacy">This site counts visits with Cloudflare&rsquo;s cookie-free
+    analytics. The RangerTrak app keeps your mission on your device. When online, it fetches
+    map images and looks up addresses for report locations.
+    <a href="../privacy.html">Privacy</a></p>
+</footer>
+</body>
+</html>

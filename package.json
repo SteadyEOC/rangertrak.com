@@ -1,0 +1,20 @@
+{
+  "name": "rangertrak-site",
+  "version": "0.7.0",
+  "private": true,
+  "description": "Static front-door site for RangerTrak, served at rangertrak.com",
+  "scripts": {
+    "check": "node tools/check-site.js",
+    "deploy": "wrangler deploy",
+    "start": "wrangler dev"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "sharp": "^0.35.5",
+    "wrangler": "^4.153.0"
+  },
+  "allowScripts": {
+    "esbuild": true,
+    "workerd": true
+  }
+}

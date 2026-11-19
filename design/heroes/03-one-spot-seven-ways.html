@@ -1,0 +1,79 @@
+<!doctype html>
+<!-- Field Notes Part 3 hero, 1200x630 (also the og:image and blog thumbnail).
+     Render: node tools/render-hero.mjs design/heroes/03-one-spot-seven-ways.html public/blog/img/03-hero.png
+     Values are RangerTrak 0.99.7's own derived values for the Grand Canyon demo's default
+     position (Backcountry Information Center), as on the entry screen, 2026-09-30. -->
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  body { width: 1200px; height: 630px; overflow: hidden; background: #12263F; color: #EAF1F8;
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .frame { position: relative; height: 100%; padding: 54px 64px; display: grid;
+    grid-template-columns: 1fr 1.25fr; gap: 56px; align-items: center; }
+  /* faint contour lines, the topo quad the positions come off */
+  .contours { position: absolute; inset: 0; opacity: .13; }
+  .left { position: relative; }
+  .kicker { font-size: 19px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #F0700A; }
+  h1 { font-size: 64px; line-height: 1.04; margin-top: 18px; font-weight: 800; }
+  .sub { font-size: 24px; line-height: 1.4; color: #B9C8D8; margin-top: 22px; }
+  .card { position: relative; background: #F7F9FB; color: #0B1F33; border-radius: 14px; padding: 26px 30px;
+    box-shadow: 0 18px 40px rgba(0,0,0,.35); }
+  .card .pin { display: flex; align-items: center; gap: 12px; font-size: 18px; font-weight: 700; color: #41556B;
+    border-bottom: 2px solid #DAE2EA; padding-bottom: 12px; margin-bottom: 8px; }
+  .row { display: grid; grid-template-columns: 128px 1fr; align-items: baseline; padding: 7px 0;
+    border-bottom: 1px solid #E6ECF2; }
+  .row:last-child { border-bottom: 0; }
+  .lbl { font-size: 15px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+  .val { font-family: Consolas, "Cascadia Mono", Menlo, monospace; font-size: 25px; font-variant-numeric: tabular-nums; }
+  .l-dd { color: #2E5AA0; } .l-ddm { color: #2E5AA0; } .l-dms { color: #2E5AA0; }
+  .l-mgrs { color: #2E7266; } .l-utm { color: #2E7266; } .l-mh { color: #4A7A2A; } .l-pc { color: #55606B; }
+  .brand { position: absolute; left: 64px; bottom: 26px; display: flex; align-items: center; gap: 12px; font-size: 20px; font-weight: 700; color: #B9C8D8; }
+  .brand b { color: #EAF1F8; }
+</style>
+<div class="frame">
+  <svg class="contours" viewBox="0 0 1200 630" preserveAspectRatio="none" aria-hidden="true">
+    <g fill="none" stroke="#EAF1F8" stroke-width="2">
+      <path d="M-20 520 C 180 470 260 560 420 510 S 700 420 860 470 1120 430 1240 460"/>
+      <path d="M-20 470 C 170 420 270 500 430 455 S 690 365 850 415 1110 375 1240 405"/>
+      <path d="M-20 420 C 160 370 280 440 440 400 S 680 310 840 360 1100 320 1240 350"/>
+      <path d="M-20 140 C 140 110 230 170 380 130 S 640 60 800 100 1080 70 1240 90"/>
+      <path d="M-20 90 C 150 60 240 115 390 80 S 650 10 810 50 1090 20 1240 40"/>
+      <path d="M-20 600 C 200 560 300 640 460 590 S 720 510 880 555 1130 520 1240 545"/>
+    </g>
+  </svg>
+  <div class="left">
+    <p class="kicker">Field Notes &middot; Part 3</p>
+    <h1>However They Read It Out</h1>
+    <p class="sub">One spot on the South Rim, seven ways a team might say it. RangerTrak takes any of them, with no signal.</p>
+  </div>
+  <div class="card">
+    <p class="pin">
+      <svg width="20" height="28" viewBox="0 0 20 28" aria-hidden="true"><path d="M10 27 C 10 27 1 15 1 9.5 A 9 9 0 0 1 19 9.5 C 19 15 10 27 10 27Z" fill="#2E5AA0"/><circle cx="10" cy="9.5" r="3.4" fill="#fff"/></svg>
+      Backcountry Information Center, Grand Canyon
+    </p>
+    <div class="row"><span class="lbl l-dd">DD</span><span class="val">36.0524, -112.1437</span></div>
+    <div class="row"><span class="lbl l-ddm">DDM</span><span class="val">36&deg; 3.14&prime; N, 112&deg; 8.62&prime; W</span></div>
+    <div class="row"><span class="lbl l-dms">DMS</span><span class="val">36&deg; 3&prime; 8&Prime; N, 112&deg; 8&prime; 37&Prime; W</span></div>
+    <div class="row"><span class="lbl l-mgrs">MGRS</span><span class="val">12SUE 96987 90365</span></div>
+    <div class="row"><span class="lbl l-utm">UTM</span><span class="val">12N 396987 3990366</span></div>
+    <div class="row"><span class="lbl l-mh">Maidenhead</span><span class="val">DM36wb</span></div>
+    <div class="row"><span class="lbl l-pc">Plus Code</span><span class="val">85893V24+XG7</span></div>
+  </div>
+  <p class="brand">
+    <svg width="42" height="70" viewBox="0 0 155 260" aria-hidden="true"><!-- the site header's mark -->
+      <g fill="none" stroke="#EAF1F8" stroke-linejoin="round">
+        <path d="M 52 239 L 18.4 175.8 A 38 38 0 1 1 85.6 175.8 Z" stroke-width="12"/>
+        <path d="M 52 96 L 52 150" stroke-width="5" stroke-linecap="round"/>
+      </g>
+      <rect x="44" y="142" width="16" height="58" rx="6" fill="#EAF1F8"/>
+      <circle cx="52" cy="88" r="8" fill="#EAF1F8"/>
+      <g fill="#12263F"><rect x="47.5" y="158" width="9" height="4" rx="2"/><rect x="47.5" y="170" width="9" height="4" rx="2"/><rect x="47.5" y="182" width="9" height="4" rx="2"/></g>
+      <g fill="none" stroke="#F0700A" stroke-width="11" stroke-linecap="round">
+        <path transform="translate(52,88) scale(0.80) translate(-52,-88)" d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71"/>
+        <path transform="translate(52,88) scale(1.30) translate(-52,-88)" d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71"/>
+        <path transform="translate(52,88) scale(1.85) translate(-52,-88)" d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71"/>
+      </g>
+    </svg>
+    <span><b>RangerTrak</b> &middot; rangertrak.com</span>
+  </p>
+</div>

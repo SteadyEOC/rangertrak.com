@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Roster Is Already in a Spreadsheet - RangerTrak Field Notes</title>
+<meta name="description" content="Part 7 of Field Notes: bring the Excel or CSV lists your group already keeps into RangerTrak, see what will change before anything does, and never lose a phone number to a blank cell.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Your Roster Is Already in a Spreadsheet">
+<meta property="og:description" content="Take the lists you already keep, check the column guesses, see the changes first. Nothing is deleted, nothing is uploaded. Part 7 of a short series.">
+<meta property="og:url" content="https://rangertrak.com/blog/07-your-roster-is-already-in-a-spreadsheet.html">
+<meta property="article:published_time" content="2026-10-19">
+<meta property="og:image" content="https://rangertrak.com/blog/img/07-hero.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="840">
+<meta property="og:image:alt" content="A spreadsheet of made-up volunteers, with Status, Last Name, First Name and Call columns and one Exited row struck through, beside RangerTrak's dialog Importing rangers: match your columns to RangerTrak's, which shows each column with its guessed RangerTrak field. Below it: Asks before removing. Nothing uploaded.">
+<link rel="alternate" type="application/rss+xml" title="RangerTrak Field Notes" href="../feed.xml">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/styles.css">
+<script src="../assets/lightbox.js" defer></script>
+<script src="../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="top-bar">
+  <div class="top-bar__inner">
+    <a class="brand" href="/">
+      <svg class="brand-icon" width="24" height="40" viewBox="0 0 155 260" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-linejoin="round">
+          <path d="M 52 239 L 18.4 175.8 A 38 38 0 1 1 85.6 175.8 Z" stroke-width="12" />
+          <path d="M 52 96 L 52 150" stroke-width="5" stroke-linecap="round" />
+        </g>
+        <rect x="44" y="142" width="16" height="58" rx="6" fill="currentColor" />
+        <circle cx="52" cy="88" r="8" fill="currentColor" />
+        <g fill="var(--chrome)">
+          <rect x="47.5" y="158" width="9" height="4" rx="2" />
+          <rect x="47.5" y="170" width="9" height="4" rx="2" />
+          <rect x="47.5" y="182" width="9" height="4" rx="2" />
+        </g>
+        <g class="brand-signal" fill="none" stroke-width="7" stroke-linecap="round"
+          vector-effect="non-scaling-stroke">
+          <path class="wave wave-1" transform="translate(52,88) scale(0.80) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+          <path class="wave wave-2" transform="translate(52,88) scale(1.30) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+          <path class="wave wave-3" transform="translate(52,88) scale(1.85) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+        </g>
+      </svg>
+      RangerTrak&trade;</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="top-nav" aria-label="Menu">&#9776;</button>
+    <noscript><style>.top-nav{display:flex!important;flex-wrap:wrap!important;}.nav-toggle{display:none!important;}</style></noscript>
+    <nav class="top-nav" id="top-nav" aria-label="Main">
+      <a href="/">Home</a>
+      <a href="../about.html">What it does</a>
+      <a href="../blog.html" aria-current="page">Blog</a>
+      <a href="../field-guide.html">Field Guide</a>
+      <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Tour</a>
+      <a href="../feedback.html">Feedback</a>
+      <a href="https://github.com/SteadyEOC/RangerTrak" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg class="icon-github" width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.02 1.93-.02 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg></a>
+      <a class="cta" href="https://rangertrak.org" target="_blank" rel="noopener">Open RangerTrak &rarr;</a>
+    </nav>
+  </div>
+</div>
+
+<div class="shell">
+<main id="main" class="post">
+  <p class="post-kicker">Field Notes &middot; Part 7</p>
+  <h1>Your Roster Is Already in a Spreadsheet</h1>
+  <p class="post-meta">By John Cornelison, <a href="https://www.qrz.com/db/KE7KDQ" target="_blank" rel="noopener">KE7KDQ</a> &middot; <time datetime="2026-10-19">October 19, 2026</time> &middot; about a 6-minute read</p>
+
+  <figure class="post-hero">
+    <img src="img/07-hero.jpg" srcset="img/07-hero-480.jpg 480w, img/07-hero-800.jpg 800w, img/07-hero.jpg 1600w" sizes="min(calc(100vw - 2.5rem), 46rem)" width="1600" height="840"
+      alt="A spreadsheet of made-up volunteers, with Status, Last Name, First Name and Call columns
+           and one Exited row struck through, beside RangerTrak's dialog Importing rangers: match
+           your columns to RangerTrak's, which shows each column with its guessed RangerTrak field.
+           Below it: Asks before removing. Nothing uploaded." />
+  </figure>
+
+  <div class="post-intro">
+    <p><strong>RangerTrak</strong> is a free, open-source radio log and map for the scribe at a
+      CERT, ACS/ARES, SAR or wildland-fire command post. Log who, where, when and what off the
+      radio; it maps them. It works offline once set up, and prints the Form 309 Communications Log and the ICS-213. I built it.
+      It&rsquo;s AGPL and will stay free. Try it at
+      <a href="https://rangertrak.org" target="_blank" rel="noopener">rangertrak.org</a>, no
+      account or install needed.</p>
+  </div>
+
+  <p>
+    Every group I&rsquo;ve worked with already has its people on a list. Usually more than one:
+    the CERT roster the county keeps, the radio club&rsquo;s member sheet, a neighbourhood
+    team&rsquo;s phone tree, the EOC&rsquo;s own staff list. They live in Excel, in Google
+    Sheets, or in whatever the county&rsquo;s volunteer system exports. Nobody keeps their
+    roster in the shape a new piece of software wants.
+  </p>
+  <p>
+    Until this month, RangerTrak wanted exactly that: a file in its own format, which in
+    practice meant someone retyping the roster. That&rsquo;s an evening&rsquo;s work nobody
+    volunteers for, and it&rsquo;s the reason a scribe ends up with a laptop that knows
+    nobody&rsquo;s name. As of version 0.99.33, it takes the list you already have.
+  </p>
+
+  <h2>Why the roster matters at all</h2>
+  <p>
+    A radio log works without one. &ldquo;Rim Two, at the second tunnel&rdquo; can be written
+    down by anyone. But a roster is what turns a call sign into a person: a name, a phone
+    number to try when the radio goes quiet, a team, a photo so the scribe knows who&rsquo;s at
+    the table. It&rsquo;s also what lets the entry screen fill in a name as you type the first
+    letters of a call. On paper, the roster is the various sheets clipped to the back of the log. In
+    RangerTrak it&rsquo;s the Rangers page, and it was the hardest part to fill.
+  </p>
+
+  <h2>Take the sheet you have</h2>
+  <figure class="sidenote">
+    <a href="img/07-column-guess.jpg"><img src="img/07-column-guess.jpg" srcset="img/07-column-guess-480.jpg 480w, img/07-column-guess-800.jpg 800w, img/07-column-guess.jpg 1400w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="1400" height="1525" loading="lazy"
+      alt="RangerTrak's dialog 'Importing rangers: match your columns to RangerTrak's' for a file
+        called Fernhollow volunteers 2026-10-01.csv. Each column in your sheet is listed with three
+        example values beside RangerTrak's guess for it: Status ignored, Last Name and First Name joined into a name, Member # as Ranger ID,
+        Program as Team, Call as Call sign, Cell as Phone, Email and Home Address ignored and not
+        stored, Last Training ignored. A ticked box skips rows whose Status is Exited, Inactive,
+        Retired, Resigned, Terminated, Former, Removed or Left. A tip below it: one unique name per
+        team, with the town or department for mutual aid." /></a>
+    <figcaption>The column guess, on a made-up county-style export. Every guess here is right;
+      any that isn&rsquo;t is one click to change.</figcaption>
+  </figure>
+  <p>
+    On the Rangers page, <strong>Import a list&hellip;</strong> opens an Excel or CSV file. It
+    doesn&rsquo;t need to look like anything in particular. RangerTrak reads the column
+    headings, shows you three example values from each, and guesses what each one is.
+    &ldquo;Member #&rdquo; is probably the ID your people already know, such as a REW number
+    like VI-0050. &ldquo;Call&rdquo; is a call sign, &ldquo;Cell&rdquo; is a phone number, &ldquo;Program&rdquo; is a team. First and
+    last names in separate columns get joined. You check the guesses, fix any that are wrong,
+    and move on.
+  </p>
+  <p>
+    Why the ID and the call sign matter: they&rsquo;re how people identify themselves on the
+    radio. Some call in by member number, some by call sign. At the entry screen the scribe
+    types whichever one they heard, or the person&rsquo;s name, and RangerTrak finds them.
+  </p>
+  <p>
+    This screenshot is from a roster with deliberately messy column names, built to look like a
+    county volunteer export: a Status column, names split in two, phone numbers typed three different ways, an
+    e-mail column, home addresses, the date of each person&rsquo;s last training. Some of that
+    RangerTrak uses. Some it ignores. And some it refuses: <strong>RangerTrak doesn&rsquo;t
+    keep home addresses or e-mail addresses</strong>, so those columns are left out and the
+    preview says so. A scribe doesn&rsquo;t need them, and a laptop at a command post
+    shouldn&rsquo;t carry them.
+  </p>
+  <p>
+    If the sheet has a Status column, RangerTrak offers to skip members who have left:
+    rows marked Exited, Inactive, Retired and the like. Most county exports include them, and
+    nobody wants a former volunteer offered as a name at the entry screen.
+  </p>
+  <p>
+    It also remembers your choices. The next time you import a sheet with the same headings,
+    the guesses are already yours and it&rsquo;s one click on <strong>Continue</strong>. It
+    remembers the headings only, never anyone&rsquo;s details.
+  </p>
+
+  <h2>See what will change before anything does</h2>
+  <figure class="sidenote">
+    <a href="img/07-preview.jpg"><img src="img/07-preview.jpg" srcset="img/07-preview-480.jpg 480w, img/07-preview-800.jpg 800w, img/07-preview.jpg 1400w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="1400" height="643" loading="lazy"
+      alt="The import preview: Added 8, Updated 0, Unchanged 0, Skipped 1. Notes say Email and Home
+        Address are not stored on this device, Status and Last Training are ignored, 2 of 8 have no
+        call sign (expected for volunteers who are not ham-licensed), and 1 of 8 has no Ranger ID.
+        Buttons: Cancel, Back, Replace roster and Add to roster." /></a>
+    <figcaption>The preview: what would be added, updated, left alone and skipped, before
+      anything is saved.</figcaption>
+  </figure>
+  <p>
+    Before it saves anything, RangerTrak shows a preview: how many people it would
+    <strong>add</strong>, <strong>update</strong>, leave <strong>unchanged</strong> and
+    <strong>skip</strong>, and for anyone updated, which details would change. It also points
+    out what looks odd: a row with no ID, no call sign and no name, or an ID that matches one
+    person while the call sign matches another. People with no call sign are fine. Plenty of
+    CERT members aren&rsquo;t licensed with the FCC, and the preview says that&rsquo;s expected.
+  </p>
+  <p>
+    Then you choose. <strong>Add to roster</strong> is the usual one: add the new people,
+    update the ones already there. <strong>Replace roster&hellip;</strong> starts over, and
+    it&rsquo;s a separate button that asks you to confirm. Afterwards RangerTrak tells you, by
+    name, who it added and who it updated.
+  </p>
+  <figure>
+    <a href="img/07-result.jpg"><img src="img/07-result.jpg" srcset="img/07-result-480.jpg 480w, img/07-result-800.jpg 800w, img/07-result.jpg 1344w" sizes="min(calc(100vw - 2.5rem), 46rem)" width="1344" height="136" loading="lazy"
+      alt="A message: Imported Fernhollow volunteers 2026-10-15.csv: rangers: added 1 (VI-0061);
+        updated 1 (VI-0050: phone); 6 already up to date." /></a>
+    <figcaption>After a second, newer copy of the list: one new person, one new phone number,
+      six already up to date.</figcaption>
+  </figure>
+
+  <h2>Nothing is deleted, and a blank cell never erases</h2>
+  <p>
+    Two rules sit underneath all of this, and they&rsquo;re the ones I&rsquo;d want if it were
+    my roster.
+  </p>
+  <ul>
+    <li><strong>An import never removes anyone on its own.</strong> People who aren&rsquo;t in
+      the file stay on the device as they were. (There&rsquo;s one exception, and it&rsquo;s a
+      question you answer. It&rsquo;s below.)</li>
+    <li><strong>A blank cell never erases a value.</strong> If the radio club&rsquo;s sheet has
+      no phone number for someone, the number from the CERT list stays. The newest file wins
+      only where it actually has something to say.</li>
+  </ul>
+  <p>
+    That second rule matters more than it sounds. Every list is missing something. Without it,
+    importing the second list would quietly wipe out half of what the first one gave you, and
+    you&rsquo;d find out when you went to call someone.
+  </p>
+
+  <h2>Build it up, one list at a time</h2>
+  <figure class="sidenote">
+    <a href="img/07-roster-grid.jpg"><img src="img/07-roster-grid.jpg" srcset="img/07-roster-grid-480.jpg 480w, img/07-roster-grid-800.jpg 800w, img/07-roster-grid.jpg 1400w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="1400" height="598" loading="lazy"
+      alt="The Rangers page after the import: eight made-up people with Ranger IDs such as VI-0050,
+        call signs such as WZ0HAZ where they have one, full names, phone numbers as typed, and Last
+        Contact showing not checked in. One row, Ivy Ivybridge, shows (none set) in red for Ranger ID." /></a>
+    <figcaption>The roster after one import. The one person with no ID is flagged, not
+      dropped.</figcaption>
+  </figure>
+  <p>
+    You don&rsquo;t need one master list before you start. Import the CERT roster, then the
+    radio club&rsquo;s, then Team D&rsquo;s, and the roster grows each time. Someone on two
+    lists is updated, not doubled.
+  </p>
+  <p>
+    One tip for the Team column, which the import dialog also shows: each team needs a name that
+    is unique across the whole mission. If teams from other towns come in on mutual aid, put the town or department in the
+    name (&ldquo;Burien CERT 2&rdquo;, not just &ldquo;CERT 2&rdquo;).
+  </p>
+  <p>
+    Here&rsquo;s how it knows it&rsquo;s the same person: by ID first, then by call sign.
+    That&rsquo;s simple, and I want to be plain about what it misses. Someone with a member
+    number on the CERT list and only a call sign on the club&rsquo;s can turn up twice. The fix
+    is to delete the extra row, or give them their ID on both lists. RangerTrak doesn&rsquo;t
+    try to match on names, because two Bob Smiths in one county is not a rare event.
+  </p>
+
+  <h2>When the list changes</h2>
+  <figure class="sidenote">
+    <a href="img/07-newer-copy.jpg"><img src="img/07-newer-copy.jpg" srcset="img/07-newer-copy-480.jpg 480w, img/07-newer-copy-800.jpg 800w, img/07-newer-copy.jpg 1400w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="1400" height="934" loading="lazy"
+      alt="The preview for a newer copy, Fernhollow volunteers 2026-10-15.csv: Added 1, Updated 1,
+        Unchanged 6, Skipped 1; updated people: VI-0050, phone. The Layer name box reads Fernhollow
+        volunteers. Below it: 1 person is no longer in Fernhollow volunteers. Remove them? WZ0DAN.
+        Only people this layer brought in are listed. No, keep them is selected; Yes, remove them is
+        the other choice. Radio log entries that name them are not changed." /></a>
+    <figcaption>A newer copy of the same list. Someone has left it, and RangerTrak asks
+      rather than deciding. The answer starts at No.</figcaption>
+  </figure>
+  <p>
+    Lists change: people join, move away, change numbers. So RangerTrak can remember each list
+    you import. In the preview, give the list a name (it suggests one from the file name). That
+    named list is what RangerTrak calls a <strong>layer</strong>: one imported roster, such as
+    <em>Fernhollow volunteers</em>.
+  </p>
+  <p>
+    Import a newer copy under the same name, and RangerTrak asks about anyone who has dropped
+    off it: <em>1 person is no longer in Fernhollow volunteers. Remove them?</em> The answer
+    starts at <strong>No</strong>. That&rsquo;s the one exception to &ldquo;nothing is
+    deleted&rdquo;, and it&rsquo;s your decision. A yes removes only people that list brought in,
+    never anyone another list also has or anyone added by hand. Radio log entries are never
+    changed.
+  </p>
+
+  <h2>After the event: changes, the final report, and the next scribe</h2>
+  <figure class="sidenote">
+    <a href="img/07-import-export-panel.jpg"><img src="img/07-import-export-panel.jpg" srcset="img/07-import-export-panel-480.jpg 480w, img/07-import-export-panel-800.jpg 800w, img/07-import-export-panel.jpg 1272w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="1272" height="1684" loading="lazy"
+      alt="The Import, export and print panel on the Rangers page: Import a list and Import photos,
+        with links to download a template in Excel or CSV; Export roster with a format choice,
+        Export, Export photos, Export changes and Setup files; Print roster, a contact sheet by team;
+        and Layers on this device, listing Fernhollow volunteers, 8 people, with Remove this layer." /></a>
+    <figcaption>Everything for getting people in and out, in one panel on the Rangers
+      page.</figcaption>
+  </figure>
+  <p>
+    The roster on a command-post laptop is a copy. Your spreadsheet stays the master. But
+    things happen at the desk during an event: a walk-up volunteer gets added, someone&rsquo;s
+    phone number gets corrected. Those changes are on that one device.
+  </p>
+  <p>
+    <strong>Export changes</strong> saves just those: the people added or edited at the desk,
+    with a column saying which. Hand it to whoever keeps the master list, so the next import
+    doesn&rsquo;t bring the old number back. <strong>Export roster</strong> saves the whole
+    thing, as Excel or CSV. That&rsquo;s also the roster to submit with the mission&rsquo;s final
+    report, and it goes straight back into RangerTrak with nothing to fix.
+  </p>
+  <p>
+    Switching scribe laptops partway through a long mission is a different job. The roster
+    alone isn&rsquo;t enough there: the next scribe needs the radio log and the places too.
+    If the next laptop is blank, use <strong>Back up mission</strong> on this one and
+    <strong>Restore mission</strong> on that one. If it already has entries of its own (a second
+    scribe, or the next shift&rsquo;s laptop), use <strong>Hand over to another scribe</strong>
+    on the Radio Log page: one file with the people, the places and every entry, which the
+    other laptop merges in without replacing anything. Merging the same file twice adds nothing.
+  </p>
+  <p>
+    And keep the paper. <strong>Print roster</strong> gives a contact sheet by team, and
+    I&rsquo;d put one in the go-kit beside the paper log. It has names and phone numbers on it,
+    so treat it the way you treat the spreadsheet.
+  </p>
+
+  <h2>Google Sheets and OneDrive</h2>
+  <p>
+    RangerTrak reads files, not links. If your list is in Google Sheets, use <em>File &rarr;
+    Download</em> and pick Excel or CSV, then import that file. OneDrive and Excel online have a
+    <em>Download a copy</em> in the same place. On a phone or computer, the file picker can open
+    the downloaded copy straight from your Drive or OneDrive folder.
+  </p>
+  <p>
+    <strong>Please don&rsquo;t use Google Sheets&rsquo; &ldquo;Publish to the web&rdquo;</strong>
+    to get a roster anywhere. It puts every name and phone number at a public address anyone
+    can find. Downloading a file is safe; publishing it isn&rsquo;t.
+  </p>
+
+  <h2>Where your roster goes</h2>
+  <p>
+    Nowhere. RangerTrak reads the file in your browser. Nothing is uploaded, there&rsquo;s no
+    account, and there&rsquo;s no server on the other end to send it to. The roster lives on
+    that device, and it&rsquo;s stored there unencrypted unless you turn on device encryption
+    (Mission &rarr; Data safety), which asks for a passphrase each time the app opens. After an
+    event, delete the roster from any device that doesn&rsquo;t belong to your group.
+  </p>
+  <p>
+    The step-by-step version, with the template&rsquo;s columns and what each one is for, is
+    <a href="https://github.com/SteadyEOC/RangerTrak/blob/main/LOADING-YOUR-ROSTER.md" target="_blank" rel="noopener">Loading your roster</a>,
+    in the app&rsquo;s own docs.
+  </p>
+
+  <section class="try-it" aria-labelledby="try-heading">
+    <h2 id="try-heading">Try it in ten minutes</h2>
+    <ol>
+      <li>Open <a href="https://rangertrak.org/rangers" target="_blank" rel="noopener">rangertrak.org</a>
+        in a spare browser or a new browser profile, so nothing of yours is replaced. Go to
+        Rangers.</li>
+      <li>Under <strong>Import, export &amp; print</strong>, use <strong>Download template
+        (Excel)</strong>. Its Example sheet has made-up people to copy into the Roster sheet. Or make a small sheet of your own
+        with made-up names: please don&rsquo;t try this with your real roster on a borrowed
+        machine.</li>
+      <li>Import it. Look at the guesses, change one, and read the preview before you add.</li>
+      <li>Change a phone number in your sheet, delete one person, add one, and import it again
+        under the same layer name. Watch what it asks.</li>
+      <li>Try <strong>Export roster</strong>, then import that file. The preview should say
+        everyone is unchanged.</li>
+    </ol>
+    <p>Rather be led through it? Module 4 of the
+      <a href="https://rangertrak.org/tour/#m4" target="_blank" rel="noopener">RangerTrak Tour Guide</a>, <em>Set up your own exercise</em>, walks you through it hands-on.
+      New to RangerTrak? <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Start the tour</a>.</p>
+  </section>
+
+  <section class="tell-me" aria-labelledby="tell-heading">
+    <h2 id="tell-heading">Tell me</h2>
+    <ol>
+      <li><strong>Did it guess your columns right?</strong> Tell me the headings it got wrong
+        (just the headings, never the contents), and I&rsquo;ll teach it.</li>
+      <li><strong>How many lists does your group really have</strong>, and who keeps each one?</li>
+      <li><strong>Is matching by ID, then call sign, good enough</strong> for your people, or
+        do you have members who&rsquo;d turn up twice?</li>
+    </ol>
+    <p>
+      Use the <a href="../feedback.html">feedback form</a> (start with &ldquo;Blog 7&rdquo;),
+      <strong>Help</strong> &rarr; feedback inside the app, or email
+      <a class="js-mail" data-u="RangerTrak" data-d="steadyeoc.com" data-subject="Field%20Notes%207">RangerTrak [at] steadyeoc [dot] com</a>.
+    </p>
+  </section>
+
+  <p>
+    One question this post raises, and doesn&rsquo;t answer: the &ldquo;team&rdquo; column says
+    CERT, but at an incident, a team is three people walking the rim together. What should
+    RangerTrak mean by a team? I haven&rsquo;t decided, on purpose. That gets its own post, once
+    I&rsquo;ve talked with more of you.
+  </p>
+
+  <h2>The series</h2>
+  <ol class="series-list">
+    <li><a href="01-the-paper-log-without-the-paper.html">The Paper Log, Without the Paper</a></li>
+    <li><a href="02-hot-warm-cold.html">Hot, Warm, Cold</a></li>
+    <li><a href="03-however-they-read-it-out.html">However They Read It Out: coordinates and maps</a></li>
+    <li><a href="04-radio-log-to-ics-309-and-213.html">From Radio Log to Form 309 and ICS-213</a></li>
+    <li><a href="05-more-than-one-laptop.html">More Than One Laptop: field phones, report handoff, a live view for the IC</a></li>
+    <li><a href="06-whats-missing-and-who-decides.html">What&rsquo;s Missing, and Who Decides</a></li>
+    <li aria-current="page"><strong>Your Roster Is Already in a Spreadsheet</strong> (this post)</li>
+    <li><a href="08-shift-change.html">Shift Change: Op Periods, Scribes and Laptops</a></li>
+    <li><a href="09-after-the-mission.html">After the Mission: Summaries, AAR and the Final Report</a></li>
+    <li>Field Phones, Up Close</li>
+    <li>RangerView</li>
+    <li>People, Teams and Places: help me get this right</li>
+  </ol>
+  <p class="post-next">
+    <strong>Next: <a href="08-shift-change.html">Shift Change</a>.</strong> The end of an operational period, the next scribe, and
+    swapping laptops on a long mission, without losing a single entry.
+  </p>
+</main>
+
+</div>
+
+<footer class="site-footer">
+  <p>RangerTrak&trade; &mdash; &copy; 2019&ndash;2026 John Cornelison, AGPL v3</p>
+  <p>
+    <a href="../blog.html">Blog</a> &middot; <a href="../feed.xml">RSS</a> &middot;
+    <a href="../field-guide.html">Field Guide</a> &middot;
+    <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Tour</a> &middot; <a href="../feedback.html">Feedback</a> &middot;
+    <a class="js-mail" data-u="RangerTrak" data-d="steadyeoc.com">RangerTrak [at] steadyeoc [dot] com</a>
+    &middot;
+    <a href="../feedback.html#support">Support</a>
+  </p>
+  <p class="footer-privacy">This site counts visits with Cloudflare&rsquo;s cookie-free
+    analytics. The RangerTrak app keeps your mission on your device. When online, it fetches
+    map images and looks up addresses for report locations.
+    <a href="../privacy.html">Privacy</a></p>
+</footer>
+</body>
+</html>

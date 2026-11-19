@@ -1,0 +1,69 @@
+<!doctype html>
+<!-- Field Notes Part 1 hero, 1200x630 (also og:image and blog thumbnail).
+     Render: node tools/render-hero.mjs design/heroes/01-paper-log.html public/blog/img/01-hero.png
+     Entries are the Bright Angel demo log's own (design/infographics/compose.py, reports 5, 8, 10),
+     and the map is a crop of that same map (source/01-bright-angel-crop.jpg). -->
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  body { width: 1200px; height: 630px; overflow: hidden; background: #12263F; color: #EAF1F8;
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .frame { position: relative; height: 100%; padding: 54px 64px; display: grid;
+    grid-template-columns: 1fr 1.25fr; gap: 48px; align-items: center; }
+  .kicker { font-size: 19px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #F0700A; }
+  h1 { font-size: 60px; line-height: 1.05; margin-top: 18px; font-weight: 800; }
+  .sub { font-size: 24px; line-height: 1.4; color: #B9C8D8; margin-top: 22px; }
+  .stage { position: relative; height: 440px; }
+  .map { position: absolute; right: 0; top: 0; width: 470px; height: 340px; border-radius: 12px;
+    background: url(source/01-bright-angel-crop.jpg) center / cover; box-shadow: 0 18px 40px rgba(0,0,0,.35);
+    border: 3px solid #F7F9FB; }
+  .paper { position: absolute; left: 0; bottom: 0; width: 400px; padding: 18px 22px 16px; border-radius: 6px;
+    background-color: #F8F0DC; color: #4A3B1E; transform: rotate(-3deg); box-shadow: 0 18px 40px rgba(0,0,0,.4);
+    background-image: repeating-linear-gradient(to bottom, transparent 0 37px, rgba(120,95,40,.22) 37px 38px);
+    background-position: 0 46px; }
+  .formhead { display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; border-bottom: 2px solid #4A3B1E; padding-bottom: 6px; }
+  .entry { font-family: "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive; font-size: 17px; line-height: 38px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .entry b { font-weight: 700; }
+  .arrow { position: absolute; left: 330px; top: 120px; width: 120px; height: 80px; }
+  .brand { position: absolute; left: 64px; bottom: 26px; display: flex; align-items: center; gap: 12px; font-size: 20px; font-weight: 700; color: #B9C8D8; }
+  .brand b { color: #EAF1F8; }
+</style>
+<div class="frame">
+  <div>
+    <p class="kicker">Field Notes &middot; Part 1</p>
+    <h1>The Paper Log, Without the Paper</h1>
+    <p class="sub">Who is where, when, and in what condition: logged once, mapped as it comes in.</p>
+  </div>
+  <div class="stage">
+    <div class="map" role="img" aria-label="The Bright Angel search map"></div>
+    <svg class="arrow" viewBox="0 0 120 80" aria-hidden="true">
+      <path d="M8 70 C 40 70 70 50 100 18" fill="none" stroke="#F0700A" stroke-width="5" stroke-linecap="round"/>
+      <path d="M84 16 L 104 12 L 100 32" fill="none" stroke="#F0700A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="paper">
+      <p class="formhead"><span>Communications log</span><span>Form 309</span></p>
+      <p class="entry"><b>08:06</b> Rim2 &ndash; Trailview, no sign</p>
+      <p class="entry"><b>08:30</b> Rim3 &ndash; sighting at Yavapai Pt.</p>
+      <p class="entry"><b>08:52</b> Below1 &ndash; hiker found at 3 Mile</p>
+    </div>
+  </div>
+  <p class="brand">
+    <svg width="42" height="70" viewBox="0 0 155 260" aria-hidden="true"><!-- the site header's mark -->
+      <g fill="none" stroke="#EAF1F8" stroke-linejoin="round">
+        <path d="M 52 239 L 18.4 175.8 A 38 38 0 1 1 85.6 175.8 Z" stroke-width="12"/>
+        <path d="M 52 96 L 52 150" stroke-width="5" stroke-linecap="round"/>
+      </g>
+      <rect x="44" y="142" width="16" height="58" rx="6" fill="#EAF1F8"/>
+      <circle cx="52" cy="88" r="8" fill="#EAF1F8"/>
+      <g fill="#12263F"><rect x="47.5" y="158" width="9" height="4" rx="2"/><rect x="47.5" y="170" width="9" height="4" rx="2"/><rect x="47.5" y="182" width="9" height="4" rx="2"/></g>
+      <g fill="none" stroke="#F0700A" stroke-width="11" stroke-linecap="round">
+        <path transform="translate(52,88) scale(0.80) translate(-52,-88)" d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71"/>
+        <path transform="translate(52,88) scale(1.30) translate(-52,-88)" d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71"/>
+        <path transform="translate(52,88) scale(1.85) translate(-52,-88)" d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71"/>
+      </g>
+    </svg>
+    <span><b>RangerTrak</b> &middot; rangertrak.com</span>
+  </p>
+</div>

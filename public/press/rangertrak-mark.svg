@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32"
+     role="img" aria-label="RangerTrak">
+  <title>RangerTrak</title>
+  <!--
+    Tab-size mark. Deliberately NOT rangertrak-mark.svg scaled down: at 16px the
+    full mark's three thin waves collapse into a smudge and the pin ring closes
+    up. This is the simplified cut - filled pin, two waves, no slots - which is
+    what actually survives 16px. Geometry mirrors rangertrak-mark.svg; change
+    one, check the other.
+  -->
+  <style>
+    /* Browsers honour this in SVG favicons; renderers that do not just get the
+       light version, which is the correct fallback. */
+    @media (prefers-color-scheme: dark) { .pin { fill: #9DC2DC; } }
+  </style>
+  <path class="pin" fill="#12263F" fill-rule="evenodd"
+        d="M 11.5 29 L 6.26 21.84 A 6.5 6.5 0 1 1 16.74 21.84 Z
+           M 10.4 12.6 L 12.6 12.6 L 12.6 24.2 L 10.4 24.2 Z"/>
+  <g fill="none" stroke="#F0700A" stroke-width="3" stroke-linecap="round">
+    <path d="M 21.89 5 A 12 12 0 0 1 20.69 18.71"/>
+    <path d="M 26.22 2.5 A 17 17 0 0 1 24.52 21.93"/>
+  </g>
+</svg>

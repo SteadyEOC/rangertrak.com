@@ -1,0 +1,7 @@
+# Regenerable, and too big for git: rebuild with fetch_data.py -> build_map.py -> compose.py -> render_one.ps1
+data/
+map-base.png
+map-base-test.*
+bright-angel-search.png
+_*.render.html
+__pycache__/

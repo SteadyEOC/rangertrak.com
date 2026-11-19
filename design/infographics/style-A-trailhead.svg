@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+<style>@font-face{font-family:'NP';src:url('fonts/NationalPark-Bold.ttf')}
+@font-face{font-family:'NPr';src:url('fonts/NationalPark-Regular.ttf')}
+ .sign{font-family:NP;fill:#F6EAD7;letter-spacing:4px} .lab{font-family:NP;fill:#3B261C;letter-spacing:1.5px}
+ .small{font-family:NPr;fill:#3B261C} .rim{font-family:NP;fill:#F6EAD7;letter-spacing:1.5px}</style>
+<rect width="1200" height="675" fill="#F3DCC0"/>
+<circle cx="640" cy="262" r="64" fill="#F0700A"/>
+<!-- North Rim, flat-topped, far away -->
+<path d="M0,300 L170,297 L186,309 L430,305 L446,293 L760,296 L776,310 L1010,304 L1026,292 L1200,296 V675 H0 Z" fill="#C98E7E"/>
+<!-- canyon strata, stepping down to the river -->
+<path d="M200,350 L330,346 L340,362 L520,358 L528,344 L700,348 L712,364 L880,360 L890,346 L1200,350 V675 H0 V350 Z" fill="#DE8A4F"/>
+<path d="M260,408 L380,404 L392,420 L560,416 L570,402 L720,406 L734,422 L860,418 L872,404 L1200,410 V675 H0 V408 Z" fill="#B8563B"/>
+<path d="M300,470 L430,466 L442,480 L600,476 L612,462 L760,466 L772,482 L1200,478 V675 H0 V470 Z" fill="#8A3C2F"/>
+<path d="M330,532 C470,516 560,548 700,530 C790,518 860,540 930,528" fill="none" stroke="#6E9DB3" stroke-width="6" stroke-linecap="round"/>
+<!-- South Rim, near: the overlook (left) and the Village (right) -->
+<path d="M0,392 L300,388 L318,420 L332,470 L352,540 L372,675 H0 Z" fill="#5A3727"/>
+<path d="M1200,428 L930,432 L914,462 L900,520 L884,600 L872,675 H1200 Z" fill="#5A3727"/>
+<rect y="580" width="1200" height="95" fill="#3B261C"/>
+<!-- carved sign -->
+<rect x="330" y="36" width="540" height="92" rx="10" fill="#3B261C"/>
+<rect x="342" y="48" width="516" height="68" rx="6" fill="none" stroke="#F6EAD7" stroke-width="2" opacity=".5"/>
+<text x="600" y="98" text-anchor="middle" class="sign" font-size="40">RADIO IN · MAP OUT</text>
+<!-- Rim 1 at the overlook: campaign hat and handheld -->
+<g transform="translate(190,318)">
+  <ellipse cx="0" cy="-14" rx="24" ry="5" fill="#3B261C"/><path d="M-11,-15 L-8,-31 L0,-26 L8,-31 L11,-15 Z" fill="#3B261C"/>
+  <circle cx="0" cy="-2" r="12" fill="#3B261C"/>
+  <path d="M-19,20 Q0,8 19,20 L17,70 L-17,70 Z" fill="#3B261C"/>
+  <rect x="20" y="8" width="12" height="26" rx="3" fill="#12263F"/><rect x="25" y="-12" width="3" height="22" fill="#12263F"/>
+  <path d="M15,32 L23,24" stroke="#3B261C" stroke-width="8" stroke-linecap="round"/>
+</g>
+<path d="M246.1,295.7 A30,30 0 0 1 252.5,332.1" fill="none" stroke="#F0700A" stroke-width="6" stroke-linecap="round" opacity="1.00"/>
+<path d="M262.1,277.9 A54,54 0 0 1 273.7,343.4" fill="none" stroke="#F0700A" stroke-width="6" stroke-linecap="round" opacity="0.82"/>
+<path d="M278.2,260.0 A78,78 0 0 1 294.9,354.6" fill="none" stroke="#F0700A" stroke-width="6" stroke-linecap="round" opacity="0.64"/>
+<path d="M294.3,242.2 A102,102 0 0 1 316.1,365.9" fill="none" stroke="#F0700A" stroke-width="6" stroke-linecap="round" opacity="0.46"/>
+<text x="120" y="420" class="rim" font-size="15">RIM 1</text>
+<text x="120" y="440" class="rim" font-size="12" opacity=".8">TRAILVIEW OVERLOOK</text>
+<!-- the call -->
+<g transform="translate(252,160)">
+  <rect width="290" height="66" rx="12" fill="#fff" stroke="#3B261C" stroke-width="2.5"/>
+  <path d="M28,66 L18,86 L50,66 Z" fill="#fff" stroke="#3B261C" stroke-width="2.5" stroke-linejoin="round"/>
+  <rect x="26" y="63" width="26" height="5" fill="#fff"/>
+  <text x="145" y="29" text-anchor="middle" class="lab" font-size="17">RIM 1 · TRAILVIEW OVERLOOK</text>
+  <text x="145" y="51" text-anchor="middle" class="small" font-size="15">no sign of the hiker, trail clear</text>
+</g>
+<!-- command post: pop-up canopy at the Village -->
+<g transform="translate(900,0)">
+  <text x="130" y="238" text-anchor="middle" class="lab" font-size="15">COMMAND POST</text>
+  <text x="130" y="256" text-anchor="middle" class="small" font-size="13">Grand Canyon Village</text>
+  <path d="M10,300 L40,270 L220,270 L250,300 Z" fill="#F0700A"/><path d="M10,300 H250 V308 H10 Z" fill="#B8563B"/>
+  <path d="M22,308 V432 M238,308 V432" stroke="#3B261C" stroke-width="5"/>
+  <rect x="40" y="398" width="180" height="9" fill="#3B261C"/><path d="M60,407 V432 M200,407 V432" stroke="#3B261C" stroke-width="4"/>
+  <rect x="62" y="322" width="136" height="80" rx="5" fill="#12263F"/>
+  <rect x="69" y="329" width="122" height="66" fill="#F1E7D6"/>
+<path d="M69,352.1 L191,347.48" stroke="#FFFFFF" stroke-width="3" fill="none"/>
+<path d="M105.6,329 L120.24,395" stroke="#FFFFFF" stroke-width="3" fill="none"/>
+<path d="M142.2,329 C149.52,355.4 166.60000000000002,368.6 191,375.2" stroke="#FFFFFF" stroke-width="3" fill="none"/>
+<polyline points="86.08,369.92 105.6,362.0 126.34,356.72 144.64,344.84" fill="none" stroke="#12263F" stroke-width="2.5" stroke-dasharray="5 4"/>
+<path d="M144.64,344.84 l-7,-10 a8.6,8.6 0 1 1 14,0 z" fill="#F0700A" stroke="#fff" stroke-width="1.5"/><circle cx="144.64" cy="329.84" r="3" fill="#fff"/>
+<path d="M105.6,362.0 l-7,-10 a8.6,8.6 0 1 1 14,0 z" fill="#0B5FA8" stroke="#fff" stroke-width="1.5"/><circle cx="105.6" cy="347.0" r="3" fill="#fff"/>
+<path d="M166.60000000000002,369.92 l-7,-10 a8.6,8.6 0 1 1 14,0 z" fill="#2E8B57" stroke="#fff" stroke-width="1.5"/><circle cx="166.60000000000002" cy="354.92" r="3" fill="#fff"/>
+<path d="M90.96000000000001,348.8 l-7,-10 a8.6,8.6 0 1 1 14,0 z" fill="#C0392B" stroke="#fff" stroke-width="1.5"/><circle cx="90.96000000000001" cy="333.8" r="3" fill="#fff"/>
+</g>
+<g transform="translate(470,628)"><circle r="44" fill="#F6EAD7" stroke="#F0700A" stroke-width="5"/><text y="-3" text-anchor="middle" font-size="13" class="lab">NO</text><text y="14" text-anchor="middle" font-size="13" class="lab">INTERNET</text></g><g transform="translate(600,628)"><circle r="44" fill="#F6EAD7" stroke="#F0700A" stroke-width="5"/><text y="-3" text-anchor="middle" font-size="13" class="lab">ANY</text><text y="14" text-anchor="middle" font-size="13" class="lab">GRID</text></g><g transform="translate(730,628)"><circle r="44" fill="#F6EAD7" stroke="#F0700A" stroke-width="5"/><text y="-3" text-anchor="middle" font-size="13" class="lab">ICS</text><text y="14" text-anchor="middle" font-size="13" class="lab">309 · 213</text></g>
+<g transform="translate(40,610) scale(1.25)">
+  <path fill="#F6EAD7" fill-rule="evenodd" d="M 11.5 29 L 6.26 21.84 A 6.5 6.5 0 1 1 16.74 21.84 Z M 10.4 12.6 L 12.6 12.6 L 12.6 24.2 L 10.4 24.2 Z"/>
+  <g fill="none" stroke="#F0700A" stroke-width="3" stroke-linecap="round">
+    <path d="M 21.89 5 A 12 12 0 0 1 20.69 18.71"/><path d="M 26.22 2.5 A 17 17 0 0 1 24.52 21.93"/>
+  </g></g>
+<text x="88" y="640" class="sign" font-size="18" letter-spacing="2">RANGERTRAK.COM</text>
+</svg>

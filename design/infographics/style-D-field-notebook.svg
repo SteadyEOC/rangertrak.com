@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+<style>@font-face{font-family:'Hand';src:url('fonts/NothingYouCouldDo-Regular.ttf')}
+@font-face{font-family:'Mono';src:url('fonts/DMMono-Regular.ttf')}
+ .h{font-family:Hand;fill:#23303D} .r{font-family:Hand;fill:#C8341E} .m{font-family:Mono;fill:#7A6E3A;letter-spacing:1px}</style>
+<rect width="1200" height="675" fill="#FBF3C9"/><path d="M0,95 H1200" stroke="#D9CF9C" stroke-width="1"/><path d="M0,127 H1200" stroke="#D9CF9C" stroke-width="1"/><path d="M0,159 H1200" stroke="#D9CF9C" stroke-width="1"/><path d="M0,191 H1200" stroke="#D9CF9C" stroke-width="1"/><path d="M0,223 H1200" stroke="#D9CF9C" stroke-width="1"/><path d="M0,255 H1200" stroke="#D9CF9C" stroke-width="1"/><path d="M0,287 H1200" stroke="#D9CF9C" stroke-width="1"/><path d="M0,319 H1200" stroke="#D9CF9C" stroke-width="1"/><path d="M0,351 H1200" stroke="#D9CF9C" stroke-width="1"/><path d="M0,383 H1200" stroke="#D9CF9C" stroke-width="1"/><path d="M0,415 H1200" stroke="#D9CF9C" stroke-width="1"/><path d="M0,447 H1200" stroke="#D9CF9C" stroke-width="1"/><path d="M0,479 H1200" stroke="#D9CF9C" stroke-width="1"/><path d="M0,511 H1200" stroke="#D9CF9C" stroke-width="1"/><path d="M0,543 H1200" stroke="#D9CF9C" stroke-width="1"/><path d="M0,575 H1200" stroke="#D9CF9C" stroke-width="1"/><path d="M0,607 H1200" stroke="#D9CF9C" stroke-width="1"/><path d="M0,639 H1200" stroke="#D9CF9C" stroke-width="1"/><path d="M0,671 H1200" stroke="#D9CF9C" stroke-width="1"/>
+<path d="M86,0 V675" stroke="#C8341E" stroke-width="1.5" opacity=".55"/>
+<text x="108" y="72" class="h" font-size="46">radio in → map out</text>
+<text x="1140" y="60" text-anchor="end" class="m" font-size="13">GRAND CANYON · OP PERIOD 2</text>
+<!-- field team, sketched -->
+<g transform="translate(210,370)" stroke="#23303D" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M-60,70 Q-20,20 20,50 T100,40"/>
+  <circle cx="0" cy="-40" r="15"/><path d="M1,-25 Q-2,5 0,22 M-20,-6 Q-4,-14 18,-12 M0,22 L-13,58 M0,22 L12,58"/>
+  <path d="M18,-24 h11 v24 h-11 z M24,-24 v-18"/>
+</g>
+<text x="130" y="480" class="h" font-size="24">Rim 1 out on the South Rim</text>
+<text x="130" y="508" class="r" font-size="20">(no bars!)</text>
+<path d="M251.0,310.9 A22,22 0 0 1 260.7,337.5" fill="none" stroke="#C8341E" stroke-width="3" stroke-linecap="round" opacity="1.00"/>
+<path d="M260.0,295.4 A40,40 0 0 1 277.6,343.7" fill="none" stroke="#C8341E" stroke-width="3" stroke-linecap="round" opacity="0.82"/>
+<path d="M269.0,279.8 A58,58 0 0 1 294.5,349.8" fill="none" stroke="#C8341E" stroke-width="3" stroke-linecap="round" opacity="0.64"/>
+<!-- the call, as written down -->
+<g transform="translate(380,170)">
+  <text class="h" font-size="26">"Rim 1 — Trailview Overlook,</text>
+  <text y="34" class="h" font-size="26">  no sign of the hiker"</text>
+  <path d="M-8,52 C60,60 200,48 330,56" stroke="#C8341E" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<path d="M420,300 C520,350 600,360 700,330" stroke="#23303D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 9"/>
+<path d="M690,320 L704,331 L688,340" stroke="#23303D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<!-- laptop sketch -->
+<g transform="translate(730,250)" stroke="#23303D" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M2,0 L332,4 L328,200 L-2,196 Z"/>
+  <path d="M-36,200 L366,204 L340,232 L-12,228 Z"/>
+</g>
+<rect x="748" y="266" width="296" height="170" fill="#FFFDF0"/>
+<path d="M748,325.5 L1044,313.6" stroke="#E4D9A6" stroke-width="3" fill="none"/>
+<path d="M836.8,266 L872.3199999999999,436" stroke="#E4D9A6" stroke-width="3" fill="none"/>
+<path d="M925.6,266 C943.36,334.0 984.8,368.0 1044,385.0" stroke="#E4D9A6" stroke-width="3" fill="none"/>
+<polyline points="789.44,371.4 836.8,351.0 887.12,337.4 931.52,306.8" fill="none" stroke="#C8341E" stroke-width="2.5" stroke-dasharray="5 4"/>
+<path d="M931.52,306.8 l-7,-10 a8.6,8.6 0 1 1 14,0 z" fill="#F0700A" stroke="#fff" stroke-width="1.5"/><circle cx="931.52" cy="291.8" r="3" fill="#fff"/>
+<path d="M836.8,351.0 l-7,-10 a8.6,8.6 0 1 1 14,0 z" fill="#0B5FA8" stroke="#fff" stroke-width="1.5"/><circle cx="836.8" cy="336.0" r="3" fill="#fff"/>
+<path d="M984.8,371.4 l-7,-10 a8.6,8.6 0 1 1 14,0 z" fill="#2E8B57" stroke="#fff" stroke-width="1.5"/><circle cx="984.8" cy="356.4" r="3" fill="#fff"/>
+<path d="M801.28,317.0 l-7,-10 a8.6,8.6 0 1 1 14,0 z" fill="#C0392B" stroke="#fff" stroke-width="1.5"/><circle cx="801.28" cy="302.0" r="3" fill="#fff"/>
+<text x="760" y="528" class="h" font-size="24">RangerTrak plots it. No Internet.</text>
+<!-- margin notes -->
+<g class="h" font-size="22">
+  <text x="108" y="590">✓ any grid — MGRS, UTM, lat/long</text>
+  <text x="520" y="590">✓ quiet teams turn red</text>
+  <text x="860" y="590">✓ prints 309 &amp; 213</text>
+</g>
+<g transform="translate(108,610) scale(1.0625)">
+  <path fill="#23303D" fill-rule="evenodd" d="M 11.5 29 L 6.26 21.84 A 6.5 6.5 0 1 1 16.74 21.84 Z M 10.4 12.6 L 12.6 12.6 L 12.6 24.2 L 10.4 24.2 Z"/>
+  <g fill="none" stroke="#C8341E" stroke-width="3" stroke-linecap="round">
+    <path d="M 21.89 5 A 12 12 0 0 1 20.69 18.71"/><path d="M 26.22 2.5 A 17 17 0 0 1 24.52 21.93"/>
+  </g></g>
+<text x="150" y="642" class="m" font-size="14">rangertrak.com</text>
+</svg>

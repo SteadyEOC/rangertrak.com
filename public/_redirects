@@ -1,0 +1,67 @@
+# Serve index.html at the bare "/" without a redirect.
+#
+# html_handling is "none" (see wrangler.jsonc), which does no path rewriting at all, so
+# "/" matches no file on disk and the front door 404s. A 200 here is a rewrite, not a
+# redirect: the URL stays "/" and no hop is added. Doing it this way rather than switching
+# html_handling keeps every other URL literal, so /field-guide.html is still served as
+# itself instead of redirecting to /field-guide.
+/    /index.html    200
+
+# Extensionless addresses for the pages, e.g. /press serves press.html (John, 2026-10-02).
+# Also 200 rewrites, so the URL people type stays as typed and the site's own links (which
+# end in .html) are untouched. One line per page: a NEW PAGE OR BLOG POST NEEDS ITS LINE,
+# and tools/check-site.js fails if one is missing. Other cases and a trailing slash
+# (/Press, /press/) are handled by worker.js, not here.
+/about        /about.html        200
+/devices      /devices.html      200
+/practice     /practice.html     200
+/blog         /blog.html         200
+/feedback     /feedback.html     200
+/field-guide  /field-guide.html  200
+/press        /press.html        200
+/privacy      /privacy.html      200
+/blog/01-the-paper-log-without-the-paper  /blog/01-the-paper-log-without-the-paper.html  200
+/blog/02-hot-warm-cold                    /blog/02-hot-warm-cold.html                    200
+/blog/03-however-they-read-it-out            /blog/03-however-they-read-it-out.html            200
+/blog/04-radio-log-to-ics-309-and-213        /blog/04-radio-log-to-ics-309-and-213.html        200
+/blog/05-more-than-one-laptop                 /blog/05-more-than-one-laptop.html                200
+/blog/06-whats-missing-and-who-decides       /blog/06-whats-missing-and-who-decides.html       200
+/blog/07-your-roster-is-already-in-a-spreadsheet /blog/07-your-roster-is-already-in-a-spreadsheet.html 200
+/blog/08-shift-change                         /blog/08-shift-change.html                         200
+/blog/beta-what-changed-since-the-alpha            /blog/beta-what-changed-since-the-alpha.html            200
+/blog/09-after-the-mission                    /blog/09-after-the-mission.html                    200
+/blog/beta-2-whats-new                        /blog/beta-2-whats-new.html                        200
+/blog/hseep-improvement-plan                  /blog/hseep-improvement-plan.html                  200
+/blog/beta-3-whats-new                        /blog/beta-3-whats-new.html                        200
+
+# The app's hands-on tour, for posts and talks (handoff 10-23, item 1). The site's own pages
+# link to rangertrak.org/tour/ directly, so this counts only outreach hits.
+/go/tour  https://rangertrak.org/tour/  301
+
+# Paths people and feed readers guess. Nothing on the site links to them.
+/feed     /feed.xml    301
+/blog/    /blog.html   301
+
+# Per-channel short links for outreach posts (one per post). Each lands on a real page;
+# tools/analytics-snapshot.js counts hits per /go/ path. The groups and dates are in
+# rangertrak-InternalDocs/Outreach - Facebook ham groups.md.
+/go/fb-hamops       /blog/02-hot-warm-cold.html   301
+/go/fb-cert-board   /blog/02-hot-warm-cold.html   301
+/go/fb-pnw-ham      /blog/02-hot-warm-cold.html   301
+/go/fb-shtf-emcomm  /blog/02-hot-warm-cold.html   301
+/go/fb-ham-radio    /blog/02-hot-warm-cold.html   301
+/go/fb-cert         /blog/02-hot-warm-cold.html   301
+/go/fb-mesh         /blog/02-hot-warm-cold.html   301
+/go/fb-tactical     /blog/02-hot-warm-cold.html   301
+
+# groups.io lists
+/go/io-sec-emcomm       /blog/02-hot-warm-cold.html   301
+/go/io-qtc              /blog/02-hot-warm-cold.html   301
+/go/io-basarc           /blog/02-hot-warm-cold.html   301
+/go/io-sjcars           /blog/02-hot-warm-cold.html   301
+/go/io-w7vmi            /blog/02-hot-warm-cold.html   301
+/go/io-emcomm-training  /blog/02-hot-warm-cold.html   301
+/go/io-rpi4-ham         /blog/02-hot-warm-cold.html   301
+
+# ARRL ARES Letter brief
+/go/ares-letter         /blog/02-hot-warm-cold.html   301

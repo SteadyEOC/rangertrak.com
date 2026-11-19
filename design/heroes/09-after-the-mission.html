@@ -1,0 +1,97 @@
+<!doctype html>
+<!-- Field Notes Part 9 hero, 1200x630 (also the og:image and blog thumbnail).
+     Render: node tools/render-hero.mjs design/heroes/09-after-the-mission.html <out>.png
+     The end-of-mission box, drawn: the improvement-plan table, the signed ICS-214 and the whole-log
+     summary, each with the same journal stamp at its foot. Made-up teams, times and notes; no names
+     or call signs. No red as decoration. Bigger title and subtitle than Part 8 (handoff, from Part 9 on). -->
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  body { width: 1200px; height: 630px; overflow: hidden; background: #12263F; color: #EAF1F8;
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .frame { position: relative; height: 100%; padding: 54px 64px; }
+  .left { position: relative; width: 500px; padding-top: 30px; }
+  .kicker { font-size: 21px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #F0700A; }
+  h1 { font-size: 70px; line-height: 1.02; margin-top: 16px; font-weight: 800; }
+  .sub { font-size: 28px; line-height: 1.38; color: #B9C8D8; margin-top: 22px; }
+
+  .paper { position: absolute; background: #fff; color: #1d2733; box-shadow: 0 18px 40px rgba(0,0,0,.45);
+    padding: 16px 20px; font-size: 13px; }
+  .paper h2 { font-size: 14px; letter-spacing: .06em; text-transform: uppercase; border-bottom: 2px solid #1d2733;
+    padding-bottom: 6px; display: flex; justify-content: space-between; }
+  .paper h2 span { font-weight: 600; letter-spacing: 0; text-transform: none; color: #4a5866; }
+  table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+  td, th { border: 1px solid #b8c2cc; padding: 4px 6px; text-align: left; font-size: 12px; }
+  th { background: #eef2f6; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; }
+  .stamp { margin-top: 8px; font-size: 11px; color: #4a5866; display: flex; justify-content: space-between; }
+  .stamp code { font-family: Consolas, "Cascadia Mono", monospace; color: #1d2733; background: #FFF3D6;
+    padding: 1px 6px; border-radius: 3px; }
+
+  .psum { width: 400px; left: 720px; top: 40px; transform: rotate(3deg); }
+  .p214 { width: 420px; left: 600px; top: 190px; transform: rotate(-2deg); }
+  .pplan { width: 500px; left: 640px; top: 372px; transform: rotate(1.2deg); }
+
+  .bars { display: flex; align-items: flex-end; gap: 8px; height: 54px; margin-top: 10px; padding: 0 4px;
+    border-bottom: 1px solid #b8c2cc; }
+  .bars i { flex: 1; background: #2E6DB4; display: block; }
+  .bars i.w { background: #E0A100; }
+  .sig { font-family: "Segoe Script", "Brush Script MT", cursive; font-size: 17px; color: #1F3F7A; }
+
+  .brand { position: absolute; left: 64px; bottom: 26px; display: flex; align-items: center; gap: 12px; font-size: 20px; font-weight: 700; color: #B9C8D8; }
+  .brand b { color: #EAF1F8; }
+</style>
+<div class="frame">
+  <div class="left">
+    <p class="kicker">Field Notes &middot; Part 9</p>
+    <h1>After the Mission</h1>
+    <p class="sub">The debrief summary, an improvement plan, the ICS-214 signed by hand, and a laptop
+      cleared without losing the record.</p>
+  </div>
+
+  <div class="paper psum">
+    <h2>Mission summary <span>Whole log</span></h2>
+    <div class="bars">
+      <i style="height:40%"></i><i style="height:100%"></i><i class="w" style="height:58%"></i><i class="w" style="height:80%"></i>
+      <i style="height:35%"></i><i style="height:35%"></i><i style="height:14%"></i>
+    </div>
+    <p class="stamp"><span>32 entries &middot; 5 needed attention</span><code>jrnl 8afa&middot;f638 (3)</code></p>
+  </div>
+
+  <div class="paper p214">
+    <h2>ICS 214 &middot; Activity log <span>All lines</span></h2>
+    <table>
+      <tr><th>Time</th><th>Notable activity</th></tr>
+      <tr><td>13:40</td><td>Moved Team 2 traffic to the ridge relay</td></tr>
+      <tr><td>21:05</td><td>All teams accounted for; net closed</td></tr>
+    </table>
+    <p class="stamp"><span>Signature <span class="sig">&nbsp;J. Scribe</span></span><code>jrnl 8afa&middot;f638 (3)</code></p>
+  </div>
+
+  <div class="paper pplan">
+    <h2>Improvement plan <span>This incident</span></h2>
+    <table>
+      <tr><th>Area</th><th>Recommendation</th><th>Owner</th></tr>
+      <tr><td>Comms</td><td>Check-in timer per team; prompt at 30 min</td><td>Net control</td></tr>
+      <tr><td>Logistics</td><td>Power strip and a 50 ft cord in the go-kit</td><td>Equipment</td></tr>
+    </table>
+    <p class="stamp"><span>Printed at the hot wash</span><code>jrnl 8afa&middot;f638 (3)</code></p>
+  </div>
+
+  <p class="brand">
+    <svg width="42" height="70" viewBox="0 0 155 260" aria-hidden="true"><!-- the site header's mark -->
+      <g fill="none" stroke="#EAF1F8" stroke-linejoin="round">
+        <path d="M 52 239 L 18.4 175.8 A 38 38 0 1 1 85.6 175.8 Z" stroke-width="12"/>
+        <path d="M 52 96 L 52 150" stroke-width="5" stroke-linecap="round"/>
+      </g>
+      <rect x="44" y="142" width="16" height="58" rx="6" fill="#EAF1F8"/>
+      <circle cx="52" cy="88" r="8" fill="#EAF1F8"/>
+      <g fill="#12263F"><rect x="47.5" y="158" width="9" height="4" rx="2"/><rect x="47.5" y="170" width="9" height="4" rx="2"/><rect x="47.5" y="182" width="9" height="4" rx="2"/></g>
+      <g fill="none" stroke="#F0700A" stroke-width="11" stroke-linecap="round">
+        <path transform="translate(52,88) scale(0.80) translate(-52,-88)" d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71"/>
+        <path transform="translate(52,88) scale(1.30) translate(-52,-88)" d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71"/>
+        <path transform="translate(52,88) scale(1.85) translate(-52,-88)" d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71"/>
+      </g>
+    </svg>
+    <span><b>RangerTrak</b> &middot; rangertrak.com</span>
+  </p>
+</div>

@@ -1,0 +1,59 @@
+<!doctype html>
+<!-- Field Notes Part 5 hero, 1200x630 (also the og:image and blog thumbnail).
+     Render: node tools/render-hero.mjs design/heroes/05-phone-to-log.html <out>.png
+     A field phone (0.99.26-alpha, field mode) and the command post's Radio Log after loading its
+     Report Packet: the two merged reports carry the packet marker. Grand Canyon demo, fictional. -->
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  body { width: 1200px; height: 630px; overflow: hidden; background: #12263F; color: #EAF1F8;
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .frame { position: relative; height: 100%; padding: 54px 64px; }
+  .left { position: relative; width: 390px; padding-top: 40px; }
+  .kicker { font-size: 19px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #F0700A; }
+  h1 { font-size: 60px; line-height: 1.04; margin-top: 18px; font-weight: 800; }
+  .sub { font-size: 23px; line-height: 1.4; color: #B9C8D8; margin-top: 22px; }
+  .laptop { position: absolute; left: 650px; top: 70px; width: 510px; border: 14px solid #2B3B4F;
+    border-radius: 14px 14px 4px 4px; background: #fff; box-shadow: 0 18px 40px rgba(0,0,0,.45); overflow: hidden; height: 380px; }
+  .laptop img { display: block; width: 100%; }
+  .base { position: absolute; left: 620px; top: 450px; width: 570px; height: 16px; background: #3A4C62; border-radius: 0 0 14px 14px; }
+  .phone { position: absolute; left: 458px; top: 215px; width: 172px; height: 262px; border: 10px solid #0B1624;
+    border-radius: 26px; background: #EDF1F6; overflow: hidden; box-shadow: 0 18px 40px rgba(0,0,0,.5); }
+  .phone img { display: block; width: 100%; }
+  .packet { position: absolute; left: 650px; top: 490px; display: flex; align-items: center; gap: 12px;
+    font-size: 20px; font-weight: 700; color: #EAF1F8; }
+  .packet svg { flex: none; }
+  .brand { position: absolute; left: 64px; bottom: 26px; display: flex; align-items: center; gap: 12px; font-size: 20px; font-weight: 700; color: #B9C8D8; }
+  .brand b { color: #EAF1F8; }
+</style>
+<div class="frame">
+  <div class="left">
+    <p class="kicker">Field Notes &middot; Part 5</p>
+    <h1>More Than One Laptop</h1>
+    <p class="sub">A ranger&rsquo;s phone files its own reports. One file brings them home. Nothing is overwritten.</p>
+  </div>
+  <div class="laptop"><img src="source/radio-log-merged.jpg" alt=""></div>
+  <div class="base"></div>
+  <div class="phone"><img src="source/field-phone-entry.jpg" alt=""></div>
+  <p class="packet">
+    <svg width="64" height="24" viewBox="0 0 64 24" aria-hidden="true"><path d="M2 12 H54" stroke="#F0700A" stroke-width="4" stroke-dasharray="7 6" fill="none"/><path d="M50 4 L62 12 L50 20" fill="none" stroke="#F0700A" stroke-width="4" stroke-linejoin="round"/></svg>
+    Report Packet: adds, never overwrites
+  </p>
+  <p class="brand">
+    <svg width="42" height="70" viewBox="0 0 155 260" aria-hidden="true"><!-- the site header's mark -->
+      <g fill="none" stroke="#EAF1F8" stroke-linejoin="round">
+        <path d="M 52 239 L 18.4 175.8 A 38 38 0 1 1 85.6 175.8 Z" stroke-width="12"/>
+        <path d="M 52 96 L 52 150" stroke-width="5" stroke-linecap="round"/>
+      </g>
+      <rect x="44" y="142" width="16" height="58" rx="6" fill="#EAF1F8"/>
+      <circle cx="52" cy="88" r="8" fill="#EAF1F8"/>
+      <g fill="#12263F"><rect x="47.5" y="158" width="9" height="4" rx="2"/><rect x="47.5" y="170" width="9" height="4" rx="2"/><rect x="47.5" y="182" width="9" height="4" rx="2"/></g>
+      <g fill="none" stroke="#F0700A" stroke-width="11" stroke-linecap="round">
+        <path transform="translate(52,88) scale(0.80) translate(-52,-88)" d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71"/>
+        <path transform="translate(52,88) scale(1.30) translate(-52,-88)" d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71"/>
+        <path transform="translate(52,88) scale(1.85) translate(-52,-88)" d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71"/>
+      </g>
+    </svg>
+    <span><b>RangerTrak</b> &middot; rangertrak.com</span>
+  </p>
+</div>

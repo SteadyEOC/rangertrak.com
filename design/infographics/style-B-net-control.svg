@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+<style>@font-face{font-family:'Mono';src:url('fonts/JetBrainsMono-Regular.ttf')}
+@font-face{font-family:'MonoB';src:url('fonts/JetBrainsMono-Bold.ttf')}
+@font-face{font-family:'Sans';src:url('fonts/InstrumentSans-Bold.ttf')}
+ .m{font-family:Mono;fill:#7F97B2;letter-spacing:1.5px} .mb{font-family:MonoB;fill:#F0700A;letter-spacing:3px}
+ .t{font-family:Sans;fill:#fff} .w{font-family:Mono;fill:#DCE7F2}</style>
+<rect width="1200" height="675" fill="#0D1C2E"/><path d="M0,0 V675" stroke="#132840"/><path d="M40,0 V675" stroke="#132840"/><path d="M80,0 V675" stroke="#132840"/><path d="M120,0 V675" stroke="#132840"/><path d="M160,0 V675" stroke="#132840"/><path d="M200,0 V675" stroke="#132840"/><path d="M240,0 V675" stroke="#132840"/><path d="M280,0 V675" stroke="#132840"/><path d="M320,0 V675" stroke="#132840"/><path d="M360,0 V675" stroke="#132840"/><path d="M400,0 V675" stroke="#132840"/><path d="M440,0 V675" stroke="#132840"/><path d="M480,0 V675" stroke="#132840"/><path d="M520,0 V675" stroke="#132840"/><path d="M560,0 V675" stroke="#132840"/><path d="M600,0 V675" stroke="#132840"/><path d="M640,0 V675" stroke="#132840"/><path d="M680,0 V675" stroke="#132840"/><path d="M720,0 V675" stroke="#132840"/><path d="M760,0 V675" stroke="#132840"/><path d="M800,0 V675" stroke="#132840"/><path d="M840,0 V675" stroke="#132840"/><path d="M880,0 V675" stroke="#132840"/><path d="M920,0 V675" stroke="#132840"/><path d="M960,0 V675" stroke="#132840"/><path d="M1000,0 V675" stroke="#132840"/><path d="M1040,0 V675" stroke="#132840"/><path d="M1080,0 V675" stroke="#132840"/><path d="M1120,0 V675" stroke="#132840"/><path d="M1160,0 V675" stroke="#132840"/><path d="M0,0 H1200" stroke="#132840"/><path d="M0,40 H1200" stroke="#132840"/><path d="M0,80 H1200" stroke="#132840"/><path d="M0,120 H1200" stroke="#132840"/><path d="M0,160 H1200" stroke="#132840"/><path d="M0,200 H1200" stroke="#132840"/><path d="M0,240 H1200" stroke="#132840"/><path d="M0,280 H1200" stroke="#132840"/><path d="M0,320 H1200" stroke="#132840"/><path d="M0,360 H1200" stroke="#132840"/><path d="M0,400 H1200" stroke="#132840"/><path d="M0,440 H1200" stroke="#132840"/><path d="M0,480 H1200" stroke="#132840"/><path d="M0,520 H1200" stroke="#132840"/><path d="M0,560 H1200" stroke="#132840"/><path d="M0,600 H1200" stroke="#132840"/><path d="M0,640 H1200" stroke="#132840"/><ellipse cx="230" cy="470" rx="60" ry="28" fill="none" stroke="#1C3656" stroke-width="1.4" transform="rotate(-12 230 470)"/><ellipse cx="230" cy="470" rx="94" ry="45" fill="none" stroke="#1C3656" stroke-width="1.4" transform="rotate(-12 230 470)"/><ellipse cx="230" cy="470" rx="128" ry="62" fill="none" stroke="#1C3656" stroke-width="1.4" transform="rotate(-12 230 470)"/><ellipse cx="230" cy="470" rx="162" ry="79" fill="none" stroke="#1C3656" stroke-width="1.4" transform="rotate(-12 230 470)"/><ellipse cx="230" cy="470" rx="196" ry="96" fill="none" stroke="#1C3656" stroke-width="1.4" transform="rotate(-12 230 470)"/><ellipse cx="230" cy="470" rx="230" ry="113" fill="none" stroke="#1C3656" stroke-width="1.4" transform="rotate(-12 230 470)"/><ellipse cx="230" cy="470" rx="264" ry="130" fill="none" stroke="#1C3656" stroke-width="1.4" transform="rotate(-12 230 470)"/><ellipse cx="230" cy="470" rx="298" ry="147" fill="none" stroke="#1C3656" stroke-width="1.4" transform="rotate(-12 230 470)"/><ellipse cx="230" cy="470" rx="332" ry="164" fill="none" stroke="#1C3656" stroke-width="1.4" transform="rotate(-12 230 470)"/>
+<text x="60" y="70" class="mb" font-size="14">RANGERTRAK / FIG. 02</text>
+<text x="60" y="122" class="t" font-size="50">Radio in. Map out.</text>
+<text x="60" y="152" class="m" font-size="15">no Internet at the table · none needed</text>
+<!-- field team -->
+<g transform="translate(200,420)" stroke="#DCE7F2" stroke-width="2.5" fill="none">
+  <circle cx="0" cy="-58" r="14"/><path d="M0,-44 V10 M-22,-20 L0,-32 L20,-18 M0,10 L-16,52 M0,10 L16,52"/>
+  <rect x="20" y="-34" width="12" height="24" rx="2"/><path d="M26,-34 V-54"/>
+</g>
+<text x="130" y="505" class="m" font-size="13">RIM 1 · TRAILVIEW OVERLOOK</text>
+<text x="130" y="524" class="m" font-size="13" fill="#F0700A">× no cell signal on the rim</text>
+<path d="M246.9,342.7 A26,26 0 0 1 255.6,375.0" fill="none" stroke="#F0700A" stroke-width="3" stroke-linecap="round" opacity="1.00"/>
+<path d="M259.5,324.7 A48,48 0 0 1 275.5,384.3" fill="none" stroke="#F0700A" stroke-width="3" stroke-linecap="round" opacity="0.82"/>
+<path d="M272.2,306.7 A70,70 0 0 1 295.4,393.6" fill="none" stroke="#F0700A" stroke-width="3" stroke-linecap="round" opacity="0.64"/>
+<path d="M284.8,288.6 A92,92 0 0 1 315.4,402.9" fill="none" stroke="#F0700A" stroke-width="3" stroke-linecap="round" opacity="0.46"/>
+<!-- transmission -->
+<path d="M340,350 C470,300 560,300 690,330" fill="none" stroke="#F0700A" stroke-width="2" stroke-dasharray="3 7"/>
+<g transform="translate(370,212)">
+  <rect width="300" height="70" fill="#0D1C2E" stroke="#7F97B2" stroke-width="1.2"/>
+  <text x="14" y="28" class="w" font-size="15">"RIM 1, TRAILVIEW OVERLOOK.</text>
+  <text x="14" y="52" class="w" font-size="15"> NO SIGN OF THE HIKER."</text>
+</g>
+<text x="372" y="205" class="m" font-size="12">VOICE</text>
+<!-- the four questions -->
+<g transform="translate(700,196)">
+ <g transform="translate(0,0)"><rect width="96" height="34" fill="none" stroke="#F0700A" stroke-width="1.5"/><text x="48" y="22" text-anchor="middle" class="mb" font-size="13" letter-spacing="2">WHO</text></g><g transform="translate(108,0)"><rect width="96" height="34" fill="none" stroke="#F0700A" stroke-width="1.5"/><text x="48" y="22" text-anchor="middle" class="mb" font-size="13" letter-spacing="2">WHERE</text></g><g transform="translate(216,0)"><rect width="96" height="34" fill="none" stroke="#F0700A" stroke-width="1.5"/><text x="48" y="22" text-anchor="middle" class="mb" font-size="13" letter-spacing="2">WHEN</text></g><g transform="translate(324,0)"><rect width="96" height="34" fill="none" stroke="#F0700A" stroke-width="1.5"/><text x="48" y="22" text-anchor="middle" class="mb" font-size="13" letter-spacing="2">WHAT</text></g>
+</g>
+<path d="M902,236 V262" stroke="#F0700A" stroke-width="1.5"/><path d="M896,256 L902,264 L908,256" fill="none" stroke="#F0700A" stroke-width="1.5"/>
+<!-- laptop -->
+<g transform="translate(730,272)">
+  <rect width="344" height="212" rx="8" fill="none" stroke="#DCE7F2" stroke-width="2.5"/>
+  <rect x="12" y="12" width="320" height="188" fill="#10263F"/>
+<path d="M12,77.8 L332,64.64000000000001" stroke="#23426A" stroke-width="3" fill="none"/>
+<path d="M108.0,12 L146.4,200" stroke="#23426A" stroke-width="3" fill="none"/>
+<path d="M204.0,12 C223.20000000000002,87.2 268.0,124.8 332,143.6" stroke="#23426A" stroke-width="3" fill="none"/>
+<polyline points="56.800000000000004,128.56 108.0,106.0 162.39999999999998,90.96 210.4,57.12" fill="none" stroke="#F0700A" stroke-width="2.5" stroke-dasharray="5 4"/>
+<path d="M210.4,57.12 l-7,-10 a8.6,8.6 0 1 1 14,0 z" fill="#F0700A" stroke="#fff" stroke-width="1.5"/><circle cx="210.4" cy="42.12" r="3" fill="#fff"/>
+<path d="M108.0,106.0 l-7,-10 a8.6,8.6 0 1 1 14,0 z" fill="#0B5FA8" stroke="#fff" stroke-width="1.5"/><circle cx="108.0" cy="91.0" r="3" fill="#fff"/>
+<path d="M268.0,128.56 l-7,-10 a8.6,8.6 0 1 1 14,0 z" fill="#2E8B57" stroke="#fff" stroke-width="1.5"/><circle cx="268.0" cy="113.56" r="3" fill="#fff"/>
+<path d="M69.6,68.4 l-7,-10 a8.6,8.6 0 1 1 14,0 z" fill="#C0392B" stroke="#fff" stroke-width="1.5"/><circle cx="69.6" cy="53.400000000000006" r="3" fill="#fff"/>
+  <path d="M-30,212 H374 L352,236 H-8 Z" fill="none" stroke="#DCE7F2" stroke-width="2.5" stroke-linejoin="round"/>
+</g>
+<text x="730" y="528" class="m" font-size="13">SCRIBE · GRAND CANYON VILLAGE</text>
+<!-- spec line -->
+<g transform="translate(60,600)" class="m" font-size="14">
+ <g transform="translate(0,0)"><rect y="-11" width="10" height="10" fill="#F0700A"/><text x="20" y="0" class="w" font-size="14">works with no Internet</text></g><g transform="translate(300,0)"><rect y="-11" width="10" height="10" fill="#F0700A"/><text x="20" y="0" class="w" font-size="14">any coordinate format</text></g><g transform="translate(590,0)"><rect y="-11" width="10" height="10" fill="#F0700A"/><text x="20" y="0" class="w" font-size="14">prints 309 &amp; ICS-213</text></g>
+</g>
+<g transform="translate(1060,578) scale(1.0625)">
+  <path fill="#DCE7F2" fill-rule="evenodd" d="M 11.5 29 L 6.26 21.84 A 6.5 6.5 0 1 1 16.74 21.84 Z M 10.4 12.6 L 12.6 12.6 L 12.6 24.2 L 10.4 24.2 Z"/>
+  <g fill="none" stroke="#F0700A" stroke-width="3" stroke-linecap="round">
+    <path d="M 21.89 5 A 12 12 0 0 1 20.69 18.71"/><path d="M 26.22 2.5 A 17 17 0 0 1 24.52 21.93"/>
+  </g></g>
+<text x="1140" y="645" text-anchor="end" class="m" font-size="12">rangertrak.com</text>
+</svg>

@@ -1,0 +1,71 @@
+{
+  // The RangerTrak public front door (rangertrak.com) - E-101 / ADR D-41.
+  //
+  // Static assets, plus one small piece of code: worker.js makes URLs case-insensitive
+  // (2026-10-05), which _redirects cannot. It runs only for requests that match no file,
+  // and does nothing but redirect to the lowercase path or serve 404.html. Unlike the app's
+  // Worker, this site still has no server logic: no PMTiles range shim (no basemap) and
+  // no feedback endpoint of its own - feedback.html posts cross-origin to the app's
+  // /api/feedback, which allowlists this origin. Keep this Worker free of secrets and of
+  // any binding but ASSETS, so a compromise here cannot file issues or touch the app.
+  "$schema": "./node_modules/wrangler/config-schema.json",
+
+  // Must match the Worker's name in the Cloudflare dashboard exactly - this field is what
+  // `wrangler deploy` targets, so a mismatch silently deploys to a *different* Worker
+  // rather than failing. Renamed from "rangertrak-site" 2026-09-01 to follow the dashboard.
+  // The local working directory and this repo's package.json still say "rangertrak-site";
+  // neither is load-bearing, only this line is.
+  "name": "rangertrak-com",
+  "compatibility_date": "2026-11-01",
+  "main": "worker.js",
+
+  // The apex ONLY, and this is not a stylistic choice.
+  //
+  // www.rangertrak.com stays a redirect-only hostname, pointing at the apex via its
+  // Page Rule and its own proxied placeholder A record. A Worker Custom Domain binds a
+  // hostname AHEAD of Page Rules, so listing www here would silently swallow the
+  // redirect and serve the site directly from two origins - which is precisely how
+  // www.rangertrak.org broke (see the app repo's wrangler.jsonc, "www vs apex").
+  //
+  // BEFORE the first deploy: the two Page Rules that 301 rangertrak.com/* and
+  // www.rangertrak.com/* to https://rangertrak.org/ must be handled. Delete the apex one
+  // outright - do NOT leave it in place relying on the custom domain to outrank it, or
+  // detaching this Worker later silently restores the redirect with nothing failing.
+  // Repoint the www one at https://rangertrak.com/ instead of the .org apex.
+  "routes": [
+    { "pattern": "rangertrak.com", "custom_domain": true }
+  ],
+
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+
+    // A plain multi-page static site: every URL IS a real file. This is the opposite of
+    // the app's Worker, which needs "single-page-application" for client-side routing.
+    // A missing page here should 404 honestly rather than serve the home page under a
+    // wrong URL.
+    // A missing page still 404s honestly, now served by worker.js, after it checks for a
+    // wrong-case or trailing-slash URL. "none" here is what passes misses to the Worker;
+    // "404-page" would answer them first and the Worker would never see /Press.
+    "not_found_handling": "none",
+
+    // "none" for a different reason than the app's Worker (which needs it so the service
+    // worker can cache /index.html). Here it is about the links: every nav href in these
+    // pages is a literal "field-guide.html", because the site has to stay openable straight
+    // from disk for review before it is ever deployed. Under auto-trailing-slash each of
+    // those answers 307 -> /field-guide, putting a redirect hop on every internal click to
+    // buy a prettier URL - measured live on 2026-09-01, when this was briefly switched to
+    // the default and all 27 internal links started redirecting. "none" serves the file
+    // that was asked for, so on-disk and deployed behave identically.
+    //
+    // The one thing "none" does not do is map the bare "/" to index.html - it does no path
+    // rewriting at all, so the front door 404'd. That is fixed by public/_redirects, not by
+    // changing this: a 200-rewrite there serves index.html at "/" with no redirect, leaving
+    // every other URL exactly as literal as it is here.
+    "html_handling": "none"
+  },
+
+  "observability": {
+    "enabled": true
+  }
+}

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RangerTrak Beta 3: What's New - RangerTrak Field Notes</title>
+<meta name="description" content="RangerTrak 1.0.0-beta.3: field phones list My reports and take receipts from the command post, ICS-213RR resource requests, notes in map popups, a step-by-step setup guide for RangerView, and Leaflet 2.0.0-beta.4 under the map.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RangerTrak Beta 3: What's New">
+<meta property="og:description" content="Field phones now know which reports got through, resource requests print on the ICS-213RR, and map popups show what the ranger said.">
+<meta property="og:url" content="https://rangertrak.com/blog/beta-3-whats-new.html">
+<meta property="article:published_time" content="2026-11-15T00:00:00Z">
+<meta property="og:image" content="https://rangertrak.com/blog/img/beta3-hero.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="840">
+<meta property="og:image:alt" content="RangerTrak Beta 3 release notes, version 1.0.0-beta.3: a checklist card of what's new, from My reports and receipts on field phones to ICS-213RR resource requests, notes in map popups, a setup guide for RangerView and Leaflet 2.0.0-beta.4.">
+<link rel="alternate" type="application/rss+xml" title="RangerTrak Field Notes" href="../feed.xml">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/styles.css">
+<script src="../assets/lightbox.js" defer></script>
+<script src="../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="top-bar">
+  <div class="top-bar__inner">
+    <a class="brand" href="/">
+      <svg class="brand-icon" width="24" height="40" viewBox="0 0 155 260" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-linejoin="round">
+          <path d="M 52 239 L 18.4 175.8 A 38 38 0 1 1 85.6 175.8 Z" stroke-width="12" />
+          <path d="M 52 96 L 52 150" stroke-width="5" stroke-linecap="round" />
+        </g>
+        <rect x="44" y="142" width="16" height="58" rx="6" fill="currentColor" />
+        <circle cx="52" cy="88" r="8" fill="currentColor" />
+        <g fill="var(--chrome)">
+          <rect x="47.5" y="158" width="9" height="4" rx="2" />
+          <rect x="47.5" y="170" width="9" height="4" rx="2" />
+          <rect x="47.5" y="182" width="9" height="4" rx="2" />
+        </g>
+        <g class="brand-signal" fill="none" stroke-width="7" stroke-linecap="round"
+          vector-effect="non-scaling-stroke">
+          <path class="wave wave-1" transform="translate(52,88) scale(0.80) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+          <path class="wave wave-2" transform="translate(52,88) scale(1.30) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+          <path class="wave wave-3" transform="translate(52,88) scale(1.85) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+        </g>
+      </svg>
+      RangerTrak&trade;</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="top-nav" aria-label="Menu">&#9776;</button>
+    <noscript><style>.top-nav{display:flex!important;flex-wrap:wrap!important;}.nav-toggle{display:none!important;}</style></noscript>
+    <nav class="top-nav" id="top-nav" aria-label="Main">
+      <a href="/">Home</a>
+      <a href="../about.html">What it does</a>
+      <a href="../blog.html" aria-current="page">Blog</a>
+      <a href="../field-guide.html">Field Guide</a>
+      <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Tour</a>
+      <a href="../feedback.html">Feedback</a>
+      <a href="https://github.com/SteadyEOC/RangerTrak" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg class="icon-github" width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.02 1.93-.02 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg></a>
+      <a class="cta" href="https://rangertrak.org" target="_blank" rel="noopener">Open RangerTrak &rarr;</a>
+    </nav>
+  </div>
+</div>
+
+<div class="shell">
+<main id="main" class="post">
+  <p class="post-kicker">Release notes</p>
+  <h1>RangerTrak Beta 3: What&rsquo;s New</h1>
+  <p class="post-meta">By John Cornelison, <a href="https://www.qrz.com/db/KE7KDQ" target="_blank" rel="noopener">KE7KDQ</a> &middot; <time datetime="2026-11-15">November 15, 2026</time> &middot; about a 5-minute read</p>
+
+  <figure class="post-hero">
+    <img src="img/beta3-hero.jpg" srcset="img/beta3-hero-480.jpg 480w, img/beta3-hero-800.jpg 800w, img/beta3-hero.jpg 1600w" sizes="min(calc(100vw - 2.5rem), 46rem)" width="1600" height="840"
+      alt="RangerTrak Beta 3 release notes, version 1.0.0-beta.3: a checklist card of what&rsquo;s new, from My reports and receipts on field phones to ICS-213RR resource requests, notes in map popups, a setup guide for RangerView and Leaflet 2.0.0-beta.4." />
+  </figure>
+
+  <div class="post-intro">
+    <p><strong>RangerTrak</strong> is a free, open-source radio log and map for the scribe at a
+      CERT, ACS/ARES, SAR or wildland-fire command post. Log who, where, when and what off the
+      radio; it maps them. It works offline once set up, and prints the Form 309 Communications Log, ICS-213, ICS-213RR and ICS-214.
+      I built it. It&rsquo;s AGPL and will stay free. Try it at
+      <a href="https://rangertrak.org" target="_blank" rel="noopener">rangertrak.org</a>, no
+      account or install needed, and
+      <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">take the tour</a> to learn it.</p>
+  </div>
+
+  <p>
+    <a href="https://github.com/SteadyEOC/RangerTrak/releases/tag/v1.0.0-beta.3" target="_blank" rel="noopener">RangerTrak 1.0.0-beta.3</a>
+    is out, less than a week after <a href="beta-2-whats-new.html">beta 2</a>. I hadn&rsquo;t planned a post for it.
+    But two questions kept coming back from testers, and this release answers both. From the ranger
+    with a phone: <em>did my reports get there?</em> From whoever sets up RangerView: <em>why won&rsquo;t
+    it connect?</em>
+  </p>
+  <p>
+    It&rsquo;s still a beta. It&rsquo;s ready to try in a drill, not yet for a real call-out, and
+    until it is, keep the paper log beside it.
+  </p>
+
+  <h2>The short version</h2>
+  <ul>
+    <li><strong>Field phones keep a list, My reports</strong>: Not sent, Sent or Received. Edit or
+      delete a report until it&rsquo;s sent.</li>
+    <li><strong>Receipts</strong>: the command post sends one back, and the phone marks those
+      reports Received.</li>
+    <li><strong>ICS-213RR resource requests</strong>, printed on FEMA&rsquo;s form.</li>
+    <li><strong>Map popups show the report&rsquo;s notes.</strong></li>
+    <li><strong>RangerView</strong> (advanced, and new name) has a step-by-step setup guide and
+      a fix for a misleading error.</li>
+    <li><strong>Leaflet 2.0.0-beta.4</strong> under the map: smoother zooming with many markers.</li>
+  </ul>
+
+  <h2>Field phones: what got through</h2>
+  <figure class="sidenote">
+    <a href="img/beta3-my-reports.jpg"><img src="img/beta3-my-reports.jpg" srcset="img/beta3-my-reports-480.jpg 480w, img/beta3-my-reports.jpg 748w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="748" height="596" loading="lazy"
+      alt="My reports on a field phone: one report marked Not sent with Edit and Delete buttons, two marked Received, and a Clear 2 received reports link." /></a>
+    <figcaption>My reports on a field phone, after a receipt: two Received, one still to send.</figcaption>
+  </figure>
+  <p>
+    A ranger&rsquo;s phone sends its reports to the command post as a file, a Report Packet,
+    through the phone&rsquo;s share sheet: email, a text, whatever reaches the scribe&rsquo;s device. Until now the phone
+    couldn&rsquo;t tell what had already gone, so a second tap sent everything again, and nobody
+    on the phone knew what had arrived.
+  </p>
+  <ul>
+    <li><strong>Send N new reports.</strong> The button sends only the reports that haven&rsquo;t
+      gone yet, with only their photos. When there&rsquo;s nothing new, it says so.</li>
+    <li><strong>My reports</strong> lists every report on the phone as <strong>Not sent</strong>,
+      <strong>Sent</strong> or <strong>Received</strong>. Until a report is sent you can
+      <strong>Edit</strong> it or <strong>Delete</strong> it. Once it&rsquo;s sent, radio the
+      correction to the scribe, as you would now.</li>
+    <li><strong>Send again</strong> resends the sent reports the command post hasn&rsquo;t
+      confirmed. Received reports never go twice.</li>
+    <li>Report Packet file names now end in the date and time, so one day&rsquo;s packets from a
+      phone don&rsquo;t overwrite each other.</li>
+  </ul>
+
+  <h2>Receipts</h2>
+  <figure class="sidenote">
+    <a href="img/beta3-merge-receipt.jpg"><img src="img/beta3-merge-receipt.jpg" srcset="img/beta3-merge-receipt-480.jpg 480w, img/beta3-merge-receipt-800.jpg 800w, img/beta3-merge-receipt.jpg 1136w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="1136" height="570" loading="lazy"
+      alt="The Reports merged dialog at the command post: Merged 2 new reports from a Report Packet, Undo is in Mission, Data safety for 24 hours, a note that a receipt lists report numbers only, and OK and Send a receipt buttons." /></a>
+    <figcaption>At the command post: after a packet merges, Send a receipt.</figcaption>
+  </figure>
+  <p>
+    When the scribe loads a Report Packet, the summary now offers <strong>Send a receipt</strong>.
+    It&rsquo;s a small file that lists report numbers and nothing else: no report text, names or
+    places. Send it back the same way the packet came.
+  </p>
+  <p>
+    On the phone, <strong>Open a receipt</strong> marks those reports Received and shows the
+    message number the command post gave each one. Opening the same receipt twice changes nothing.
+    If the scribe confirmed by radio instead, <strong>Mark sent reports received</strong> does the
+    same by hand. After the mission, or when the phone is getting full, <strong>Clear received
+    reports</strong> removes only the confirmed ones. It asks first.
+  </p>
+  <p>
+    It&rsquo;s the radio habit of &ldquo;received, over,&rdquo; for files. It doesn&rsquo;t replace
+    it: urgent traffic still goes by voice.
+  </p>
+
+  <h2>Resource requests: the ICS-213RR</h2>
+  <figure class="sidenote">
+    <a href="img/entry-213rr-box.jpg"><img src="img/entry-213rr-box.jpg" srcset="img/entry-213rr-box-480.jpg 480w, img/entry-213rr-box-800.jpg 800w, img/entry-213rr-box.jpg 1400w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="1400" height="770" loading="lazy"
+      alt="Entry's ICS-213RR box from the Vashon demo: one order line asking for 4 cots, with Needed by, priority and Deliver to." /></a>
+    <figcaption>Entry&rsquo;s ICS-213RR box (Full view), one order line filled.</figcaption>
+  </figure>
+  <p>
+    In Full view, Entry has a second box beside the ICS-213: <strong>Also generate an
+    ICS-213RR</strong>. Up to nine order lines, each with a quantity, kind and Needed by; a
+    priority; where to deliver (it starts from the report&rsquo;s Place); and the on-site
+    contact, filled in from the roster. Washington EMD&rsquo;s priorities (Life saving, Incident
+    stabilization, Property preservation) tick the matching FEMA box, and every field explains
+    itself when you hover over it.
+  </p>
+  <p>
+    It prints on FEMA&rsquo;s 213RR with the message number in the margins, and shows in Messages,
+    on the 309 and in RangerView. It&rsquo;s in Full view only, so field phones don&rsquo;t
+    show it. Every demo mission now files a few ICS-213 messages and
+    resource requests, so you can try both without typing one.
+  </p>
+
+  <h2>Notes on the map</h2>
+  <figure class="sidenote">
+    <a href="img/beta3-map-popup.jpg"><img src="img/beta3-map-popup.jpg" srcset="img/beta3-map-popup-480.jpg 480w, img/beta3-map-popup-800.jpg 800w, img/beta3-map-popup.jpg 918w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="918" height="289" loading="lazy"
+      alt="A map popup from the Vashon demo: MERT1 at 12:47, message A018, status Normal, with the note 'Rounding the point, visual sweep of the shoreline.'" /></a>
+    <figcaption>A map popup now shows what the ranger said.</figcaption>
+  </figure>
+  <p>
+    Click a report on the Map and its popup now shows the report&rsquo;s notes, up to three lines
+    with More and Less, and a &#128206; count when it has photos. Before, the popup gave call sign,
+    time and status, and you went back to the Radio Log to find out what was actually said. While
+    writing a drill script I found I couldn&rsquo;t answer &ldquo;what did the team at the point
+    report?&rdquo; from the map. Now you can.
+  </p>
+
+  <h2>RangerView (advanced)</h2>
+  <figure class="sidenote">
+    <a href="img/beta3-rangerview-guide.jpg"><img src="img/beta3-rangerview-guide.jpg" srcset="img/beta3-rangerview-guide-480.jpg 480w, img/beta3-rangerview-guide-800.jpg 800w, img/beta3-rangerview-guide.jpg 1504w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="1504" height="1460" loading="lazy"
+      alt="The Install RangerView (advanced) page at rangertrak.org/view: a 0 of 7 done gauge, Steps for Windows, Mac or Linux, and step 1, Install Node.js, with a note to leave the installer's necessary-tools box unchecked." /></a>
+    <figcaption>rangertrak.org/view: a checklist, with the steps for your own computer.</figcaption>
+  </figure>
+  <p>
+    RangerView is optional, and for someone comfortable installing software. It&rsquo;s a mini web
+    server that runs on one laptop at the command post; anyone on the same Wi-Fi can watch the
+    radio log in a web browser, on their own phone, tablet or laptop, with no Internet. Until this
+    week it was called the Board, and the beta.3 download still uses that name:
+    <em>rangertrak-board-1.0.0-beta.3.zip</em>, and <em>rangertrak-board.local</em> on the network.
+  </p>
+  <p>
+    I hand-tested it this week, first on one laptop and then between two computers, and wrote down
+    every place I got stuck. It has since run on a Raspberry Pi 3 B+ too, with a Galaxy S9+
+    (Android 10, Firefox) watching. Most of this release&rsquo;s RangerView work came from that list:
+  </p>
+  <ul>
+    <li><strong>A setup guide: <a href="https://rangertrak.org/view/" target="_blank" rel="noopener">rangertrak.org/view</a></strong>.
+      Seven steps with tick boxes, for Windows, Mac or Linux.</li>
+    <li><strong>A fixed error.</strong> Before the scribe&rsquo;s browser had accepted RangerView&rsquo;s
+      certificate, Test connection said &ldquo;HTTP 504&rdquo;, which sent me looking in the wrong
+      place. It now says what&rsquo;s wrong.</li>
+    <li><strong>The numbered address</strong> (like https://192.168.1.20) now shows beside the .local
+      name. Some home routers don&rsquo;t pass the name along; the number still works.</li>
+    <li><strong>An honest firewall check</strong> on Windows, which offers to fix what it finds.</li>
+    <li><strong>Click Allow</strong> when Chrome or Edge asks whether rangertrak.org may reach devices on
+      your local network. That&rsquo;s RangerView asking.</li>
+    <li><strong>A log of each run</strong> goes in its <em>logs</em> folder: what the window showed and
+      which devices connected, never passwords. In beta.3 it&rsquo;s on by default; from beta.4 it&rsquo;s
+      off unless you turn it on. If RangerView gives you trouble, send me the log.</li>
+  </ul>
+
+  <h2>Under the map: Leaflet 2.0.0-beta.4</h2>
+  <p>
+    RangerTrak moved to Leaflet 2 in beta 2, while Leaflet 2 itself is still in beta. Since then
+    Leaflet has shipped two more betas, and RangerTrak now runs on
+    <a href="https://github.com/Leaflet/Leaflet/releases/tag/v2.0.0-beta.4" target="_blank" rel="noopener">2.0.0-beta.4</a>.
+    What you might notice:
+  </p>
+  <ul>
+    <li><strong>Smoother zooming and panning with many markers.</strong> Zoom animations no
+      longer get cut short on a busy map, and panning is several times faster in Chrome.</li>
+    <li><strong>Two quick clicks on + zoom in two levels</strong>, instead of one.</li>
+    <li><strong>The layers menu works from the keyboard</strong>, and focus goes back to a marker
+      when its popup closes.</li>
+  </ul>
+
+  <h2>Also</h2>
+  <ul>
+    <li><strong>Grid corrections travel.</strong> A correction typed into the Radio Log grid now
+      carries over when another device merges a hand-over file. Before, the other device kept its
+      older copy without saying so.</li>
+    <li>On a phone, the Radio Log&rsquo;s cards list newest first, as the grid does.</li>
+    <li><strong>Pages load faster</strong>: the guide drawer, the after-action notes dialog and
+      Entry&rsquo;s small map load only when you first need them. On a phone, Entry&rsquo;s small
+      map should now be ready by the time you scroll to it, so your first tap counts.</li>
+    <li>On an iPhone, the full-screen map no longer sits under the menu bar.</li>
+    <li>Help, the <a href="../field-guide.html">Field Guide</a> and the Tour cover all of it, and
+      Tour steps now show a picture of the control they name.</li>
+  </ul>
+  <p>
+    The <a href="https://github.com/SteadyEOC/RangerTrak/blob/main/CHANGELOG.md" target="_blank" rel="noopener">changelog</a>
+    has every fix. The release carries the web zip and the RangerView download, as before.
+  </p>
+
+  <h2>What&rsquo;s next</h2>
+  <figure class="sidenote">
+    <a href="img/beta3-vashon-exercise.jpg"><img src="img/beta3-vashon-exercise.jpg" srcset="img/beta3-vashon-exercise-480.jpg 480w, img/beta3-vashon-exercise-800.jpg 800w, img/beta3-vashon-exercise.jpg 1600w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="1600" height="778" loading="lazy"
+      alt="On a picnic table at the Vashon ACS exercise: a rack-mounted radio in its open case beside a laptop showing RangerTrak's Radio Log Entry, with a printed sheet of radio prowords." /></a>
+    <figcaption>Saturday&rsquo;s Vashon ACS exercise: a go-box radio and RangerTrak. Michael Meyer and
+      others of Vashon ACS custom-built the black cases and the radio gear inside.
+      <a href="../feedback.html">Contact us</a> for build details.</figcaption>
+  </figure>
+  <p>
+    Vashon ACS exercised RangerTrak again on Saturday, with some 15 hams. Their lessons learned are
+    already turning into many of the new features and fixes in beta 4, which comes this week with
+    its own post. I&rsquo;ll write up the exercise too, good and bad. 1.0 is planned for late
+    November. From 1.0 on, backups made with it will restore in every later
+    version.
+  </p>
+
+  <section class="try-it" aria-labelledby="try-heading">
+    <h2 id="try-heading">Try it</h2>
+    <p>
+      The <a href="https://rangertrak.org/tour/#m9" target="_blank" rel="noopener">tour&rsquo;s field
+      phone module</a> now walks through My reports and receipts. You need a phone and the scribe&rsquo;s
+      laptop; you play both the ranger and the scribe. New to RangerTrak?
+      <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Start the tour</a>.
+      Back up any real radio reports before starting!
+    </p>
+  </section>
+
+  <section class="tell-me" aria-labelledby="tell-heading">
+    <h2 id="tell-heading">Tell me</h2>
+    <ol>
+      <li><strong>Would your rangers send a receipt back, or confirm by radio?</strong> Which is
+        more realistic for your group?</li>
+      <li><strong>If you set up RangerView from rangertrak.org/view, where did you get stuck?</strong></li>
+      <li><strong>Does your county use the ICS-213RR</strong>, or its own request form?</li>
+    </ol>
+    <p>
+      Use the <a href="../feedback.html">feedback form</a> (start with &ldquo;Beta 3&rdquo;),
+      <strong>Help</strong> &rarr; Contact us inside the app, reply on LinkedIn, or email
+      <a class="js-mail" data-u="RangerTrak" data-d="steadyeoc.com" data-subject="RangerTrak%20beta%203">RangerTrak [at] steadyeoc [dot] com</a>.
+      Please quote the build from the footer.
+    </p>
+  </section>
+
+  <p class="post-next">
+    <strong>Next in Field Notes:</strong> <em>Field Phones, Up Close</em>.
+  </p>
+</main>
+
+
+</div>
+
+<footer class="site-footer">
+  <p>RangerTrak&trade; &mdash; &copy; 2019&ndash;2026 John Cornelison, AGPL v3</p>
+  <p>
+    <a href="../blog.html">Blog</a> &middot; <a href="../feed.xml">RSS</a> &middot;
+    <a href="../field-guide.html">Field Guide</a> &middot;
+    <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Tour</a> &middot; <a href="../feedback.html">Feedback</a> &middot;
+    <a class="js-mail" data-u="RangerTrak" data-d="steadyeoc.com">RangerTrak [at] steadyeoc [dot] com</a>
+    &middot;
+    <a href="../feedback.html#support">Support</a>
+  </p>
+  <p class="footer-privacy">This site counts visits with Cloudflare&rsquo;s cookie-free
+    analytics. The RangerTrak app keeps your mission on your device. When online, it fetches
+    map images and looks up addresses for report locations.
+    <a href="../privacy.html">Privacy</a></p>
+</footer>
+</body>
+</html>

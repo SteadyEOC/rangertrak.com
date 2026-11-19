@@ -1,0 +1,85 @@
+<!doctype html>
+<!-- Field Notes hero for "What You Said You'd Fix: AAR Notes in FEMA's HSEEP Shape", 1200x630 (also the
+     og:image and blog thumbnail). Render: node tools/render-hero.mjs design/heroes/hseep-improvement-plan.html <out>.png
+     A printed improvement plan with HSEEP's column names in small type, and the five capability elements (POETE).
+     Made-up notes; no names or call signs. No red as decoration. Same frame and type sizes as Part 9. -->
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  body { width: 1200px; height: 630px; overflow: hidden; background: #12263F; color: #EAF1F8;
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .frame { position: relative; height: 100%; padding: 54px 64px; }
+  .left { position: relative; width: 470px; padding-top: 30px; }
+  .kicker { font-size: 21px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #F0700A; }
+  h1 { font-size: 64px; line-height: 1.04; margin-top: 16px; font-weight: 800; }
+  .sub { font-size: 27px; line-height: 1.38; color: #B9C8D8; margin-top: 22px; }
+
+  .paper { position: absolute; background: #fff; color: #1d2733; box-shadow: 0 18px 40px rgba(0,0,0,.45);
+    padding: 18px 22px; font-size: 13px; }
+  .paper h2 { font-size: 15px; letter-spacing: .06em; text-transform: uppercase; border-bottom: 2px solid #1d2733;
+    padding-bottom: 6px; display: flex; justify-content: space-between; }
+  .paper h2 span { font-weight: 600; letter-spacing: 0; text-transform: none; color: #4a5866; }
+  .basis { font-size: 11.5px; color: #4a5866; margin-top: 6px; }
+  table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+  td, th { border: 1px solid #b8c2cc; padding: 5px 7px; text-align: left; font-size: 12.5px; vertical-align: top; }
+  th { background: #eef2f6; font-size: 11.5px; }
+  th small { display: block; font-weight: 400; font-size: 10px; color: #4a5866; margin-top: 1px; }
+  .foot { margin-top: 8px; font-size: 11px; color: #4a5866; }
+
+  .pplan { width: 600px; left: 560px; top: 70px; transform: rotate(1.5deg); }
+
+  .poete { position: absolute; left: 566px; top: 446px; display: flex; gap: 8px; transform: rotate(-1deg); }
+  .poete span { display: block; padding: 8px 11px; border-radius: 8px; background: #1E3A5C; color: #EAF1F8;
+    font-size: 17px; font-weight: 700; border: 2px solid #3B5C82; }
+  .poete span b { color: #F0700A; }
+  .poete span.on { background: #2E6DB4; border-color: #8FB8E8; }
+  .poete-label { position: absolute; left: 570px; top: 412px; font-size: 16px; letter-spacing: .12em;
+    text-transform: uppercase; color: #B9C8D8; font-weight: 700; }
+
+  .brand { position: absolute; left: 64px; bottom: 26px; display: flex; align-items: center; gap: 12px; font-size: 20px; font-weight: 700; color: #B9C8D8; }
+  .brand b { color: #EAF1F8; }
+</style>
+<div class="frame">
+  <div class="left">
+    <p class="kicker">Field Notes</p>
+    <h1>What You Said You&rsquo;d Fix</h1>
+    <p class="sub">AAR notes in FEMA&rsquo;s HSEEP shape: the issue, the corrective action, the kind of fix,
+      and who owns it.</p>
+  </div>
+
+  <div class="paper pplan">
+    <h2>Improvement plan <span>This incident</span></h2>
+    <p class="basis">Modelled on FEMA&rsquo;s HSEEP AAR/IP. HSEEP&rsquo;s column names are in small type.</p>
+    <table>
+      <tr><th>Observation<small>Issue / area for improvement</small></th><th>Capability element<small>POETE</small></th>
+        <th>Recommendation<small>Corrective action</small></th><th>Owner<small>Responsible org / POC</small></th></tr>
+      <tr><td>No one briefed incoming searchers</td><td>Organization</td><td>Name a staging briefer each op period</td><td>Team coordinator</td></tr>
+      <tr><td>Generator cord didn&rsquo;t reach the table</td><td>Equipment</td><td>Add a 50 ft cord to the kit</td><td>Equipment lead</td></tr>
+      <tr><td>Relief operators missed check-ins</td><td>Training</td><td>Practice net before the next drill</td><td>Net manager</td></tr>
+    </table>
+    <p class="foot">RangerTrak 1.0.0-beta.2</p>
+  </div>
+
+  <p class="poete-label">Capability elements</p>
+  <div class="poete">
+    <span><b>P</b>lanning</span><span class="on"><b>O</b>rganization</span><span class="on"><b>E</b>quipment</span><span class="on"><b>T</b>raining</span><span><b>E</b>xercise</span>
+  </div>
+
+  <p class="brand">
+    <svg width="42" height="70" viewBox="0 0 155 260" aria-hidden="true"><!-- the site header's mark -->
+      <g fill="none" stroke="#EAF1F8" stroke-linejoin="round">
+        <path d="M 52 239 L 18.4 175.8 A 38 38 0 1 1 85.6 175.8 Z" stroke-width="12"/>
+        <path d="M 52 96 L 52 150" stroke-width="5" stroke-linecap="round"/>
+      </g>
+      <rect x="44" y="142" width="16" height="58" rx="6" fill="#EAF1F8"/>
+      <circle cx="52" cy="88" r="8" fill="#EAF1F8"/>
+      <g fill="#12263F"><rect x="47.5" y="158" width="9" height="4" rx="2"/><rect x="47.5" y="170" width="9" height="4" rx="2"/><rect x="47.5" y="182" width="9" height="4" rx="2"/></g>
+      <g fill="none" stroke="#F0700A" stroke-width="11" stroke-linecap="round">
+        <path transform="translate(52,88) scale(0.80) translate(-52,-88)" d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71"/>
+        <path transform="translate(52,88) scale(1.30) translate(-52,-88)" d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71"/>
+        <path transform="translate(52,88) scale(1.85) translate(-52,-88)" d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71"/>
+      </g>
+    </svg>
+    <span><b>RangerTrak</b> &middot; rangertrak.com</span>
+  </p>
+</div>

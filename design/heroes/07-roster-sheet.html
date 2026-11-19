@@ -1,0 +1,78 @@
+<!doctype html>
+<!-- Field Notes Part 7 hero, 1200x630 (also the og:image and blog thumbnail).
+     Render: node tools/render-hero.mjs design/heroes/07-roster-sheet.html <out>.png
+     A spreadsheet roster (drawn here; made-up Fernhollow demo people) and RangerTrak's real column-guess
+     dialog (live 0.99.58-alpha, 2026-10-18, source/roster-column-guess.jpg). No red as decoration. -->
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  body { width: 1200px; height: 630px; overflow: hidden; background: #12263F; color: #EAF1F8;
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .frame { position: relative; height: 100%; padding: 54px 64px; }
+  .left { position: relative; width: 400px; padding-top: 34px; }
+  .kicker { font-size: 19px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #F0700A; }
+  h1 { font-size: 54px; line-height: 1.06; margin-top: 18px; font-weight: 800; }
+  .sub { font-size: 23px; line-height: 1.4; color: #B9C8D8; margin-top: 22px; }
+  .sheet { position: absolute; left: 488px; top: 58px; width: 360px; background: #FFFFFF; color: #1F2D3D;
+    border-radius: 6px; overflow: hidden; box-shadow: 0 18px 40px rgba(0,0,0,.45); transform: rotate(-2deg);
+    font-family: Calibri, "Segoe UI", Arial, sans-serif; }
+  .sheet .file { background: #1E6E43; color: #fff; font-size: 14px; padding: 7px 12px; font-weight: 600; }
+  .sheet table { border-collapse: collapse; width: 100%; font-size: 16px; }
+  .sheet th, .sheet td { border: 1px solid #D5D9DE; padding: 5px 8px; text-align: left; white-space: nowrap; }
+  .sheet .letters th { background: #EEF0F2; color: #6B7785; font-weight: 400; font-size: 12px; text-align: center; padding: 2px; }
+  .sheet .head th { background: #F6F7F8; font-weight: 700; }
+  .sheet .gone td { color: #9AA4AF; text-decoration: line-through; }
+  .dialog { position: absolute; left: 700px; top: 196px; width: 450px; border-radius: 12px; overflow: hidden;
+    box-shadow: 0 22px 48px rgba(0,0,0,.55); border: 1px solid #C9D3DE; }
+  .dialog img { display: block; width: 100%; }
+  .arrow { position: absolute; left: 540px; top: 302px; }
+  .note { position: absolute; left: 700px; top: 498px; display: flex; align-items: center; gap: 12px;
+    font-size: 20px; font-weight: 700; color: #EAF1F8; }
+  .brand { position: absolute; left: 64px; bottom: 26px; display: flex; align-items: center; gap: 12px; font-size: 20px; font-weight: 700; color: #B9C8D8; }
+  .brand b { color: #EAF1F8; }
+</style>
+<div class="frame">
+  <div class="left">
+    <p class="kicker">Field Notes &middot; Part 7</p>
+    <h1>Your Roster Is Already in a Spreadsheet</h1>
+    <p class="sub">Bring the list you already keep. See every change before it&rsquo;s made.</p>
+  </div>
+  <div class="sheet">
+    <p class="file">Fernhollow volunteers 2026-10-01.csv</p>
+    <table>
+      <tr class="letters"><th>A</th><th>B</th><th>C</th><th>D</th></tr>
+      <tr class="head"><th>Status</th><th>Last Name</th><th>First Name</th><th>Call</th></tr>
+      <tr><td>Active</td><td>Winterbourne</td><td>Hazel</td><td>WZ0HAZ</td></tr>
+      <tr><td>Active</td><td>Fogbank</td><td>Ollie</td><td>KZ0OF</td></tr>
+      <tr><td>Active</td><td>Underbrush</td><td>Gus</td><td></td></tr>
+      <tr class="gone"><td>Exited</td><td>Pinecrest</td><td>Carl</td><td></td></tr>
+      <tr><td>Active</td><td>Skipper</td><td>Sunny</td><td>WZ0CHP</td></tr>
+    </table>
+  </div>
+  <svg class="arrow" width="160" height="100" viewBox="0 0 160 100" aria-hidden="true">
+    <path d="M20 4 V70 Q20 82 32 82 H140" stroke="#F0700A" stroke-width="5" stroke-dasharray="9 7" fill="none"/>
+    <path d="M132 70 L148 82 L132 94" fill="none" stroke="#F0700A" stroke-width="5" stroke-linejoin="round"/>
+  </svg>
+  <div class="dialog"><img src="source/roster-column-guess.jpg" alt=""></div>
+  <p class="note">
+    <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="12" fill="#2E9E5B"/><path d="M7 13.5 L11.5 18 L19.5 9" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Asks before removing. Nothing uploaded.
+  </p>
+  <p class="brand">
+    <svg width="42" height="70" viewBox="0 0 155 260" aria-hidden="true"><!-- the site header's mark -->
+      <g fill="none" stroke="#EAF1F8" stroke-linejoin="round">
+        <path d="M 52 239 L 18.4 175.8 A 38 38 0 1 1 85.6 175.8 Z" stroke-width="12"/>
+        <path d="M 52 96 L 52 150" stroke-width="5" stroke-linecap="round"/>
+      </g>
+      <rect x="44" y="142" width="16" height="58" rx="6" fill="#EAF1F8"/>
+      <circle cx="52" cy="88" r="8" fill="#EAF1F8"/>
+      <g fill="#12263F"><rect x="47.5" y="158" width="9" height="4" rx="2"/><rect x="47.5" y="170" width="9" height="4" rx="2"/><rect x="47.5" y="182" width="9" height="4" rx="2"/></g>
+      <g fill="none" stroke="#F0700A" stroke-width="11" stroke-linecap="round">
+        <path transform="translate(52,88) scale(0.80) translate(-52,-88)" d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71"/>
+        <path transform="translate(52,88) scale(1.30) translate(-52,-88)" d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71"/>
+        <path transform="translate(52,88) scale(1.85) translate(-52,-88)" d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71"/>
+      </g>
+    </svg>
+    <span><b>RangerTrak</b> &middot; rangertrak.com</span>
+  </p>
+</div>

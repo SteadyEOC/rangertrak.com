@@ -1,0 +1,25 @@
+# Security headers for every response from the static assets (PageSpeed / Lighthouse
+# Best Practices, 2026-10-05). Nothing embeds rangertrak.com in a frame, so framing is
+# refused outright.
+#
+# Content-Security-Policy (enforced 2026-10-05, after report-only showed no violations on
+# any page live; re-test with: node tools/csp-test.mjs). No inline script, style
+# attribute or event handler anywhere: page scripts live in assets/, and the former
+# style="" attributes are classes in styles.css. The one <style> block, the shared <noscript> nav fallback in every page's
+# header, is allowed by its hash: if you change that block, change the hash here too
+# (tools/check-site.js computes the right one and fails until they match).
+#   script-src  static.cloudflareinsights.com: the Web Analytics beacon Cloudflare injects.
+#   connect-src rangertrak.org: feedback.html posts to the app's /api/feedback.
+#               cloudflareinsights.com: where the beacon reports if not via /cdn-cgi/rum.
+# No Trusted Types: lightbox.js and site.js set fixed SVG markup with innerHTML, and the
+# beacon is not ours to vouch for.
+#
+# HSTS is not set here - it is a zone setting in the Cloudflare dashboard
+# (SSL/TLS > Edge Certificates): set by John on 2026-10-05 to one year, with
+# includeSubDomains and preload. The domain is not submitted to hstspreload.org.
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'sha256-FyTd96rd3vX7xvteiRXeIIqHcTdccM28IF5mrc96M6Q='; img-src 'self'; font-src 'self'; connect-src 'self' https://rangertrak.org https://cloudflareinsights.com; form-action 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'
+  Cross-Origin-Opener-Policy: same-origin
+  Referrer-Policy: strict-origin-when-cross-origin

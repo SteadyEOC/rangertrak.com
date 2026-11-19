@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--
+  PUBLISHED 2026-10-07 (John: "Renumber & lets push the next blog"). Field Notes part 4 of 7.
+  Was drafted as Part 5; Part 4 (People, Teams and Places) moved to Part 7 pending the E-184 analysis.
+  RE-CHECKED 2026-10-07 against app source and live rangertrak.org at 0.99.26-alpha:
+  - Messages: Edit / Save PDF / Copies / Print (split 2026-09-28; was one "Print as ICS-213").
+    Edit on a printed message warns (confirm). '8 Approved by Name' = report.operator (ics213-pdf.ts).
+  - Radio Log: "Print ICS-309 log" card, Scope (default "Since the last print (or all, if never
+    printed)", "Filtered & sorted rows shown now", "Selected rows"), Layout ("ICS-309 form" /
+    "Simple list"), button "Print 309 Log". Prepared By blank; Msg # and boxes 3-4 for hand entry.
+  - Grid: Address, Lat and Lng single-click edit. Export card: CSV separator, All rows.
+  - Entry: 213 box has Reply requested, "ICS-213 addressed to" chips + Additional recipients,
+    Message, Subject, "Print this ICS-213 as soon as I submit". Operator collapses to
+    "Operator: name" + Edit. Demo: "Load a demo" picker on Entry, or Mission > Danger zone.
+  SCREENSHOTS: headless capture of live 0.99.26-alpha, Grand Canyon demo (fictional data only),
+  2026-10-07. ICS-213 image is page 1 of the app's own Save PDF output.
+  HERO: design/heroes/04-printed-packet.html, rendered by tools/render-hero.mjs.
+-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From Radio Log to Form 309 and ICS-213 - RangerTrak Field Notes</title>
+<meta name="description" content="Part 4 of Field Notes: correcting and exporting the Radio Log, the difference between a note and a 213 message, and printing onto FEMA's own ICS-213 and a real Form 309 Communications Log.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="From Radio Log to Form 309 and ICS-213">
+<meta property="og:description" content="The record you keep while it's happening, and the two forms your EOC or ESF-2 desk wants afterwards, filled from the same reports, not retyped. Part 4 of a short series.">
+<meta property="og:url" content="https://rangertrak.com/blog/04-radio-log-to-ics-309-and-213.html">
+<meta property="article:published_time" content="2026-10-07">
+<meta property="og:image" content="https://rangertrak.com/blog/img/04-hero.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="840">
+<meta property="og:image:alt" content="A filled-in ICS-213 General Message and RangerTrak's printed map sheet from the Grand Canyon demo, overlapping.">
+<link rel="alternate" type="application/rss+xml" title="RangerTrak Field Notes" href="../feed.xml">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/styles.css">
+<script src="../assets/lightbox.js" defer></script>
+<script src="../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="top-bar">
+  <div class="top-bar__inner">
+    <a class="brand" href="/">
+      <svg class="brand-icon" width="24" height="40" viewBox="0 0 155 260" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-linejoin="round">
+          <path d="M 52 239 L 18.4 175.8 A 38 38 0 1 1 85.6 175.8 Z" stroke-width="12" />
+          <path d="M 52 96 L 52 150" stroke-width="5" stroke-linecap="round" />
+        </g>
+        <rect x="44" y="142" width="16" height="58" rx="6" fill="currentColor" />
+        <circle cx="52" cy="88" r="8" fill="currentColor" />
+        <g fill="var(--chrome)">
+          <rect x="47.5" y="158" width="9" height="4" rx="2" />
+          <rect x="47.5" y="170" width="9" height="4" rx="2" />
+          <rect x="47.5" y="182" width="9" height="4" rx="2" />
+        </g>
+        <g class="brand-signal" fill="none" stroke-width="7" stroke-linecap="round"
+          vector-effect="non-scaling-stroke">
+          <path class="wave wave-1" transform="translate(52,88) scale(0.80) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+          <path class="wave wave-2" transform="translate(52,88) scale(1.30) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+          <path class="wave wave-3" transform="translate(52,88) scale(1.85) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+        </g>
+      </svg>
+      RangerTrak&trade;</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="top-nav" aria-label="Menu">&#9776;</button>
+    <noscript><style>.top-nav{display:flex!important;flex-wrap:wrap!important;}.nav-toggle{display:none!important;}</style></noscript>
+    <nav class="top-nav" id="top-nav" aria-label="Main">
+      <a href="/">Home</a>
+      <a href="../about.html">What it does</a>
+      <a href="../blog.html" aria-current="page">Blog</a>
+      <a href="../field-guide.html">Field Guide</a>
+      <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Tour</a>
+      <a href="../feedback.html">Feedback</a>
+      <a href="https://github.com/SteadyEOC/RangerTrak" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg class="icon-github" width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.02 1.93-.02 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg></a>
+      <a class="cta" href="https://rangertrak.org" target="_blank" rel="noopener">Open RangerTrak &rarr;</a>
+    </nav>
+  </div>
+</div>
+
+<div class="shell">
+<main id="main" class="post">
+  <p class="post-kicker">Field Notes &middot; Part 4</p>
+  <h1>From Radio Log to Form 309 and ICS-213</h1>
+  <p class="post-meta">By John Cornelison, <a href="https://www.qrz.com/db/KE7KDQ" target="_blank" rel="noopener">KE7KDQ</a> &middot; <time datetime="2026-10-07">October 7, 2026</time> &middot; about a 7-minute read</p>
+
+  <figure class="post-hero">
+    <img src="img/04-hero.jpg" srcset="img/04-hero-480.jpg 480w, img/04-hero-800.jpg 800w, img/04-hero.jpg 1600w" sizes="min(calc(100vw - 2.5rem), 46rem)" width="1600" height="840"
+      alt="Two printed pages from RangerTrak's Grand Canyon demo, overlapping: a filled-in ICS-213
+           General Message reporting a missing hiker found at the 3 Mile Resthouse, and the printed
+           map sheet of the same exercise, with each team's markers, trails and a legend." />
+  </figure>
+
+  <div class="post-intro">
+    <p><strong>RangerTrak</strong> is a free, open-source radio log and map for the scribe at a
+      CERT, ACS/ARES, SAR or wildland-fire command post. Log who, where, when and what off the
+      radio; it maps them. It works offline once set up, and prints the Form 309 Communications Log and the ICS-213. I built it.
+      It&rsquo;s AGPL and will stay free. Try it at
+      <a href="https://rangertrak.org" target="_blank" rel="noopener">rangertrak.org</a>, no
+      account or install needed.</p>
+  </div>
+
+  <p>
+    Everything in RangerTrak starts as one report: who, where, when, what. Most reports only need to
+    sit in order in the record, so anyone can rebuild the incident later. A few need to become an
+    addressed message to a specific person. And at the end of an operational period, someone has to
+    hand paper to an EOC or an ESF-2 desk that has its own form numbers and doesn&rsquo;t care how
+    you got there. This post is about that last mile: the same reports, printed on the forms people
+    downstream already expect, without retyping a word.
+  </p>
+
+  <h2>The Radio Log is the record, and you can correct it</h2>
+  <p>
+    Every report you submit lands in the <strong>Radio Log</strong>, a grid you can sort, filter and
+    rearrange. Click a column heading to sort by it, or drag it to put the columns in the order you
+    read a log. Corrections happen right in the grid. Address, Lat and Lng open with a single click,
+    everything else with a double click, and there&rsquo;s no Save button: an edit counts the moment
+    you make it. A scribe fixing a transposed digit mid-net doesn&rsquo;t have time for a
+    save-and-confirm dance.
+  </p>
+  <p>
+    When you need the log somewhere else, <strong>Export</strong> writes it to a CSV file. You pick the
+    separator, and by default only the rows you&rsquo;ve filtered and sorted go out, which is usually
+    the slice someone asked for. Tick <strong>All rows</strong> for everything. The
+    <strong>Report Packet</strong> buttons on the same page bring in reports from a field phone;
+    that&rsquo;s the next post.
+  </p>
+
+  <h2>A note is not a message</h2>
+  <p>
+    Every report has a free-text <strong>Notes</strong> field: what happened, what the team needs,
+    why. Notes always save, they show in the Radio Log, and they feed the 309 below. That&rsquo;s
+    the general record, and most reports never need more.
+  </p>
+  <figure class="sidenote">
+    <a href="img/entry-213-box.jpg"><img src="img/entry-213-box.jpg" srcset="img/entry-213-box-480.jpg 480w, img/entry-213-box-800.jpg 800w, img/entry-213-box.jpg 1020w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="1020" height="584" loading="lazy"
+      alt="The ICS-213 box on RangerTrak's entry screen, ticked. Below it: a Reply requested checkbox;
+           ICS-213 addressed to, with buttons for Incident Commander, Ops, Planning, Logistics, Finance,
+           EOC, LEO and PI; an Additional recipients box; a Message box reading 'Rim Team 1 requests two
+           more litter bearers at the Bright Angel trailhead by 1430'; a Subject box; a Print this
+           ICS-213 as soon as I submit checkbox; and under the box, Operator (your name)." /></a>
+    <figcaption>The 213 box on the entry screen, opened, with the Operator field below it. Demo
+      data.</figcaption>
+  </figure>
+  <p>
+    A <strong>213 message</strong> is different on purpose. Tick <strong>Also generate an ICS-213
+    (General Message) from this report</strong> on the entry screen and a box opens: who it&rsquo;s
+    addressed to (Incident Commander, Ops, Logistics and the rest, plus anyone you type in), whether
+    a reply is requested, a subject, and its own message text. The message is typed separately from
+    your notes rather than copied from them, because the two have different readers. Your notes are
+    for whoever reconstructs the incident later. A 213 is a specific ask to a specific person, now.
+    Most reports don&rsquo;t need one.
+  </p>
+
+  <h2>The Messages page, and a form that isn&rsquo;t ours</h2>
+  <figure class="sidenote">
+    <a href="img/messages-213.jpg"><img src="img/messages-213.jpg" srcset="img/messages-213-480.jpg 480w, img/messages-213-800.jpg 800w, img/messages-213.jpg 1400w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="1400" height="309" loading="lazy"
+      alt="RangerTrak's Messages page. On the left, two messages, from Below Rim Team and Rim3. On the
+           right, the selected one: 'Missing hiker found - heat exhaustion at 3 Mile Resthouse', To
+           Incident Commander and Ops, Reply requested, Time 14:20, From Below Rim Team, To station
+           Command Post, the message text, and Operator. Below it, buttons for Edit, Save PDF, Copies
+           and Print." /></a>
+    <figcaption>Messages: only the reports that carry a 213. Edit, Save PDF and Print sit under each
+      one.</figcaption>
+  </figure>
+  <p>
+    Every report with that box ticked shows up on <strong>Messages</strong>, and only those: a short,
+    addressed list, not another copy of the log. Click one to read it in full, with the subject, who
+    it&rsquo;s to, whether a reply was requested, the time, the station it came from and the operator
+    who logged it. <strong>Edit</strong> fixes the subject, recipients, text or reply flag afterwards,
+    since the version radioed in under pressure isn&rsquo;t always the one you want on file. If the
+    message has already been printed, it warns you first: a copy may already be out the door.
+  </p>
+  <figure class="sidenote">
+    <a href="img/ics213-filled.jpg"><img src="img/ics213-filled.jpg" srcset="img/ics213-filled-480.jpg 480w, img/ics213-filled-800.jpg 800w, img/ics213-filled.jpg 1275w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="1275" height="930" loading="lazy"
+      alt="A filled FEMA ICS-213 General Message: incident name Missing Person Exercise; To Incident
+           Commander, Ops; From Below Rim Team; the subject, date and time; the message; Approved by
+           name filled in. The Reply section below is blank." /></a>
+    <figcaption>FEMA&rsquo;s own ICS-213, filled from the message above. The Reply block stays
+      blank for the person who answers it.</figcaption>
+  </figure>
+  <p>
+    <strong>Print</strong> is the point of the page. It doesn&rsquo;t draw something that looks like
+    a 213. It fills in FEMA&rsquo;s own fillable ICS-213, the form your EOC already keeps a stack of:
+    incident name, to, from, subject, date and time, the message, and the operator&rsquo;s name on the
+    &ldquo;Approved by&rdquo; line. Set <strong>Copies</strong> first if the desk wants more than one.
+    <strong>Save PDF</strong> gives you the file instead, to email or keep. The Reply block stays
+    blank on purpose. Whoever receives the message writes that by hand, and an answer nobody gave
+    would be worse than an honest blank. If every message goes to paper anyway, tick <strong>Print
+    this ICS-213 as soon as I submit</strong> on the entry screen and skip the trip to Messages.
+  </p>
+
+  <h2>The 309: the whole log, not one message</h2>
+  <figure class="sidenote">
+    <a href="img/ics309-form.jpg"><img src="img/ics309-form.jpg" srcset="img/ics309-form-480.jpg 480w, img/ics309-form-800.jpg 800w, img/ics309-form.jpg 1400w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="1400" height="844" loading="lazy"
+      alt="A printed Form 309 Communications Log from the Grand Canyon demo: incident name and
+           operational period at the top, then one row per report with time, from, to and message,
+           each message starting with its status in brackets, such as Incident Check-in or Location
+           Report, and ending with how it came in, such as via Voice. At the bottom, Prepared By is
+           blank for a signature, and a note reads: Msg # and boxes 3-4 are left for hand entry." /></a>
+    <figcaption>The 309 layout, top and bottom of the page. Prepared By is left for a
+      signature.</figcaption>
+  </figure>
+  <p>
+    Back on the Radio Log page, the <strong>Print ICS-309 log</strong> card turns a set of reports
+    into a communications log. The <strong>ICS-309 form</strong> layout follows the standard form:
+    incident name and operational period at the top, then one row per report in time order, with
+    who it came from, who it went to, and the message, shown as the report&rsquo;s status in brackets
+    followed by its notes. <strong>Simple list</strong> is the same log without the boxes.
+  </p>
+  <p>
+    The <strong>Scope</strong> picker decides which reports go in: the rows filtered and sorted on
+    screen, only the ones you&rsquo;ve selected, or everything <strong>since the last print</strong>.
+    That last one is the default, and it&rsquo;s the one for a shift change: exactly what&rsquo;s new
+    since the last handoff, and nothing you&rsquo;ve already passed on. The message numbers and the
+    net and operator boxes stay blank for hand entry, as they would on paper.
+  </p>
+
+  <h2>Who wrote it down</h2>
+  <p>
+    Below the entry form sits one more field: <strong>Operator (your name)</strong>. That&rsquo;s not
+    who the report is about but who&rsquo;s at the keyboard. It carries from one entry to the next, so
+    a scribe doesn&rsquo;t retype their own name every time, and once set it shrinks to a quiet
+    &ldquo;Operator: <em>name</em>&rdquo; line with an Edit button. The name is fixed on each report
+    when you submit it and never rewritten, even when someone else takes the keyboard next shift. A
+    shift change should never quietly change who logged what.
+  </p>
+  <p>
+    That name is what lands on the 213&rsquo;s &ldquo;Approved by&rdquo; line. The 309 has no single
+    &ldquo;Prepared by&rdquo; filled in, because a log usually spans more than one operator&rsquo;s
+    shift. RangerTrak leaves that line for whoever prints it to sign, rather than picking one name and
+    hoping it&rsquo;s right.
+  </p>
+  <p>
+    And keep paper nearby. A pad of blank 213s and a 309 on a clipboard have never needed a charged
+    battery. If the laptop goes down mid-shift, carry on by hand and type it in later.
+  </p>
+
+  <section class="try-it" aria-labelledby="try-heading">
+    <h2 id="try-heading">Try it in ten minutes</h2>
+    <ol>
+      <li>Load a demo mission if this device doesn&rsquo;t already have one: pick one from
+        <strong>Load a demo</strong> on the entry screen, or <strong>Mission</strong> &rarr; Danger
+        zone &rarr; pick a demo scenario &rarr; <strong>Load sample mission</strong>.</li>
+      <li>On the entry screen, fill in <strong>Operator</strong>, tick <strong>Also generate an
+        ICS-213</strong>, address it to someone, and submit a report.</li>
+      <li>Open <strong>Radio Log</strong>, correct something by clicking a cell, and watch it save with
+        no button.</li>
+      <li>Open <strong>Messages</strong>, pick your message, and press <strong>Save PDF</strong> (or
+        <strong>Print</strong>). Look at the actual form.</li>
+      <li>Back on <strong>Radio Log</strong>, choose a Scope and the <strong>ICS-309 form</strong>
+        layout, press <strong>Print 309 Log</strong>, and see the same reports as one log.</li>
+    </ol>
+    <p>Rather be led through it? Module 7 of the
+      <a href="https://rangertrak.org/tour/#m7" target="_blank" rel="noopener">RangerTrak Tour Guide</a>, <em>After the mission</em>, walks you through it hands-on.
+      New to RangerTrak? <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Start the tour</a>.</p>
+  </section>
+
+  <section class="tell-me" aria-labelledby="tell-heading">
+    <h2 id="tell-heading">Tell me</h2>
+    <ol>
+      <li><strong>Would your EOC or ESF-2 desk accept these as printed?</strong> Look at the actual
+        213 and the actual 309. What&rsquo;s wrong, missing or in the wrong place compared with what
+        your desk expects?</li>
+      <li><strong>Does &ldquo;a note is not a message&rdquo; match how your team works</strong>, or is
+        that split new to you?</li>
+      <li><strong>Is &ldquo;since the last print&rdquo; the right shift-change scope</strong>, or does
+        your team hand off some other way?</li>
+    </ol>
+    <p>
+      Use the <a href="../feedback.html">feedback form</a> (start with &ldquo;Blog 4&rdquo;),
+      <strong>Help</strong> &rarr; feedback inside the app, or email
+      <a class="js-mail" data-u="RangerTrak" data-d="steadyeoc.com" data-subject="Field%20Notes%204">RangerTrak [at] steadyeoc [dot] com</a>.
+      A photo of a real, correctly filled-out 213 or 309 from your agency, with anything sensitive
+      blacked out, would tell me more than any description could.
+    </p>
+  </section>
+
+  <h2>The series</h2>
+  <ol class="series-list">
+    <li><a href="01-the-paper-log-without-the-paper.html">The Paper Log, Without the Paper</a></li>
+    <li><a href="02-hot-warm-cold.html">Hot, Warm, Cold</a></li>
+    <li><a href="03-however-they-read-it-out.html">However They Read It Out: coordinates and maps</a></li>
+    <li aria-current="page"><strong>From Radio Log to Form 309 and ICS-213</strong> (this post)</li>
+    <li><a href="05-more-than-one-laptop.html">More Than One Laptop</a></li>
+    <li><a href="06-whats-missing-and-who-decides.html">What&rsquo;s Missing, and Who Decides</a></li>
+    <li><a href="07-your-roster-is-already-in-a-spreadsheet.html">Your Roster Is Already in a Spreadsheet</a></li>
+    <li><a href="08-shift-change.html">Shift Change: Op Periods, Scribes and Laptops</a></li>
+    <li><a href="09-after-the-mission.html">After the Mission: Summaries, AAR and the Final Report</a></li>
+    <li>Field Phones, Up Close</li>
+    <li>RangerView</li>
+    <li>People, Teams and Places: help me get this right</li>
+  </ol>
+  <p class="post-next">
+    <strong>Next: <a href="05-more-than-one-laptop.html">More Than One Laptop</a>.</strong> A ranger&rsquo;s own phone sending its reports home,
+    a Report Packet that only ever adds and never overwrites, and an optional live view for whoever
+    is running the command post.
+  </p>
+</main>
+
+</div>
+
+<footer class="site-footer">
+  <p>RangerTrak&trade; &mdash; &copy; 2019&ndash;2026 John Cornelison, AGPL v3</p>
+  <p>
+    <a href="../blog.html">Blog</a> &middot; <a href="../feed.xml">RSS</a> &middot;
+    <a href="../field-guide.html">Field Guide</a> &middot;
+    <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Tour</a> &middot; <a href="../feedback.html">Feedback</a> &middot;
+    <a class="js-mail" data-u="RangerTrak" data-d="steadyeoc.com">RangerTrak [at] steadyeoc [dot] com</a>
+    &middot;
+    <a href="../feedback.html#support">Support</a>
+  </p>
+  <p class="footer-privacy">This site counts visits with Cloudflare&rsquo;s cookie-free
+    analytics. The RangerTrak app keeps your mission on your device. When online, it fetches
+    map images and looks up addresses for report locations.
+    <a href="../privacy.html">Privacy</a></p>
+</footer>
+</body>
+</html>

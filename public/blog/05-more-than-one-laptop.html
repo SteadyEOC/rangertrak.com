@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--
+  PUBLISHED 2026-10-12. Field Notes part 5 of 7 (was Part 6; renumbered 2026-10-07).
+  Live app on publish day: 0.99.27-alpha, which fixed the Radio Log refresh after Load Report
+  Packet (below), so the "Try it" steps now work without leaving the page.
+  RE-CHECKED 2026-10-07 against app source and live rangertrak.org at 0.99.26-alpha:
+  - Field mode: welcome panel offers it on a touch-first empty device; laptops use Mission >
+    Advanced > Field phone; only on an empty device. NOW REVERSIBLE: Help > "Turn off field mode"
+    (E-142, 2026-09-29). The 09-26 draft said it couldn't be switched back; fixed.
+  - Online/Offline badge + "Send my reports" (share sheet; download fallback). No receipt.
+  - Report Packet card: Build / Load Report Packet; merge adds only, skips present, counts rejected.
+    Origin column shows the packet marker. Packet file starts with a CONFIDENTIAL notice.
+  - Setup files: button on Rangers page -> /prep; Export/Import setup files, .zip, categories,
+    "Do not email it"; applied in FILENAME order; photos downscaled (ranger-photo.service.ts).
+  - Board: tools/command-post-server.js, "npm run command-post", laptop only; a phone running the
+    full app CAN send to it (John, 2026-09-28); switch "Send this log to a RangerTrak Board";
+    self-signed cert click-through; no password on /view; roster never sent.
+  SCREENSHOTS 2026-10-07, headless: a field-phone pass (touch emulation, empty device) logged two
+  Rim2 reports and sent a packet; a command-post pass (Grand Canyon demo) loaded it. The packet's
+  two positions were moved from the empty device's Vashon default to Hopi and Mohave Points so
+  they match the demo. All data fictional.
+  APP BUG SEEN (told the code session): after Load Report Packet the grid still showed 38 rows
+  until leaving and returning to Radio Log. FIXED in 0.99.27-alpha (2026-10-08).
+  HERO: design/heroes/05-phone-to-log.html, rendered to public/blog/img/05-hero.jpg.
+-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>More Than One Laptop - RangerTrak Field Notes</title>
+<meta name="description" content="Part 5 of Field Notes: a ranger's phone sending its own reports home, a Report Packet that only ever adds, setup files for a new device, and an optional live view for the command post.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="More Than One Laptop">
+<meta property="og:description" content="RangerTrak was built around one laptop at one table. Here's what happens when there's more than one device, and the honest limits of each way they pass things along. Part 5 of a short series.">
+<meta property="og:url" content="https://rangertrak.com/blog/05-more-than-one-laptop.html">
+<meta property="article:published_time" content="2026-10-12">
+<meta property="og:image" content="https://rangertrak.com/blog/img/05-hero.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="840">
+<meta property="og:image:alt" content="A phone in RangerTrak's field mode beside the command post's Radio Log, where two reports from the phone carry a package marker.">
+<link rel="alternate" type="application/rss+xml" title="RangerTrak Field Notes" href="../feed.xml">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/styles.css">
+<script src="../assets/lightbox.js" defer></script>
+<script src="../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="top-bar">
+  <div class="top-bar__inner">
+    <a class="brand" href="/">
+      <svg class="brand-icon" width="24" height="40" viewBox="0 0 155 260" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-linejoin="round">
+          <path d="M 52 239 L 18.4 175.8 A 38 38 0 1 1 85.6 175.8 Z" stroke-width="12" />
+          <path d="M 52 96 L 52 150" stroke-width="5" stroke-linecap="round" />
+        </g>
+        <rect x="44" y="142" width="16" height="58" rx="6" fill="currentColor" />
+        <circle cx="52" cy="88" r="8" fill="currentColor" />
+        <g fill="var(--chrome)">
+          <rect x="47.5" y="158" width="9" height="4" rx="2" />
+          <rect x="47.5" y="170" width="9" height="4" rx="2" />
+          <rect x="47.5" y="182" width="9" height="4" rx="2" />
+        </g>
+        <g class="brand-signal" fill="none" stroke-width="7" stroke-linecap="round"
+          vector-effect="non-scaling-stroke">
+          <path class="wave wave-1" transform="translate(52,88) scale(0.80) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+          <path class="wave wave-2" transform="translate(52,88) scale(1.30) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+          <path class="wave wave-3" transform="translate(52,88) scale(1.85) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+        </g>
+      </svg>
+      RangerTrak&trade;</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="top-nav" aria-label="Menu">&#9776;</button>
+    <noscript><style>.top-nav{display:flex!important;flex-wrap:wrap!important;}.nav-toggle{display:none!important;}</style></noscript>
+    <nav class="top-nav" id="top-nav" aria-label="Main">
+      <a href="/">Home</a>
+      <a href="../about.html">What it does</a>
+      <a href="../blog.html" aria-current="page">Blog</a>
+      <a href="../field-guide.html">Field Guide</a>
+      <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Tour</a>
+      <a href="../feedback.html">Feedback</a>
+      <a href="https://github.com/SteadyEOC/RangerTrak" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg class="icon-github" width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.02 1.93-.02 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg></a>
+      <a class="cta" href="https://rangertrak.org" target="_blank" rel="noopener">Open RangerTrak &rarr;</a>
+    </nav>
+  </div>
+</div>
+
+<div class="shell">
+<main id="main" class="post">
+  <p class="post-kicker">Field Notes &middot; Part 5</p>
+  <h1>More Than One Laptop</h1>
+  <p class="post-meta">By John Cornelison, <a href="https://www.qrz.com/db/KE7KDQ" target="_blank" rel="noopener">KE7KDQ</a> &middot; <time datetime="2026-10-11">October 11, 2026</time> &middot; about a 7-minute read</p>
+
+  <figure class="post-hero">
+    <img src="img/05-hero.jpg" srcset="img/05-hero-480.jpg 480w, img/05-hero-800.jpg 800w, img/05-hero.jpg 1600w" sizes="min(calc(100vw - 2.5rem), 46rem)" width="1600" height="840"
+      alt="A phone running RangerTrak in field mode beside a laptop showing the command post's Radio
+           Log. The last two rows, from Rim2 at Hopi Point and Mohave Point, carry a small package
+           marker: they arrived in a Report Packet from the phone." />
+  </figure>
+
+  <div class="post-intro">
+    <p><strong>RangerTrak</strong> is a free, open-source radio log and map for the scribe at a
+      CERT, ACS/ARES, SAR or wildland-fire command post. Log who, where, when and what off the
+      radio; it maps them. It works offline once set up, and prints the Form 309 Communications Log and the ICS-213. I built it.
+      It&rsquo;s AGPL and will stay free. Try it at
+      <a href="https://rangertrak.org" target="_blank" rel="noopener">rangertrak.org</a>, no
+      account or install needed.</p>
+  </div>
+
+  <p>
+    Every post so far has assumed one device: a scribe, a laptop, a radio. That&rsquo;s still the
+    heart of RangerTrak. But real incidents aren&rsquo;t always that tidy. A ranger may carry a phone
+    that could log its own reports. A new laptop may need setting up before the mission starts. The
+    Incident Commander may want to see the log without standing over the scribe. None of that changes
+    what RangerTrak is: still no account, and no server you have to sign up for. But it does mean
+    devices sometimes need to pass things to each other. Here are the three ways that works today,
+    with the limits of each.
+  </p>
+
+  <h2>A ranger&rsquo;s own phone</h2>
+  <figure class="sidenote">
+    <a href="img/field-phone-welcome.jpg"><img src="img/field-phone-welcome.jpg" srcset="img/field-phone-welcome-480.jpg 480w, img/field-phone-welcome.jpg 600w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="600" height="518" loading="lazy"
+      alt="RangerTrak's welcome panel on a new phone, with three choices: Command post, load your rangers
+           and review the Mission settings; Demo, load a demo; and Field phone, choose this if you are a
+           ranger sending in reports from the field, with a button reading This is my field phone." /></a>
+    <figcaption>On a brand-new phone, the welcome panel offers field mode.</figcaption>
+  </figure>
+  <p>
+    On a brand-new phone or tablet, the welcome panel offers a third choice: <strong>This is my field
+    phone</strong>. Pick it and the app gets deliberately smaller. Entry and Help are the only pages
+    left, because a ranger in the field has no use for the roster, the map or the mission settings. (On a laptop, the same choice is under
+    Mission &rarr; Advanced &rarr; Field phone.) It&rsquo;s only offered on an empty device, and if
+    someone picks it by mistake, <strong>Turn off field mode</strong> on the Help page brings every
+    page back.
+  </p>
+  <figure class="sidenote">
+    <a href="img/field-phone-send.jpg"><img src="img/field-phone-send.jpg" srcset="img/field-phone-send-480.jpg 480w, img/field-phone-send.jpg 600w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="600" height="361" loading="lazy"
+      alt="The top of the entry screen on a field phone: the header, the mission clock, and just above the
+           form a small Online badge beside a Send my reports button." /></a>
+    <figcaption>A field phone: the Online badge and Send my reports, right above the form.</figcaption>
+  </figure>
+  <p>
+    A field phone shows a small <strong>Online</strong> or <strong>Offline</strong> badge above the
+    form. That only means the phone has some connection. It doesn&rsquo;t mean anything you send will
+    arrive, and the phone gets no receipt. If a report is urgent or needs an answer, read it over the
+    radio, as always. Next to the badge, <strong>Send my reports</strong> puts every report on the
+    phone into one small file and opens the phone&rsquo;s share sheet, the same one you&rsquo;d use for
+    a photo: email, a text, AirDrop or Quick Share to a laptop nearby. Every report is saved on the
+    phone the moment it&rsquo;s submitted, signal or not. Sending is a separate, later step, so with
+    no signal you just send later. Nothing is lost by waiting.
+  </p>
+
+  <h2>Getting reports back in: the Report Packet</h2>
+  <figure class="sidenote">
+    <a href="img/report-packet-merged.jpg"><img src="img/report-packet-merged.jpg" srcset="img/report-packet-merged-480.jpg 480w, img/report-packet-merged-800.jpg 800w, img/report-packet-merged.jpg 1400w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="1400" height="365" loading="lazy"
+      alt="The last rows of the command post's Radio Log grid. Rows 38 and 39, from Rim2 at Hopi Point and
+           Mohave Point, show a small package icon in the Origin column; the rows above them, typed at the
+           command post, do not." /></a>
+    <figcaption>Two reports from a field phone, merged in. The package marker in the Origin column
+      shows they weren&rsquo;t typed here.</figcaption>
+  </figure>
+  <p>
+    At the command post, the other half is on the <strong>Radio Log</strong> page, in the
+    <strong>Report Packet</strong> card. <strong>Load Report Packet</strong> reads the file in and
+    merges it, and &ldquo;merges&rdquo; is the important word: it only ever <em>adds</em> reports this
+    device doesn&rsquo;t already have. Nothing is replaced or overwritten. Reports already in the log
+    are skipped, so loading the same file twice does no harm; if you&rsquo;re not sure a file made it
+    in, load it again. A report that can&rsquo;t be read (a bad time or position, usually a sign the
+    file was damaged) is left out on its own, and you&rsquo;re told how many, rather than the whole
+    file being refused. <strong>Build Report Packet</strong> does the same job the other way, from any
+    device to another.
+  </p>
+  <p>
+    Each report that arrived this way carries a small &#128230; marker in the Origin column, so you can
+    always tell it apart from one typed at the table. The file names real people at a real incident,
+    and says so at the top. Treat it like a page torn out of the log: keep it on a device you control,
+    and delete it once its reports are in.
+  </p>
+
+  <h2>Setting up a new device before the mission</h2>
+  <figure class="sidenote">
+    <a href="img/setup-files-export.jpg"><img src="img/setup-files-export.jpg" srcset="img/setup-files-export-480.jpg 480w, img/setup-files-export.jpg 800w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="800" height="564" loading="lazy"
+      alt="The Export setup files card: checkboxes for Rangers (with photos), Locations and Mission
+           settings, a yellow note saying a setup file carrying rangers contains real names, phone numbers
+           and photographs and should not be emailed, and an Export setup files button." /></a>
+    <figcaption>Setup files, reached from the Rangers page. Pick what goes in; it never carries
+      reports.</figcaption>
+  </figure>
+  <p>
+    Report Packets move reports during a mission. <strong>Setup files</strong>, a button on the Rangers
+    page, solve a different problem: getting a new laptop or tablet ready <em>before</em> there&rsquo;s a
+    mission. A setup file is any mix of this device&rsquo;s roster (with photos), its places and its
+    mission settings, in one .zip file. It never carries reports. That&rsquo;s the difference from
+    Mission&rsquo;s <strong>Back up mission</strong>, which saves everything, reports included.
+  </p>
+  <p>
+    Loading a setup file merges too. A ranger or location that matches one already on the device is
+    updated, and everything else stays. Mission settings, if the file has them, replace the old ones.
+    You can load several files at once; they&rsquo;re applied in filename order, so name them
+    01-rangers, 02-locations and so on to decide which wins. Photos are shrunk on the way in, because
+    the app only ever shows them small. And because a roster file holds names, phone numbers and
+    photos, the app says plainly not to email it. Hand it over on a USB stick and wipe the stick
+    afterwards.
+  </p>
+
+  <h2>A live view for the command post, and its real limits</h2>
+  <figure class="sidenote">
+    <a href="img/board-card.jpg"><img src="img/board-card.jpg" srcset="img/board-card-480.jpg 480w, img/board-card-800.jpg 800w, img/board-card.jpg 900w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="900" height="410" loading="lazy"
+      alt="The RangerTrak Board card on the Mission page: Let nearby devices read the live comms log over
+           this laptop's WiFi. A note says the Board runs on a laptop at the command post and this device
+           only sends to it, off by default. A yellow note warns that the browser will say the address is
+           not private the first time, to click through once per device before turning it on. Below is a
+           switch: Send this log to a RangerTrak Board." /></a>
+    <figcaption>The Board card on the Mission page. Off unless you turn it on.</figcaption>
+  </figure>
+  <p>
+    The last piece is optional: the <strong>RangerTrak Board</strong>. It lets other people on the
+    command post&rsquo;s WiFi or hotspot watch the live comms log in a browser on their own phone,
+    tablet or laptop. It&rsquo;s a read-only view, not shared editing; reports still go into the log
+    only at the device filing them. It&rsquo;s off by default, and your own copy of the mission is the
+    same either way.
+  </p>
+  <p>
+    I want to be straight about this one, because it&rsquo;s easy to oversell. The Board is a small
+    program that runs on a <strong>laptop</strong> at the command post, and today you start it from
+    RangerTrak&rsquo;s source code, which needs someone comfortable with a command line. A phone can
+    send its log to the Board, and anyone can view it, but a phone can&rsquo;t run it. It uses
+    <code>https://</code> with its own certificate, so the first time each device opens its address the
+    browser says the connection isn&rsquo;t private. That&rsquo;s expected, the same warning most home
+    routers show on their setup page. Click through it once on every device, <em>before</em> turning
+    on <strong>Send this log to a RangerTrak Board</strong>; skipping that is the most common reason
+    nothing shows up. There&rsquo;s <strong>no password on the view page</strong> in this version:
+    anyone who can join that WiFi can read the log, so the WiFi password is the real lock. The roster
+    never goes to the Board. Viewers see call signs, not names, phone numbers or photos.
+  </p>
+
+  <section class="try-it" aria-labelledby="try-heading">
+    <h2 id="try-heading">Try it in ten minutes</h2>
+    <ol>
+      <li>On a phone, open <a href="https://rangertrak.org" target="_blank" rel="noopener">rangertrak.org</a>
+        on an empty device (a private browser tab works) and tap <strong>This is my field phone</strong>.</li>
+      <li>Log two reports, then tap <strong>Send my reports</strong> and send the file to your laptop
+        however is easiest: email, AirDrop, Quick Share.</li>
+      <li>On the laptop, open <strong>Radio Log</strong> &rarr; <strong>Load Report Packet</strong> and
+        pick the file. Look for the &#128230; marker on the new rows. Then load the same file again and
+        see that nothing doubles.</li>
+      <li>If you&rsquo;re comfortable with a command line and have a spare laptop, Help on the
+        Mission page walks through starting a RangerTrak Board.</li>
+    </ol>
+    <p>Rather be led through it? Module 9 of the
+      <a href="https://rangertrak.org/tour/#m9" target="_blank" rel="noopener">RangerTrak Tour Guide</a>, <em>Reports shared from the field</em>, walks you through it hands-on.
+      New to RangerTrak? <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Start the tour</a>.</p>
+  </section>
+
+  <section class="tell-me" aria-labelledby="tell-heading">
+    <h2 id="tell-heading">Tell me</h2>
+    <ol>
+      <li><strong>Try two devices at your next tabletop, even a short one.</strong> Where did the
+        handoff break: the share step, finding the file on the laptop, or something else?</li>
+      <li><strong>Do your rangers carry phones with data, or not?</strong> And would they log on them,
+        or is the radio always the way reports come in?</li>
+      <li><strong>Would a live view with no password of its own be acceptable at your
+        incidents</strong>, or does that need to change before you&rsquo;d use it?</li>
+    </ol>
+    <p>
+      Use the <a href="../feedback.html">feedback form</a> (start with &ldquo;Blog 5&rdquo;),
+      <strong>Help</strong> &rarr; feedback inside the app, or email
+      <a class="js-mail" data-u="RangerTrak" data-d="steadyeoc.com" data-subject="Field%20Notes%205">RangerTrak [at] steadyeoc [dot] com</a>.
+      Tell me which phone and browser you tried; that&rsquo;s exactly the detail I need.
+    </p>
+  </section>
+
+  <h2>The series</h2>
+  <ol class="series-list">
+    <li><a href="01-the-paper-log-without-the-paper.html">The Paper Log, Without the Paper</a></li>
+    <li><a href="02-hot-warm-cold.html">Hot, Warm, Cold</a></li>
+    <li><a href="03-however-they-read-it-out.html">However They Read It Out: coordinates and maps</a></li>
+    <li><a href="04-radio-log-to-ics-309-and-213.html">From Radio Log to Form 309 and ICS-213</a></li>
+    <li aria-current="page"><strong>More Than One Laptop</strong> (this post)</li>
+    <li><a href="06-whats-missing-and-who-decides.html">What&rsquo;s Missing, and Who Decides</a></li>
+    <li><a href="07-your-roster-is-already-in-a-spreadsheet.html">Your Roster Is Already in a Spreadsheet</a></li>
+    <li><a href="08-shift-change.html">Shift Change: Op Periods, Scribes and Laptops</a></li>
+    <li><a href="09-after-the-mission.html">After the Mission: Summaries, AAR and the Final Report</a></li>
+    <li>Field Phones, Up Close</li>
+    <li>RangerView</li>
+    <li>People, Teams and Places: help me get this right</li>
+  </ol>
+  <p class="post-next">
+    <strong>Next: <a href="06-whats-missing-and-who-decides.html">What&rsquo;s Missing, and Who Decides</a>.</strong> The gaps I haven&rsquo;t closed yet,
+    stated plainly, what will always stay free, and an invitation to try it in a real exercise.
+  </p>
+</main>
+
+
+</div>
+
+<footer class="site-footer">
+  <p>RangerTrak&trade; &mdash; &copy; 2019&ndash;2026 John Cornelison, AGPL v3</p>
+  <p>
+    <a href="../blog.html">Blog</a> &middot; <a href="../feed.xml">RSS</a> &middot;
+    <a href="../field-guide.html">Field Guide</a> &middot;
+    <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Tour</a> &middot; <a href="../feedback.html">Feedback</a> &middot;
+    <a class="js-mail" data-u="RangerTrak" data-d="steadyeoc.com">RangerTrak [at] steadyeoc [dot] com</a>
+    &middot;
+    <a href="../feedback.html#support">Support</a>
+  </p>
+  <p class="footer-privacy">This site counts visits with Cloudflare&rsquo;s cookie-free
+    analytics. The RangerTrak app keeps your mission on your device. When online, it fetches
+    map images and looks up addresses for report locations.
+    <a href="../privacy.html">Privacy</a></p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--
+  Blog series "Field Notes", part 1. Every feature claim here was checked against the app
+  at 0.91.4 (2026-09-14): button labels are the app's real ones, not paraphrases. If the app
+  renames something a reader is told to press, this page is wrong - fix it here too.
+-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Paper Log, Without the Paper - RangerTrak Field Notes</title>
+<meta name="description" content="Part 1 of Field Notes: what RangerTrak is, who it's for, a ten-minute tour, and what I need to hear from people who run real radio nets.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Paper Log, Without the Paper">
+<meta property="og:description" content="A free, offline radio log and map for CERT, ACS/ARES and SAR command posts. Part 1 of a short series - try it in ten minutes, then tell me what breaks.">
+<meta property="og:url" content="https://rangertrak.com/blog/01-the-paper-log-without-the-paper.html">
+<meta property="og:image" content="https://rangertrak.com/blog/img/01-hero.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="840">
+<meta property="og:image:alt" content="A paper Form 309 Communications Log with three handwritten entries, 08:06 Rim2 at Trailview, no sign; 08:30 Rim3, a sighting at Yavapai Point; 08:52 Below1, hiker found at 3 Mile. An arrow leads to the Bright Angel search map, where the same reports appear as numbered markers.">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="article:published_time" content="2026-09-14">
+<link rel="alternate" type="application/rss+xml" title="RangerTrak Field Notes" href="../feed.xml">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/styles.css">
+<script src="../assets/lightbox.js" defer></script>
+<script src="../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="top-bar">
+  <div class="top-bar__inner">
+    <a class="brand" href="/">
+      <svg class="brand-icon" width="24" height="40" viewBox="0 0 155 260" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-linejoin="round">
+          <path d="M 52 239 L 18.4 175.8 A 38 38 0 1 1 85.6 175.8 Z" stroke-width="12" />
+          <path d="M 52 96 L 52 150" stroke-width="5" stroke-linecap="round" />
+        </g>
+        <rect x="44" y="142" width="16" height="58" rx="6" fill="currentColor" />
+        <circle cx="52" cy="88" r="8" fill="currentColor" />
+        <g fill="var(--chrome)">
+          <rect x="47.5" y="158" width="9" height="4" rx="2" />
+          <rect x="47.5" y="170" width="9" height="4" rx="2" />
+          <rect x="47.5" y="182" width="9" height="4" rx="2" />
+        </g>
+        <g class="brand-signal" fill="none" stroke-width="7" stroke-linecap="round"
+          vector-effect="non-scaling-stroke">
+          <path class="wave wave-1" transform="translate(52,88) scale(0.80) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+          <path class="wave wave-2" transform="translate(52,88) scale(1.30) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+          <path class="wave wave-3" transform="translate(52,88) scale(1.85) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+        </g>
+      </svg>
+      RangerTrak&trade;
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="top-nav" aria-label="Menu">&#9776;</button>
+    <noscript><style>.top-nav{display:flex!important;flex-wrap:wrap!important;}.nav-toggle{display:none!important;}</style></noscript>
+    <nav class="top-nav" id="top-nav" aria-label="Main">
+      <a href="/">Home</a>
+      <a href="../about.html">What it does</a>
+      <a href="../blog.html" aria-current="page">Blog</a>
+      <a href="../field-guide.html">Field Guide</a>
+      <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Tour</a>
+      <a href="../feedback.html">Feedback</a>
+      <a href="https://github.com/SteadyEOC/RangerTrak" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg class="icon-github" width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.02 1.93-.02 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg></a>
+      <a class="cta" href="https://rangertrak.org" target="_blank" rel="noopener">Open RangerTrak &rarr;</a>
+    </nav>
+  </div>
+</div>
+
+<div class="shell">
+<main id="main" class="post">
+  <p class="post-kicker">Field Notes &middot; Part 1</p>
+  <h1>The Paper Log, Without the Paper</h1>
+  <p class="post-meta">
+    By John Cornelison, <a href="https://www.qrz.com/db/KE7KDQ" target="_blank" rel="noopener">KE7KDQ</a> &middot; <time datetime="2026-09-14">September 14, 2026</time> &middot; about a 6-minute read
+  </p>
+
+  <figure class="post-hero">
+    <img src="img/01-hero.jpg" srcset="img/01-hero-480.jpg 480w, img/01-hero-800.jpg 800w, img/01-hero.jpg 1600w" sizes="min(calc(100vw - 2.5rem), 46rem)" width="1600" height="840"
+      alt="A paper Form 309 Communications Log with three handwritten entries, 08:06 Rim2 at Trailview, no sign; 08:30 Rim3, a sighting at Yavapai Point; 08:52 Below1, hiker found at 3 Mile. An arrow leads to the Bright Angel search map, where the same reports appear as numbered markers." />
+  </figure>
+
+  <div class="post-intro">
+    <p><strong>RangerTrak</strong> is a free, open-source radio log and map for the scribe at a
+      CERT, ACS/ARES, SAR or wildland-fire command post. Log who, where, when and what off the
+      radio; it maps them. It works offline once set up, and prints the Form 309 Communications Log and the ICS-213.
+      It&rsquo;s AGPL and will stay free. Try it at
+      <a href="https://rangertrak.org" target="_blank" rel="noopener">rangertrak.org</a>, no
+      account or install needed.</p>
+    <p>I built this, and this series is me showing it to you and asking for your help.
+      It&rsquo;s still being developed: it works, it&rsquo;s used, and it has rough edges.
+      I&rsquo;d rather you hear about those from me than find them mid-exercise.</p>
+  </div>
+
+  <figure class="sidenote">
+    <a href="../press/rangertrak-bright-angel-search.jpg"><img src="../img/bright-angel-search.jpg" srcset="../img/bright-angel-search-480.jpg 480w, ../img/bright-angel-search-800.jpg 800w, ../img/bright-angel-search.jpg 1600w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="1600" height="1300" loading="lazy"
+      alt="A vintage-style relief map of the Grand Canyon's South Rim around Bright Angel Trail, with a radio log down the left side. Numbered markers show where each report came from: the below-rim team finding the overdue hiker at the 3 Mile Resthouse, rim teams sweeping to Hopi and Mather Points, and a command post running on a generator with no Internet. Close-ups show the command post, a team with handy-talkies, and the end-of-mission handoff." /></a>
+    <figcaption>A whole search on one page: the Grand Canyon demo on real terrain, every report numbered
+      as it was logged. Click for full size.</figcaption>
+  </figure>
+
+  <p>
+    Picture the command post an hour into a CERT callout. The radio says, &ldquo;Team 4, we're
+    at the corner of Vashon Highway and 188th, two residents checked, all clear.&rdquo; Someone
+    at the table writes it down: time, who, where, what. Twenty minutes later the Incident
+    Commander asks where Team 4 was last seen, and that person flips back through three pages
+    of handwriting to find out.
+  </p>
+  <p>
+    That scribe is who I built RangerTrak for. It records <strong>who is where, when, and in what
+    condition</strong>, plots each report on a map as it's entered, and keeps the record for the
+    after-action report. The field teams never touch it. They're a voice on the radio, same as
+    always.
+  </p>
+
+
+  <h2>Why not a spreadsheet, or one of the big platforms?</h2>
+  <p>
+    Because of the one assumption almost every tool makes: that there's a working internet
+    connection. For a lot of the incidents a CERT, ACS/ARES or SAR team gets called to, that's
+    exactly what's gone. That's often <em>why</em> the radios are out in the first place.
+  </p>
+  <p>
+    So RangerTrak is built the other way around:
+  </p>
+  <ul>
+    <li><strong>No server, no account, no login.</strong> It runs in the browser on the laptop or
+      tablet in front of you, and what you type stays on that device.</li>
+    <li><strong>No internet needed once it's set up.</strong> Entering reports, the roster, the log
+      and coordinate conversion all work with the network gone. How to get a device into that
+      state is the whole subject of the next post.</li>
+    <li><strong>No API key, ever, for the core job.</strong> Nothing to sign up for before a callout
+      and nothing that expires in the middle of one.</li>
+    <li><strong>Free and open source.</strong> Copy it, change it, keep running it &mdash; it
+      can't be taken away.</li>
+  </ul>
+
+  <h2>Built around the four questions</h2>
+  <figure class="sidenote">
+    <a href="img/entry-four-questions.jpg"><img src="img/entry-four-questions.jpg" srcset="img/entry-four-questions-480.jpg 480w, img/entry-four-questions-800.jpg 800w, img/entry-four-questions.jpg 1400w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="1400" height="950" loading="lazy"
+      alt="RangerTrak's Field Report Entry screen, with sections headed Who, Where, When and What
+           down the left and a small map of the reporting position on the right. The Where section
+           shows the same position in decimal degrees plus derived DDM, DMS, MGRS, UTM, Plus Code
+           and Maidenhead values." /></a>
+    <figcaption>The entry screen, asking the four questions in the order the call arrives. The
+      derived coordinate formats underneath update as you type.</figcaption>
+  </figure>
+  <p>
+    Every radio check-in answers the same four questions: <strong>who</strong> is reporting,
+    <strong>where</strong> they are, <strong>when</strong>, and <strong>what</strong> they said.
+    The entry screen asks them in that order, and <kbd>Tab</kbd> moves through them the way the
+    call arrives, so a whole report can be typed without touching the mouse.
+  </p>
+  <p>
+    Positions go in however the team reads them out: latitude/longitude in any of the three usual
+    styles, MGRS, UTM, Maidenhead grid squares, Plus Codes, or a street address. RangerTrak converts
+    between all of them on the device, and a small map beside the form shows where the report
+    landed. If the pin is in the water, you re-read the coordinates back before the team moves
+    on. Post 3 is about exactly that.
+  </p>
+  <p>
+    From there the reports show up on a <strong>map</strong>, with each ranger or team in their
+    own colour and a trail showing where they've been. They also go into the <strong>Radio
+    Log</strong>, which you can sort, filter, correct and export, and which prints as a 309 communications log
+    communications log. A report can also produce an ICS-213 message that prints onto FEMA's own
+    form. <a href="04-radio-log-to-ics-309-and-213.html">Part 4</a> covers both.
+  </p>
+  <figure class="sidenote">
+    <a href="img/radio-log-ics309.jpg"><img src="img/radio-log-ics309.jpg" srcset="img/radio-log-ics309-480.jpg 480w, img/radio-log-ics309-800.jpg 800w, img/radio-log-ics309.jpg 1400w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="1400" height="950" loading="lazy"
+      alt="RangerTrak's Radio Log page, a sortable table of field reports with columns for origin,
+           callsign, address, latitude, longitude, reported time, elapsed time and status. The
+           elapsed column is shaded red because every report in this demo mission is hours old."
+      /></a>
+    <figcaption>The same reports as a sortable, filterable log that prints as a 309 communications log. The
+      Elapsed column shades toward red as a team falls behind your mission's check-in interval
+      &mdash; every report in this demo is hours old, so the whole column is red.</figcaption>
+  </figure>
+
+  <section class="try-it" aria-labelledby="try-heading">
+    <h2 id="try-heading">Try it in ten minutes</h2>
+    <ol>
+      <li>Open <a href="https://rangertrak.org" target="_blank" rel="noopener">rangertrak.org</a>
+        on a laptop or tablet. Any modern browser works, and there's nothing to install yet.</li>
+      <li>On a first visit, a welcome panel sits above the form. Pick a <strong>Scenario</strong>:
+        the Grand Canyon's South Rim (the default), Vashon Island, a state fair, or <strong>Near me</strong>, which
+        builds one around where you are. Then press <strong>Load Demo Data</strong>. (If you've been
+        here before, use <strong>Mission</strong> &rarr; Danger zone, choose a <strong>Demo
+        scenario</strong> and press <strong>Load sample mission</strong>. That one replaces whatever
+        is on the device.) You now have a demonstration roster with four field teams, two search
+        objectives, and a few dozen reports and messages.</li>
+      <li>Open <strong>Map</strong>. Click a cluster to spread it out, and follow one ranger's
+        trail.</li>
+      <li>Open <strong>Radio Log</strong>. Sort by time, fix a typo in a cell (edits save
+        themselves), and filter to one callsign.</li>
+      <li>Back on the entry screen, <strong>log a report of your own</strong> the way your net would
+        send it, in whatever coordinate format your team actually uses. Time yourself.</li>
+    </ol>
+    <p>Rather be led through it? Module 2 of the
+      <a href="https://rangertrak.org/tour/#m2" target="_blank" rel="noopener">RangerTrak Tour Guide</a>, <em>Your first radio call</em>, walks you through it hands-on.
+      New to RangerTrak? <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Start the tour</a>.</p>
+    <p class="try-it__note">
+      Nothing here leaves your device. To start clean afterwards, use a different browser, or
+      Mission &rarr; Danger zone &rarr; <strong>Reset mission to defaults</strong>.
+    </p>
+  </section>
+
+  <h2>What it doesn't do yet</h2>
+  <ul>
+    <li><strong>It shows you a quiet team, but it won't interrupt you.</strong> Set your
+      mission's expected check-in interval and the map, the roster and the Radio Log all shade
+      a team's elapsed time from green through amber to red as they fall behind it. Nothing
+      beeps or pops up, though &mdash; someone has to be looking &mdash; and the times refresh
+      when the screen redraws rather than ticking second by second.</li>
+    <li><strong>Detailed offline maps need a little preparation.</strong> The built-in offline map
+      shows the whole world at low detail, plus street detail for a demo mission while it&rsquo;s
+      loaded. For street detail in
+      your own area, save it on the street map before heading out, or load a map file for it. Part
+      2 and the Field Guide show how.</li>
+    <li><strong>It's English-only, and the ICS forms are the US versions.</strong> The coordinate
+      formats work anywhere, but if you're outside the US I especially want to hear what your
+      forms and grids look like.</li>
+  </ul>
+
+  <section class="tell-me" aria-labelledby="tell-heading">
+    <h2 id="tell-heading">Tell me</h2>
+    <p>This is the part that actually matters. After you've spent ten minutes with it:</p>
+    <ol>
+      <li><strong>Does this match how your net really logs traffic?</strong> What's on your paper log
+        or spreadsheet that isn't here?</li>
+      <li><strong>What slowed you down</strong> while logging that report yourself?</li>
+      <li><strong>Would you try it at your next tabletop or exercise?</strong> A small tabletop is
+        fine. I'm glad to help set one up, and I'd like to write up how it goes (with your
+        permission) later in this series.</li>
+    </ol>
+    <p>Three ways to reach me, and none of them needs a GitHub account:</p>
+    <ul>
+      <li>The <a href="../feedback.html">feedback form</a> on this site. Start with &ldquo;Blog 1&rdquo;
+        so I know where you came from.</li>
+      <li>In the app itself: <strong>Help</strong> &rarr; feedback.</li>
+      <li>Email: <a class="js-mail" data-u="RangerTrak" data-d="steadyeoc.com" data-subject="Field%20Notes%201">RangerTrak [at] steadyeoc [dot] com</a></li>
+    </ul>
+    <p>
+      Short answers are welcome. &ldquo;I tried it, got lost at step 3&rdquo; is useful.
+    </p>
+  </section>
+
+  <h2>The series</h2>
+  <ol class="series-list">
+    <li aria-current="page"><strong>The Paper Log, Without the Paper</strong> (this post)</li>
+    <li><a href="02-hot-warm-cold.html">Hot, Warm, Cold: getting a device ready before the network goes</a></li>
+    <li><a href="03-however-they-read-it-out.html">However They Read It Out: coordinates and maps</a></li>
+    <li><a href="04-radio-log-to-ics-309-and-213.html">From Radio Log to Form 309 and ICS-213</a></li>
+    <li><a href="05-more-than-one-laptop.html">More Than One Laptop</a></li>
+    <li><a href="06-whats-missing-and-who-decides.html">What&rsquo;s Missing, and Who Decides</a></li>
+    <li><a href="07-your-roster-is-already-in-a-spreadsheet.html">Your Roster Is Already in a Spreadsheet</a></li>
+    <li><a href="08-shift-change.html">Shift Change: Op Periods, Scribes and Laptops</a></li>
+    <li><a href="09-after-the-mission.html">After the Mission: Summaries, AAR and the Final Report</a></li>
+    <li>Field Phones, Up Close</li>
+    <li>RangerView</li>
+    <li>People, Teams and Places: help me get this right</li>
+  </ol>
+  <p class="post-next">
+    <strong>Next: <a href="02-hot-warm-cold.html">Hot, Warm, Cold</a>.</strong> The five minutes of preparation that
+    separate a working tool from a blank screen when the network goes down. You'll need a
+    device you can put in airplane mode.
+  </p>
+</main>
+</div>
+
+<footer class="site-footer">
+  <p>RangerTrak&trade; &mdash; &copy; 2019&ndash;2026 John Cornelison, AGPL v3</p>
+  <p>
+    <a href="../blog.html">Blog</a> &middot;
+    <a href="../feed.xml">RSS</a> &middot;
+    <a href="../field-guide.html">Field Guide</a> &middot;
+    <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Tour</a> &middot;
+    <a href="../feedback.html">Feedback</a> &middot;
+    <a class="js-mail" data-u="RangerTrak" data-d="steadyeoc.com">RangerTrak [at] steadyeoc [dot] com</a>
+    &middot;
+    <a href="../feedback.html#support">Support</a>
+  </p>
+  <p class="footer-privacy">This site counts visits with Cloudflare&rsquo;s cookie-free
+    analytics. The RangerTrak app keeps your mission on your device. When online, it fetches
+    map images and looks up addresses for report locations.
+    <a href="../privacy.html">Privacy</a></p>
+</footer>
+
+</body>
+</html>

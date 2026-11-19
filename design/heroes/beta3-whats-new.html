@@ -1,0 +1,71 @@
+<!doctype html>
+<!-- Beta 3 release-notes hero, 1200x630 (also the og:image and blog thumbnail).
+     Render: node tools/render-hero.mjs design/heroes/beta3-whats-new.html <out>.png
+     The version tag and the post's short version as a checklist card. Text only, no app capture.
+     No red as decoration. -->
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  body { width: 1200px; height: 630px; overflow: hidden; background: #12263F; color: #EAF1F8;
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .frame { position: relative; height: 100%; padding: 54px 64px; }
+  .left { position: relative; width: 500px; padding-top: 34px; }
+  .kicker { font-size: 19px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #F0700A; }
+  h1 { font-size: 60px; line-height: 1.04; margin-top: 18px; font-weight: 800; }
+  .sub { font-size: 24px; line-height: 1.4; color: #B9C8D8; margin-top: 22px; }
+
+  .paper { position: absolute; width: 470px; left: 640px; top: 92px; transform: rotate(2deg);
+    background: #fff; color: #1d2733; box-shadow: 0 18px 40px rgba(0,0,0,.45); padding: 20px 26px; }
+  .paper h2 { font-size: 15px; letter-spacing: .06em; text-transform: uppercase; border-bottom: 2px solid #1d2733;
+    padding-bottom: 8px; display: flex; justify-content: space-between; }
+  .paper h2 span { font-weight: 600; letter-spacing: 0; text-transform: none; color: #4a5866; }
+  ul { list-style: none; padding: 0; margin-top: 10px; }
+  li { font-size: 18px; padding: 7px 0 7px 34px; position: relative; border-bottom: 1px solid #e1e7ee; }
+  li::before { content: ""; position: absolute; left: 4px; top: 11px; width: 16px; height: 9px;
+    border-left: 4px solid #2E8B57; border-bottom: 4px solid #2E8B57; transform: rotate(-45deg); }
+
+  .tag { position: absolute; left: 860px; top: 40px; background: #F0700A; color: #12263F; font-weight: 800;
+    font-size: 22px; padding: 9px 20px; border-radius: 999px; box-shadow: 0 8px 20px rgba(0,0,0,.4); transform: rotate(-3deg); }
+  .brand { position: absolute; left: 64px; bottom: 26px; display: flex; align-items: center; gap: 12px; font-size: 20px; font-weight: 700; color: #B9C8D8; }
+  .brand b { color: #EAF1F8; }
+</style>
+<div class="frame">
+  <div class="left">
+    <p class="kicker">Release notes</p>
+    <h1>RangerTrak Beta&nbsp;3</h1>
+    <p class="sub">Field phones know what got through, and resource requests print on the ICS-213RR.</p>
+  </div>
+
+  <div class="paper">
+    <h2>What&rsquo;s new <span>The short version</span></h2>
+    <ul>
+      <li>My reports on field phones</li>
+      <li>Receipts from the command post</li>
+      <li>ICS-213RR resource requests</li>
+      <li>Notes in map popups</li>
+      <li>A setup guide for RangerView</li>
+      <li>Leaflet 2.0.0-beta.4</li>
+      <li>Faster, steadier, fixed</li>
+    </ul>
+  </div>
+
+  <div class="tag">1.0.0-beta.3</div>
+
+  <p class="brand">
+    <svg width="42" height="70" viewBox="0 0 155 260" aria-hidden="true"><!-- the site header's mark -->
+      <g fill="none" stroke="#EAF1F8" stroke-linejoin="round">
+        <path d="M 52 239 L 18.4 175.8 A 38 38 0 1 1 85.6 175.8 Z" stroke-width="12"/>
+        <path d="M 52 96 L 52 150" stroke-width="5" stroke-linecap="round"/>
+      </g>
+      <rect x="44" y="142" width="16" height="58" rx="6" fill="#EAF1F8"/>
+      <circle cx="52" cy="88" r="8" fill="#EAF1F8"/>
+      <g fill="#12263F"><rect x="47.5" y="158" width="9" height="4" rx="2"/><rect x="47.5" y="170" width="9" height="4" rx="2"/><rect x="47.5" y="182" width="9" height="4" rx="2"/></g>
+      <g fill="none" stroke="#F0700A" stroke-width="11" stroke-linecap="round">
+        <path transform="translate(52,88) scale(0.80) translate(-52,-88)" d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71"/>
+        <path transform="translate(52,88) scale(1.30) translate(-52,-88)" d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71"/>
+        <path transform="translate(52,88) scale(1.85) translate(-52,-88)" d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71"/>
+      </g>
+    </svg>
+    <span><b>RangerTrak</b> &middot; rangertrak.com</span>
+  </p>
+</div>

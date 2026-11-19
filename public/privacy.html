@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--
+  Privacy policy for RangerTrak (the app at rangertrak.org and this site, rangertrak.com).
+  Part of the rangertrak.com front door - see index.html's header comment for the full
+  scope note.
+
+  Every claim on this page was checked against app 0.96.7 source on 2026-09-26, using the
+  verified facts sheet for this policy. Nothing here goes beyond that sheet. Shortened on
+  2026-09-30 at John's request ("too long reads as legalese"): same facts, fewer words; the
+  address-lookup wording checked against nominatim-geocoder.ts that day. Map providers
+  updated for 0.99.2-alpha (E-162): Esri World Imagery and Waymarked Trails, both off by
+  default, checked against mapLeaflet.component.ts. Re-verify the
+  page on ANY change to storage (what is saved, where, encrypted or not), to network calls
+  (map tiles, address lookups, the Command Post Server, analytics, the app's security policy
+  allowlist), or to the feedback worker - and update the date below when you do.
+-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy - RangerTrak</title>
+<meta name="description" content="What RangerTrak keeps on your device, exactly what can leave it and when, and how to delete it - in plain words.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rangertrak.com/privacy.html">
+<meta property="og:title" content="Privacy - RangerTrak">
+<meta property="og:description" content="What RangerTrak keeps on your device, exactly what can leave it and when, and how to delete it - in plain words.">
+<meta property="og:image" content="https://rangertrak.com/assets/og-rangertrak.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="RangerTrak: your team&rsquo;s radio reports, made actionable. rangertrak.com">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/styles.css">
+<script src="assets/lightbox.js" defer></script>
+<script src="assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="top-bar">
+  <div class="top-bar__inner">
+    <a class="brand" href="/">
+      <svg class="brand-icon" width="24" height="40" viewBox="0 0 155 260" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-linejoin="round">
+          <path d="M 52 239 L 18.4 175.8 A 38 38 0 1 1 85.6 175.8 Z" stroke-width="12" />
+          <path d="M 52 96 L 52 150" stroke-width="5" stroke-linecap="round" />
+        </g>
+        <rect x="44" y="142" width="16" height="58" rx="6" fill="currentColor" />
+        <circle cx="52" cy="88" r="8" fill="currentColor" />
+        <g fill="var(--chrome)">
+          <rect x="47.5" y="158" width="9" height="4" rx="2" />
+          <rect x="47.5" y="170" width="9" height="4" rx="2" />
+          <rect x="47.5" y="182" width="9" height="4" rx="2" />
+        </g>
+        <g class="brand-signal" fill="none" stroke-width="7" stroke-linecap="round"
+          vector-effect="non-scaling-stroke">
+          <path class="wave wave-1" transform="translate(52,88) scale(0.80) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+          <path class="wave wave-2" transform="translate(52,88) scale(1.30) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+          <path class="wave wave-3" transform="translate(52,88) scale(1.85) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+        </g>
+      </svg>
+      RangerTrak&trade;
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="top-nav" aria-label="Menu">&#9776;</button>
+    <noscript><style>.top-nav{display:flex!important;flex-wrap:wrap!important;}.nav-toggle{display:none!important;}</style></noscript>
+    <nav class="top-nav" id="top-nav" aria-label="Main">
+      <a href="/">Home</a>
+      <a href="about.html">What it does</a>
+      <a href="blog.html">Blog</a>
+      <a href="field-guide.html">Field Guide</a>
+      <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Tour</a>
+      <a href="feedback.html">Feedback</a>
+      <a href="https://github.com/SteadyEOC/RangerTrak" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg class="icon-github" width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.02 1.93-.02 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg></a>
+      <a class="cta" href="https://rangertrak.org" target="_blank" rel="noopener">Open RangerTrak &rarr;</a>
+    </nav>
+  </div>
+</div>
+
+<div class="shell">
+<main id="main" class="doc-compact">
+  <h1>Privacy</h1>
+  <p class="lede lede--sub">
+    I&rsquo;m John Cornelison, KE7KDQ. I build RangerTrak on my own, with no company behind it.
+    Here is what happens to what you put in it.
+  </p>
+
+  <p class="doc-updated">
+    Last updated <time datetime="2026-10-18">October 18, 2026</time>
+  </p>
+
+  <div class="notice">
+    <strong>The short answer: your mission stays on your device.</strong>
+    No accounts, and nothing is ever sent to me. When online, report locations go to
+    OpenStreetMap to fill in the &ldquo;Derived address&rdquo;, with no names attached.
+    <a href="#what-leaves">Everything that leaves the device</a> is listed below.
+  </div>
+
+  <section>
+    <h2 id="where">Where your data lives</h2>
+    <ul>
+      <li>Everything you enter is saved in the browser on the device you&rsquo;re using. It
+        isn&rsquo;t on a server. I never see it, and I can&rsquo;t recover it for you.</li>
+      <li>The roster can hold names, phone numbers, addresses, call signs and photos.
+        <strong>It is unencrypted unless you turn on device encryption</strong> (below).</li>
+      <li>Browsers, iPhones especially, can clear stored data. Back up; Help explains how to
+        make it less likely.</li>
+      <li>On iPhone and iPad, the Home Screen app keeps its own copy, separate from Safari.
+        Install first, then set up.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 id="encryption">Device encryption</h2>
+    <p>
+      Optional, at Mission &rarr; Data safety. It encrypts the roster, reports and photos
+      (roster photos and attached files) with a passphrase; places and mission settings stay
+      unencrypted. It protects a lost or shared
+      device, not one left unlocked, and the app doesn&rsquo;t lock itself when idle.
+      <strong>A forgotten passphrase can&rsquo;t be recovered</strong>: you erase and restore
+      from a backup.
+    </p>
+  </section>
+
+  <section>
+    <h2 id="attachments">Photos, video and audio</h2>
+    <p>
+      A report can carry photos, video or audio. They are stored in the browser like
+      everything else, and device encryption covers them. Treat them like the roster:
+    </p>
+    <ul>
+      <li>A photo or video can show faces, homes, vehicles and licence plates.</li>
+      <li><strong>An original file keeps the camera&rsquo;s hidden details (EXIF), often
+        including the exact GPS position where it was taken.</strong> RangerTrak keeps
+        originals exactly as they arrived, so a copy can be shown to be identical.</li>
+      <li>A <em>smaller copy</em>, offered when a file is attached, drops those details, and so
+        do the small pictures in lists and printouts.</li>
+      <li>Files go only where you send them: with a phone&rsquo;s Report Packet, in a
+        backup&rsquo;s attachments file, in a hand-over file, or to RangerView if you
+        switch its attachments on.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 id="files">Files you make</h2>
+    <p>
+      A mission backup can take a passphrase; left blank, it&rsquo;s plain text. It also holds a
+      Google API key and the RangerView address, if you set them. When reports have
+      attachments, the backup writes a second file beside it with the photos and videos; the
+      same passphrase locks both. Exports, Setup files and Report Packets are always plain, and
+      a Report Packet is sent by whichever app you pick (text, email). You choose where these
+      files go, so treat them as confidential.
+    </p>
+  </section>
+
+  <section>
+    <h2 id="what-leaves">What leaves the device: the complete list</h2>
+    <ol>
+      <li><strong>Address lookups, when online.</strong> Typed addresses, and the coordinates of
+        each report, go straight from your browser to OpenStreetMap&rsquo;s Nominatim (or to
+        Google, if you add a Google key). No names or notes go with them. Nominatim sees the
+        location and your Internet (IP) address; I see nothing. Offline, nothing is sent.</li>
+      <li><strong>Map images, when online.</strong> From OpenStreetMap, OpenTopoMap, Esri
+        (terrain shading, the roads-and-labels overlay, and the satellite view if you pick it),
+        the U.S. Geological Survey&rsquo;s National Map (the aerial-photo base layer and the
+        shaded-relief overlay), and Waymarked Trails if you turn on hiking trails. They see your
+        IP address and the map area, as with any web map. <em>Save this area</em> downloads the
+        same kind of images ahead of time, for offline use, from the same services (Esri&rsquo;s layers are never saved). Offline map
+        files come from rangertrak.org or from a file you load.</li>
+      <li><strong>Feedback, when you send it.</strong> It becomes a <strong>public</strong>
+        issue on <a href="https://github.com/SteadyEOC/RangerTrak" target="_blank" rel="noopener">GitHub</a>,
+        so keep mission data out of it. Your IP address is used briefly to stop repeat sends
+        and isn&rsquo;t kept.</li>
+      <li><strong>RangerView, only if you turn it on.</strong> A small, private
+        mini-website on your team&rsquo;s own laptop. It receives the radio log and messages,
+        never the roster, so others on the command post&rsquo;s WiFi can read them. It answers only on the local network, never a public
+        address. You can give it a password; without one, anyone on that WiFi can read it.
+        Attachments go to it only if you switch that on. It keeps nothing once stopped.</li>
+    </ol>
+    <p>
+      The app&rsquo;s own Log page stays on the device and clears on reload, but it can hold
+      report details. Don&rsquo;t paste it into feedback.
+    </p>
+  </section>
+
+  <section>
+    <h2 id="websites">The websites</h2>
+    <p>
+      rangertrak.org (the app) and rangertrak.com (this site) run on Cloudflare, which sees each
+      visitor&rsquo;s IP address, like any host, and keeps logs briefly. Visits are counted
+      with Cloudflare&rsquo;s cookie-free analytics, which doesn&rsquo;t track individual visitors and never sees what you type into the app.
+      This site sets no cookies and loads nothing from other sites.
+    </p>
+  </section>
+
+  <section>
+    <h2 id="doesnt">What RangerTrak doesn&rsquo;t do</h2>
+    <p>
+      No accounts, ads, tracking cookies, or selling or sharing your data. No background
+      location tracking: GPS is read only in field mode and the &ldquo;near me&rdquo; demo, after
+      the browser asks you. It isn&rsquo;t aimed at children.
+    </p>
+  </section>
+
+  <section>
+    <h2 id="deleting">Deleting your data</h2>
+    <p>
+      Clear the browser&rsquo;s site data for rangertrak.org; that removes everything, including
+      saved maps. Uninstalling doesn&rsquo;t always do it: iPhone and iPad do, Chrome and Edge
+      ask, and Android varies. Files you exported or sent are out of the app&rsquo;s reach, so
+      delete them wherever they went.
+    </p>
+  </section>
+
+  <section>
+    <h2 id="contact">Changes and contact</h2>
+    <p>
+      Changes update the date above, and the history is public on
+      <a href="https://github.com/SteadyEOC/RangerTrak.com" target="_blank" rel="noopener">GitHub</a>.
+      Questions: <a class="js-mail" data-u="RangerTrak" data-d="steadyeoc.com">RangerTrak [at] steadyeoc [dot] com</a>.
+    </p>
+  </section>
+</main>
+</div>
+
+<footer class="site-footer">
+  <p>RangerTrak&trade; &mdash; &copy; 2019&ndash;2026 John Cornelison, AGPL v3</p>
+  <p>
+    <a href="https://github.com/SteadyEOC/RangerTrak" target="_blank" rel="noopener">GitHub</a> &middot;
+    <a href="/">Home</a> &middot;
+    <a href="field-guide.html">Field Guide</a> &middot;
+    <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Tour</a>
+    &middot;
+    <a href="feedback.html#support">Support</a>
+  </p>
+  <p class="footer-privacy">This site counts visits with Cloudflare&rsquo;s cookie-free
+    analytics. The RangerTrak app keeps your mission on your device. When online, it fetches
+    map images and looks up addresses for report locations.
+    <a href="privacy.html">Privacy</a></p>
+</footer>
+
+</body>
+</html>

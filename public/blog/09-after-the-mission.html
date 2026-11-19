@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--
+  PUBLISHED 2026-11-02 (John's go 11-02). Field Notes Part 9. Drafted 2026-10-27 (blog session, Opus)
+  for John's read, while the other session ran the beta tests. Went out after the beta post (10-28).
+
+  Re-checked 2026-10-29 against tag v1.0.0-beta.1 (4cff59f3): Summary toggle "Whole log"; Journal tab on
+  Log; stamp format; ICS-214 suggestions; What to clear rows; "Delete all rangers"; Review and send opens
+  Help > Contact us (?tab=feedback); "Back up mission" under Mission > Data safety. All [check]s closed.
+  Facts first checked against app source at 0.99.95-alpha (rangertrak-ORG-site/src, f52d83a0): Current summary
+  (Radio Log and AAR notes pages; Print, Export = CSV; "Journal" line with shortHead), AAR notes page (area,
+  recommendation, owner; Print = improvement-plan table of incident notes; Export = spreadsheet of all notes;
+  Review and send for RangerTrak notes), Export ICS-214 dialog (name/position/unit kept for next time;
+  signature by hand; "Only this operational period" / "All lines"; "Suggested lines from this device's
+  journal", none ticked), mission journal (domain/mission-journal.ts: chained SHA-256, "Journal intact: N
+  entries" / "broken at entry N", not proof against someone determined; Export journal (CSV); printed on
+  309, summary, map sheet), Rangers > Export changes (change column: added, edited, removed), the E-221
+  "What to clear" dialog for Delete radio log entries and messages (log + attachments locked; incident
+  notes, 214 lines, RangerTrak notes all unticked; "Back up mission first"; live mission: type the
+  mission name), device encryption (Mission > Data safety). Never call the journal "tamper-proof".
+
+  Shots: drafts/img/09-*.jpg, captured 2026-10-29 from live 1.0.0-beta.1, Vashon demo, made-up notes, by
+  node tools/capture-part9-shots.mjs (headless). On publish: copy to public/blog/img/, then
+  node tools/responsive-images.mjs for the 480/800 copies and srcset/sizes like Part 8.
+  09-export-changes.jpg (2026-11-02): the app's own Export changes CSV, after an edit, a delete and a
+  walk-up on the Vashon demo, drawn as a sheet; node tools/capture-export-changes.mjs (headless).
+  Not shot: the printed improvement-plan table.
+
+  To publish: HANDOFF-rangertrak.com.md section 3 (blog.html, feed.xml, sitemap.xml, check-site.js,
+  _redirects, hero 09-hero.jpg, thumbnail, Part 8's "Next" line and series list).
+-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>After the Mission: Summaries, AAR and the Final Report - RangerTrak Field Notes</title>
+<meta name="description" content="Part 9 of Field Notes: the end of a mission in RangerTrak. The debrief summary, AAR notes as an improvement-plan table, FEMA's ICS-214 filled in offline, the roster changes for your coordinator, and clearing the laptop without losing the record.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="After the Mission: Summaries, AAR and the Final Report">
+<meta property="og:description" content="The debrief summary, AAR notes as an improvement-plan table, the ICS-214 on FEMA's form, and clearing the laptop without losing the record. Part 9 of a short series.">
+<meta property="og:url" content="https://rangertrak.com/blog/09-after-the-mission.html">
+<meta property="article:published_time" content="2026-11-02">
+<meta property="og:image" content="https://rangertrak.com/blog/img/09-hero.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="840">
+<meta property="og:image:alt" content="Three printed sheets from the end of a mission, with made-up teams and notes: a mission summary for the whole log, 32 entries with 5 that needed attention; an ICS-214 activity log ending with all teams accounted for, signed by hand; and an improvement-plan table with area, recommendation and owner. Each sheet carries the same journal stamp, jrnl 8afa&middot;f638 (3).">
+<link rel="alternate" type="application/rss+xml" title="RangerTrak Field Notes" href="../feed.xml">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/styles.css">
+<script src="../assets/lightbox.js" defer></script>
+<script src="../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="top-bar">
+  <div class="top-bar__inner">
+    <a class="brand" href="/">
+      <svg class="brand-icon" width="24" height="40" viewBox="0 0 155 260" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-linejoin="round">
+          <path d="M 52 239 L 18.4 175.8 A 38 38 0 1 1 85.6 175.8 Z" stroke-width="12" />
+          <path d="M 52 96 L 52 150" stroke-width="5" stroke-linecap="round" />
+        </g>
+        <rect x="44" y="142" width="16" height="58" rx="6" fill="currentColor" />
+        <circle cx="52" cy="88" r="8" fill="currentColor" />
+        <g fill="var(--chrome)">
+          <rect x="47.5" y="158" width="9" height="4" rx="2" />
+          <rect x="47.5" y="170" width="9" height="4" rx="2" />
+          <rect x="47.5" y="182" width="9" height="4" rx="2" />
+        </g>
+        <g class="brand-signal" fill="none" stroke-width="7" stroke-linecap="round"
+          vector-effect="non-scaling-stroke">
+          <path class="wave wave-1" transform="translate(52,88) scale(0.80) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+          <path class="wave wave-2" transform="translate(52,88) scale(1.30) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+          <path class="wave wave-3" transform="translate(52,88) scale(1.85) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+        </g>
+      </svg>
+      RangerTrak&trade;</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="top-nav" aria-label="Menu">&#9776;</button>
+    <noscript><style>.top-nav{display:flex!important;flex-wrap:wrap!important;}.nav-toggle{display:none!important;}</style></noscript>
+    <nav class="top-nav" id="top-nav" aria-label="Main">
+      <a href="/">Home</a>
+      <a href="../about.html">What it does</a>
+      <a href="../blog.html" aria-current="page">Blog</a>
+      <a href="../field-guide.html">Field Guide</a>
+      <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Tour</a>
+      <a href="../feedback.html">Feedback</a>
+      <a href="https://github.com/SteadyEOC/RangerTrak" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg class="icon-github" width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.02 1.93-.02 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg></a>
+      <a class="cta" href="https://rangertrak.org" target="_blank" rel="noopener">Open RangerTrak &rarr;</a>
+    </nav>
+  </div>
+</div>
+
+<div class="shell">
+<main id="main" class="post">
+  <p class="post-kicker">Field Notes &middot; Part 9</p>
+  <h1>After the Mission: Summaries, AAR and the Final Report</h1>
+  <p class="post-meta">By John Cornelison, <a href="https://www.qrz.com/db/KE7KDQ" target="_blank" rel="noopener">KE7KDQ</a> &middot; <time datetime="2026-11-02">November 2, 2026</time> &middot; about a 6-minute read</p>
+
+  <figure class="post-hero">
+    <img src="img/09-hero.jpg" srcset="img/09-hero-480.jpg 480w, img/09-hero-800.jpg 800w, img/09-hero.jpg 1600w" sizes="min(calc(100vw - 2.5rem), 46rem)" width="1600" height="840"
+      alt="Three printed sheets from the end of a mission, with made-up teams and notes: a mission summary for the whole log, 32 entries with 5 that needed attention; an ICS-214 activity log ending with all teams accounted for, signed by hand; and an improvement-plan table with area, recommendation and owner. Each sheet carries the same journal stamp, jrnl 8afa&middot;f638 (3)." />
+  </figure>
+
+  <div class="post-intro">
+    <p><strong>RangerTrak</strong> is a free, open-source radio log and map for the scribe at a
+      CERT, ACS/ARES, SAR or wildland-fire command post. Log who, where, when and what off the
+      radio; it maps them. It works offline once set up, and prints the Form 309 Communications Log, ICS-213 and ICS-214. I built it.
+      It&rsquo;s AGPL and will stay free. Try it at
+      <a href="https://rangertrak.org" target="_blank" rel="noopener">rangertrak.org</a>, no
+      account or install needed.</p>
+  </div>
+
+  <p>
+    The last team checks in, the IC says &ldquo;stand down,&rdquo; and the radio goes quiet. For
+    most of the people in the room the mission is over. For the scribe it isn&rsquo;t quite.
+    There&rsquo;s the debrief, the paperwork for the coordinator, and a laptop full of names and
+    phone numbers that has to go home in a sensible state.
+  </p>
+  <p>
+    On paper, the end of a mission is a box. The 309s go in it, the 214s, the sign-in sheet, and
+    whatever got written on the whiteboard at the hot wash. It works, and a box doesn&rsquo;t need
+    charging. What it doesn&rsquo;t do is add anything up. Somebody reads back through the log to
+    find the three calls that never got an answer, and the &ldquo;we should fix that&rdquo;
+    remarks from hour two are mostly gone by hour nine.
+  </p>
+  <p>
+    Here&rsquo;s what RangerTrak does at the end, in the order I&rsquo;d do it.
+  </p>
+
+  <h2>The debrief: the whole mission in one summary</h2>
+  <figure class="sidenote">
+    <a href="img/09-summary-whole.jpg"><img src="img/09-summary-whole.jpg" srcset="img/09-summary-whole-480.jpg 480w, img/09-summary-whole-800.jpg 800w, img/09-summary-whole.jpg 2048w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="2048" height="1120" loading="lazy"
+      alt="RangerTrak's Current summary for a demo Missing Person Exercise, set to Whole log, with Refresh, Print and Export buttons. The header gives the operational period, the period summarised, when it was generated and the journal stamp jrnl 3322&middot;e2e0. Totals: 32 radio log entries, 12 stations heard, 5 needing attention, 0 edited after logging, 0 logged late. A bar chart of messages per hour, with the part needing attention in red." /></a>
+    <figcaption>The whole mission on one page, from a demo. The journal stamp is in the header.</figcaption>
+  </figure>
+  <p>
+    Part 8&rsquo;s <strong>Current summary</strong> works for the whole mission too. On the Radio
+    Log or the AAR notes page, press it and choose <strong>Whole log</strong> instead of this
+    operational period. You get how many messages came in each hour, which teams, stations and
+    operators they came from, and a <strong>Needs attention</strong> list: the entries still
+    flagged, with their times and message numbers. That list is where a hot wash should start.
+  </p>
+  <p>
+    <strong>Print</strong> it for the debrief, and <strong>Export</strong> it as a spreadsheet if
+    your coordinator wants the numbers. Both are stamped with the mission, the period covered and
+    when they were made. Nothing about the summary is saved on the device, so print it before you
+    clear anything.
+  </p>
+
+  <h2>AAR notes, turned into an improvement plan</h2>
+  <figure class="sidenote">
+    <a href="img/09-aar-notes.jpg"><img src="img/09-aar-notes.jpg" srcset="img/09-aar-notes-480.jpg 480w, img/09-aar-notes-800.jpg 800w, img/09-aar-notes.jpg 2510w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="2510" height="696" loading="lazy"
+      alt="Two AAR notes on RangerTrak's AAR notes page, both about this incident. One: the park shed had no power for the second laptop; area Logistics, owner Equipment lead, recommendation: add a power strip and a 50 ft cord to the go-kit list. The other: a team's check-ins drifted to every 40 minutes after dark; area Communications, owner Net control, recommendation: set a check-in timer per team." /></a>
+    <figcaption>Area, owner and recommendation on each note. Print turns them into an improvement-plan table.</figcaption>
+  </figure>
+  <p>
+    During the mission, the <strong>AAR/214</strong> button at the top of every page catches
+    &ldquo;we should fix that&rdquo; the moment someone says it. One line, marked as about this
+    incident or about RangerTrak, and you&rsquo;re back on the page you were on. By the end
+    there&rsquo;s a list, written at the time, not reconstructed from memory.
+  </p>
+  <p>
+    At the debrief, open the <strong>AAR notes</strong> page and give each note an
+    <strong>area</strong>, a <strong>recommendation</strong> and an <strong>owner</strong>. Then
+    <strong>Print</strong>: the incident notes come out as an improvement-plan table, the shape an
+    after-action report already uses. <strong>Export</strong> saves every note as a spreadsheet,
+    for whoever writes the AAR. (Since beta 2, each note can also take HSEEP&rsquo;s capability
+    element: see <a href="hseep-improvement-plan.html">What You Said You&rsquo;d Fix</a>.)
+  </p>
+  <p>
+    Notes stay on the laptop. They aren&rsquo;t sent anywhere. The one exception is up to you: a
+    note marked <em>about RangerTrak</em> can come to me through <strong>Review and send</strong>,
+    which opens <strong>Help</strong> &rarr; <strong>Contact us</strong> with the note filled in, so
+    you can read and edit it first. That one becomes a public
+    GitHub issue, so it&rsquo;s worth that read.
+  </p>
+
+  <h2>The ICS-214, on FEMA&rsquo;s form</h2>
+  <figure class="sidenote">
+    <a href="img/09-ics214-suggest.jpg"><img src="img/09-ics214-suggest.jpg" srcset="img/09-ics214-suggest-480.jpg 480w, img/09-ics214-suggest-800.jpg 800w, img/09-ics214-suggest.jpg 1256w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="1256" height="1329" loading="lazy"
+      alt="RangerTrak's Export ICS-214 dialog: name, ICS position (Radio Operator) and home agency and unit; resources assigned; which lines, only this operational period or all lines; and three suggested lines from this device's journal (a demo loaded, the summary exported, the AAR notes exported), none of them ticked." /></a>
+    <figcaption>Suggested lines from the journal, none ticked. Tick one and it becomes a line you can edit.</figcaption>
+  </figure>
+  <p>
+    The same AAR/214 box keeps your <strong>ICS-214 activity log</strong>: arrived, relieved, the
+    repeater went down at 14:20. On the AAR notes page, <strong>Export ICS-214</strong> fills in
+    FEMA&rsquo;s own ICS-214 form, offline. It asks whose log it is (name, ICS position, home agency
+    and unit, kept for next time) and which lines to use: only this operational period, or all of
+    them. The signature is left blank for you to sign by hand.
+  </p>
+  <p>
+    It also offers a few <em>suggested lines</em> from the device&rsquo;s journal (more on that
+    next), such as when the mission was backed up or the 309 printed. None of them is ticked.
+    Tick one and it becomes an ordinary line you can edit.
+  </p>
+
+  <h2>One record, one stamp</h2>
+  <figure class="sidenote">
+    <a href="img/09-journal.jpg"><img src="img/09-journal.jpg" srcset="img/09-journal-480.jpg 480w, img/09-journal-800.jpg 800w, img/09-journal.jpg 2508w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="2508" height="503" loading="lazy"
+      alt="The Journal tab on RangerTrak's Log page: Journal intact: 3 entries, an explanation that it catches accidental damage and casual edits but is not proof against someone determined, an Export journal (CSV) button, and three timestamped entries: the demo loaded, the summary exported, the AAR notes exported." /></a>
+    <figcaption>The journal records what was done, never what was said.</figcaption>
+  </figure>
+  <p>
+    RangerTrak keeps a <strong>journal</strong> of what was done to the mission&rsquo;s data on this
+    device: demos loaded, backups, restores, imports, exports, prints, anything cleared. It records
+    events, not contents: the journal never holds what anyone said on the radio, an address or a
+    passphrase.
+    You&rsquo;ll find it on the Log page, on its Journal tab.
+  </p>
+  <p>
+    Each journal entry is chained to the one before it, and the tab says whether the chain is
+    intact. The newest entry&rsquo;s short code, something like <code>jrnl 3f9a&middot;c21b
+    (143)</code>, is printed at the foot of the 309, the summary and the map sheet. So the pages in
+    the box carry the same stamp, and anyone can later check that the laptop&rsquo;s journal still
+    agrees with the paper. The mission backup carries the journal too, stamp and all.
+  </p>
+  <p>
+    I want to be careful about what that proves. It catches accidental damage and casual edits. It
+    is not proof against someone determined: whoever holds the laptop holds the storage. The
+    signed paper is still the record. The stamp just ties the paper and the laptop together.
+  </p>
+
+  <h2>The roster: what changed at the desk</h2>
+  <figure class="sidenote">
+    <a href="img/09-export-changes.jpg"><img src="img/09-export-changes.jpg" srcset="img/09-export-changes-480.jpg 480w, img/09-export-changes-800.jpg 800w, img/09-export-changes.jpg 2142w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="2142" height="310" loading="lazy"
+      alt="The Export changes file opened as a spreadsheet, from a demo. A change column comes first. Row 2, added: Dana Whitcomb, no ID or call sign, 206-555-0142, Maury-CERT, Runner, note: walk-up, signed in at the command post 09:40. Row 3, edited: VI-12, CERT2, Wanda Woodsy, new phone 206-555-0187. Row 4, removed: only the uid, every other cell blank. The last column is each person's uid." /></a>
+    <figcaption>Export changes from a demo: one walk-up, one new phone number, one person removed. A removed person is just their uid.</figcaption>
+  </figure>
+  <p>
+    Part 7 loaded your roster from your own spreadsheet. During a real event, people get added and
+    corrected at the desk: a walk-up volunteer, a new phone number, a call sign that was wrong.
+    Those changes are on this laptop only. On the Rangers page, <strong>Export changes</strong>
+    saves just those people as a spreadsheet, with a column saying whether each was added, edited
+    or removed. Send it to whoever keeps your master list, so the next import doesn&rsquo;t bring
+    the old details back.
+  </p>
+  <p>
+    That file is plain, with no passphrase, and it holds names and phone numbers. Treat it the way
+    you&rsquo;d treat the paper sign-in sheet.
+  </p>
+
+  <h2>Back up, then clear</h2>
+  <figure class="sidenote">
+    <a href="img/09-what-to-clear.jpg"><img src="img/09-what-to-clear.jpg" srcset="img/09-what-to-clear-480.jpg 480w, img/09-what-to-clear-800.jpg 800w, img/09-what-to-clear.jpg 1120w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="1120" height="826" loading="lazy"
+      alt="RangerTrak's Delete radio log entries and messages dialog. Deleted, with a lock: radio log entries (+ attachments), 32 entries. From the current incident, unticked: After Action notes for this incident (2 notes) and ICS-214 activity lines (1 line). Everything else on this device is kept. Buttons: Back up mission first, Cancel, Delete radio log." /></a>
+    <figcaption>The log always goes. Everything else is unticked until you tick it.</figcaption>
+  </figure>
+  <p>
+    Before you clear anything, on the Mission page, <strong>Back up mission</strong>. One file holds
+    the settings, roster, places, AAR notes, 214 lines and every report. Give it a passphrase and
+    it&rsquo;s locked. A forgotten passphrase can&rsquo;t be recovered, so store it the way your
+    group stores other credentials. Put the backup wherever your group keeps mission records, not on
+    the thumb drive that gets wiped next week.
+  </p>
+  <p>
+    Then, on the Radio Log page, <strong>Delete radio log entries and messages</strong> opens a
+    <em>What to clear</em> box. The radio log, with its attachments, always goes. Everything else
+    is listed with a count and is <em>not</em> ticked: this incident&rsquo;s AAR notes, the 214
+    lines, and any notes about RangerTrak. You choose. There&rsquo;s a <strong>Back up mission
+    first</strong> button right there, and if the mission still looks live, you have to type its
+    name to go ahead. There&rsquo;s no undo after that, which is why the backup comes first.
+  </p>
+  <p>
+    The roster is separate, on purpose. It isn&rsquo;t tied to one mission, so on your group&rsquo;s
+    own laptop you can leave it for next time. On a borrowed or shared laptop, use
+    <strong>Delete all rangers</strong> on the Rangers page; the ranger photos go with it. If your roster stays on a laptop between missions,
+    turn on <strong>Device encryption</strong> (Mission &rarr; Data safety) so a lost laptop
+    doesn&rsquo;t hand it over in the clear.
+  </p>
+
+  <h2>What it doesn&rsquo;t do</h2>
+  <p>
+    It doesn&rsquo;t send your report anywhere. There&rsquo;s no server, so the summary, the 214 and
+    the AAR spreadsheet go to your coordinator the way paper always has: printed, emailed or on a
+    stick, by you.
+  </p>
+  <p>
+    It doesn&rsquo;t write the after-action report. It gives whoever does the notes, the times and
+    the numbers, collected while things happened. The judgement is still theirs.
+  </p>
+  <p>
+    And it isn&rsquo;t an archive. A browser is a working space, not a records system. Once
+    you&rsquo;ve printed, exported and backed up, the laptop&rsquo;s copy is the least important
+    one. Keep the box. The paper is the record that survives a wiped laptop and a lost passphrase.
+  </p>
+
+  <section class="try-it" aria-labelledby="try-heading">
+    <h2 id="try-heading">Try it in ten minutes</h2>
+    <ol>
+      <li>Open <a href="https://rangertrak.org" target="_blank" rel="noopener">rangertrak.org</a>
+        in a spare browser profile, so nothing of yours is replaced, and use <strong>Load a demo</strong> on the Entry page.</li>
+      <li>Press <strong>AAR/214</strong> and add two AAR notes and one ICS-214 line.</li>
+      <li>On the AAR notes page, give one note an area, a recommendation and an owner, then
+        <strong>Print</strong> to see the improvement-plan table.</li>
+      <li>Press <strong>Export ICS-214</strong> and open the PDF.</li>
+      <li>On the Radio Log page, press <strong>Delete radio log entries and messages</strong>, look at
+        what it offers, and press <strong>Cancel</strong>.</li>
+      <li>For the guided version, <a href="https://rangertrak.org/tour/#m7" target="_blank" rel="noopener">take
+        the tour</a>: module 7, <em>After the mission</em>, prints the 309, a 213 and the map, and
+        exports the 214. It uses the mission you build in modules 4 to 6.</li>
+    </ol>
+  </section>
+
+  <section class="tell-me" aria-labelledby="tell-heading">
+    <h2 id="tell-heading">Tell me</h2>
+    <ol>
+      <li><strong>What goes in your end-of-mission box today?</strong> Who asks for it, and what do
+        they do with it?</li>
+      <li><strong>Does your group write an improvement plan after drills?</strong> Would an area,
+        recommendation and owner per note fit it, or does yours have other columns?</li>
+      <li><strong>Where does a mission&rsquo;s backup live when it&rsquo;s over</strong>, and who is
+        allowed to open it?</li>
+    </ol>
+    <p>
+      Use the <a href="../feedback.html">feedback form</a> (start with &ldquo;Blog 9&rdquo;),
+      <strong>Help</strong> &rarr; <strong>Contact us</strong> inside the app, or email
+      <a class="js-mail" data-u="RangerTrak" data-d="steadyeoc.com" data-subject="Field%20Notes%209">RangerTrak [at] steadyeoc [dot] com</a>.
+    </p>
+  </section>
+
+  <h2>The series</h2>
+  <ol class="series-list">
+    <li><a href="01-the-paper-log-without-the-paper.html">The Paper Log, Without the Paper</a></li>
+    <li><a href="02-hot-warm-cold.html">Hot, Warm, Cold</a></li>
+    <li><a href="03-however-they-read-it-out.html">However They Read It Out: coordinates and maps</a></li>
+    <li><a href="04-radio-log-to-ics-309-and-213.html">From Radio Log to Form 309 and ICS-213</a></li>
+    <li><a href="05-more-than-one-laptop.html">More Than One Laptop: field phones, report handoff, a live view for the IC</a></li>
+    <li><a href="06-whats-missing-and-who-decides.html">What&rsquo;s Missing, and Who Decides</a></li>
+    <li><a href="07-your-roster-is-already-in-a-spreadsheet.html">Your Roster Is Already in a Spreadsheet</a></li>
+    <li><a href="08-shift-change.html">Shift Change: Op Periods, Scribes and Laptops</a></li>
+    <li aria-current="page"><strong>After the Mission: Summaries, AAR and the Final Report</strong> (this post)</li>
+    <li>Field Phones, Up Close</li>
+    <li>RangerView</li>
+    <li>People, Teams and Places: help me get this right</li>
+  </ol>
+  <p class="post-next">
+    <strong>Next: Field Phones, Up Close.</strong> A ranger&rsquo;s phone as a field logger:
+    photos with the report, the packet into the command post, and what happens when there&rsquo;s no
+    signal at all.
+  </p>
+</main>
+
+</div>
+
+<footer class="site-footer">
+  <p>RangerTrak&trade; &mdash; &copy; 2019&ndash;2026 John Cornelison, AGPL v3</p>
+  <p>
+    <a href="../blog.html">Blog</a> &middot; <a href="../feed.xml">RSS</a> &middot;
+    <a href="../field-guide.html">Field Guide</a> &middot;
+    <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Tour</a> &middot; <a href="../feedback.html">Feedback</a> &middot;
+    <a class="js-mail" data-u="RangerTrak" data-d="steadyeoc.com">RangerTrak [at] steadyeoc [dot] com</a>
+    &middot;
+    <a href="../feedback.html#support">Support</a>
+  </p>
+  <p class="footer-privacy">This site counts visits with Cloudflare&rsquo;s cookie-free
+    analytics. The RangerTrak app keeps your mission on your device. When online, it fetches
+    map images and looks up addresses for report locations.
+    <a href="../privacy.html">Privacy</a></p>
+</footer>
+</body>
+</html>

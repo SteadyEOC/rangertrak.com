@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--
+  PUBLISHED 2026-10-05 (approved by John 2026-09-30). Field Notes part 3 of 7.
+  SCREENSHOT img/entry-coordinate-formats.jpg (public/blog/img/) is cropped to the switcher and
+  MGRS boxes: the full Where section shows the DD leading-zero bug (handoff, 2026-09-30 night).
+  Recapture the whole section once that's fixed. Map crops are from John's own 0.99.7 capture
+  (State Fair demo, satellite). TODO: a crop of "Load a custom .pmtiles file..." on the MapLibre map. Sidebar links checked live 2026-09-30.
+  HERO: design/heroes/03-one-spot-seven-ways.html, rendered by tools/render-hero.mjs to
+  public/blog/img/03-hero.jpg (also og:image). Thumbnail already made:
+  public/blog/img/thumbs/03-however-they-read-it-out.jpg.
+  AT PUBLISH: blog.html entry with that thumbnail (has-thumb), plus the usual blog/feed/sitemap/check-site.
+
+  RE-CHECKED 2026-09-30 (blog session) against app source at 0.99.7-alpha (5c46011):
+  - Entry: DD/DDM/DMS/MGRS/UTM switcher; Maidenhead, Plus Codes and addresses share the
+    "Street address, +Code, or Maidenhead grid locator" box; last format remembered per device
+    (location.component.ts, lastCoordinateFormat). Mini-map click sets the position.
+  - Map: default base is OpenTopoMap (contours), not OSM. "Save this area" saves OpenTopoMap
+    only (OSM forbids bulk saving; satellite is online only - mapLeaflet.component.ts ~830-942).
+    Layers box has "USNG / MGRS grid" (E-162, 0.99.2). Route trails on the Leaflet map only.
+    MapLibre switch: "Use MapLibre + PMTiles Map - instead of Leaflet Map"; "Load a custom
+    .pmtiles file..." checks the file and shows size, zoom range and coverage first.
+  - Map-file walkthrough now links Help -> Your data (#map-file-help), per the docs rule.
+  - What3Words: NOT described as something RangerTrak converts (chk3Words() is a disabled
+    stub); only the general Plus-Code-vs-What3Words idea is used.
+  - NAD27: shift is ~100 m in much of the western US (was "100 to 200", overstated).
+-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>However They Read It Out - RangerTrak Field Notes</title>
+<meta name="description" content="Part 3 of Field Notes: coordinates in whatever format the radio gives them, why a calculated code beats a looked-up one offline, an old-map caution, and the mini-map's pin-in-the-water check.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="However They Read It Out: coordinates and maps">
+<meta property="og:description" content="Every common way to say where you are, converted on the device with no signal needed, plus the one check that catches a transposed digit before the team moves on. Part 3 of a short series.">
+<meta property="og:url" content="https://rangertrak.com/blog/03-however-they-read-it-out.html">
+<meta property="article:published_time" content="2026-10-05">
+<meta property="og:image" content="https://rangertrak.com/blog/img/03-hero.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="840">
+<meta property="og:image:alt" content="One spot on the Grand Canyon's South Rim written seven ways: decimal degrees, degrees and decimal minutes, degrees-minutes-seconds, MGRS, UTM, Maidenhead and Plus Code.">
+<link rel="alternate" type="application/rss+xml" title="RangerTrak Field Notes" href="../feed.xml">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/styles.css">
+<script src="../assets/lightbox.js" defer></script>
+<script src="../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="top-bar">
+  <div class="top-bar__inner">
+    <a class="brand" href="/">
+      <svg class="brand-icon" width="24" height="40" viewBox="0 0 155 260" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-linejoin="round">
+          <path d="M 52 239 L 18.4 175.8 A 38 38 0 1 1 85.6 175.8 Z" stroke-width="12" />
+          <path d="M 52 96 L 52 150" stroke-width="5" stroke-linecap="round" />
+        </g>
+        <rect x="44" y="142" width="16" height="58" rx="6" fill="currentColor" />
+        <circle cx="52" cy="88" r="8" fill="currentColor" />
+        <g fill="var(--chrome)">
+          <rect x="47.5" y="158" width="9" height="4" rx="2" />
+          <rect x="47.5" y="170" width="9" height="4" rx="2" />
+          <rect x="47.5" y="182" width="9" height="4" rx="2" />
+        </g>
+        <g class="brand-signal" fill="none" stroke-width="7" stroke-linecap="round"
+          vector-effect="non-scaling-stroke">
+          <path class="wave wave-1" transform="translate(52,88) scale(0.80) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+          <path class="wave wave-2" transform="translate(52,88) scale(1.30) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+          <path class="wave wave-3" transform="translate(52,88) scale(1.85) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+        </g>
+      </svg>
+      RangerTrak&trade;</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="top-nav" aria-label="Menu">&#9776;</button>
+    <noscript><style>.top-nav{display:flex!important;flex-wrap:wrap!important;}.nav-toggle{display:none!important;}</style></noscript>
+    <nav class="top-nav" id="top-nav" aria-label="Main">
+      <a href="/">Home</a>
+      <a href="../about.html">What it does</a>
+      <a href="../blog.html" aria-current="page">Blog</a>
+      <a href="../field-guide.html">Field Guide</a>
+      <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Tour</a>
+      <a href="../feedback.html">Feedback</a>
+      <a href="https://github.com/SteadyEOC/RangerTrak" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg class="icon-github" width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.02 1.93-.02 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg></a>
+      <a class="cta" href="https://rangertrak.org" target="_blank" rel="noopener">Open RangerTrak &rarr;</a>
+    </nav>
+  </div>
+</div>
+
+<div class="shell">
+<main id="main" class="post">
+  <p class="post-kicker">Field Notes &middot; Part 3</p>
+  <h1>However They Read It Out</h1>
+  <p class="post-meta">By John Cornelison, <a href="https://www.qrz.com/db/KE7KDQ" target="_blank" rel="noopener">KE7KDQ</a> &middot; <time datetime="2026-10-05">October 5, 2026</time> &middot; about a 7-minute read</p>
+
+  <figure class="post-hero">
+    <img src="img/03-hero.jpg" srcset="img/03-hero-480.jpg 480w, img/03-hero-800.jpg 800w, img/03-hero.jpg 1600w" sizes="min(calc(100vw - 2.5rem), 46rem)" width="1600" height="840"
+      alt="One spot on the South Rim, the Backcountry Information Center at Grand Canyon, written
+           seven ways: DD 36.0524, -112.1437; DDM 36 degrees 3.14 minutes N, 112 degrees 8.62 minutes W;
+           DMS 36 degrees 3 minutes 8 seconds N, 112 degrees 8 minutes 37 seconds W; MGRS 12SUE 96987 90365;
+           UTM 12N 396987 3990366; Maidenhead DM36wb; Plus Code 85893V24+XG7." />
+  </figure>
+
+  <div class="post-intro">
+    <p><strong>RangerTrak</strong> is a free, open-source radio log and map for the scribe at a
+      CERT, ACS/ARES, SAR or wildland-fire command post. Log who, where, when and what off the
+      radio; it maps them. It works offline once set up, and prints the Form 309 Communications Log and the ICS-213. I built it,
+      as the first tool from SteadyEOC, my one-person effort building software for teams that
+      have to keep working when the network doesn&rsquo;t. It&rsquo;s AGPL and will stay free. Try it at
+      <a href="https://rangertrak.org" target="_blank" rel="noopener">rangertrak.org</a>, no
+      account or install needed.</p>
+    <p><strong>RangerTrak is in alpha.</strong> It&rsquo;s ready to try in a drill or at your desk,
+      not yet for a real call-out, and 1.0 is planned for November.</p>
+  </div>
+
+  <p>
+    &ldquo;Command Post, Team 2, position is one-zero-tango-foxtrot-sierra, one-two-three-four-five,
+    six-seven-eight-nine-zero.&rdquo; That's MGRS, read the way it's actually said over a radio: in
+    digit groups, not one long string. Ten minutes later a different team calls back a plain latitude
+    and longitude, because that's what their phone shows them. An hour after that, someone reads a
+    position straight off a paper topo quad the old-fashioned way, in degrees, minutes and seconds.
+  </p>
+  <p>
+    No two teams read a position the same way, and a command post that can only accept one format is
+    quietly telling every other team to translate first and hope they get it right. RangerTrak's answer
+    is to accept whatever comes over the air and translate it itself, on the device, with nothing to
+    look up and nothing that needs a signal.
+  </p>
+
+  <h2>Whatever format the radio gives you</h2>
+  <figure class="sidenote">
+    <a href="img/entry-coordinate-formats.jpg"><img src="img/entry-coordinate-formats.jpg" srcset="img/entry-coordinate-formats-480.jpg 480w, img/entry-coordinate-formats-800.jpg 800w, img/entry-coordinate-formats.jpg 955w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="955" height="460" loading="lazy"
+      alt="The Where section of RangerTrak's entry screen. A row of buttons reads DD, DDM, DMS,
+           MGRS and UTM, with MGRS selected; below it, three boxes hold an MGRS position,
+           12SUE 96987 90365, and under those a box for a street address, Plus Code or
+           Maidenhead grid locator." /></a>
+    <figcaption>The switcher on the entry screen, set to MGRS, with the position typed in the
+      three groups it&rsquo;s read out in. The box below takes an address, a Plus Code or a
+      Maidenhead locator.</figcaption>
+  </figure>
+  <p>
+    On the entry screen, a small switcher sits above the coordinate boxes. Pick the format the call
+    actually used, type it in, and the position is set. Everything else it can be expressed as sits
+    right underneath, already converted and read-only, so you can read a different format back if
+    that's more useful to whoever's asking. RangerTrak handles:
+  </p>
+  <ul>
+    <li><strong>Decimal Degrees, Degrees + Decimal Minutes, and Degrees-Minutes-Seconds</strong> &mdash;
+      the three usual ways to say a latitude and longitude.</li>
+    <li><strong>MGRS</strong>, the grid printed on every USGS topo quad and the one US search and
+      rescue, wildland fire and the National Guard read aloud most often, entered as the grid
+      reference, easting and northing the way it's actually called out. The US National Grid
+      (USNG), the civilian standard for search and rescue, reads with the same numbers.</li>
+    <li><strong>UTM</strong>, entered the same way, as its own zone, hemisphere, easting and northing.</li>
+    <li><strong>Maidenhead grid locators</strong>, the four-to-six character squares ham radio operators
+      use, typed into the same box as an address or a Plus Code &mdash; RangerTrak recognizes the shape
+      and converts it.</li>
+    <li><strong>Plus Codes</strong>, and <strong>a plain street address</strong>, in that same box.</li>
+  </ul>
+  <figure class="sidenote sidenote--links">
+    <figcaption>
+      <strong>Which grid should your team use?</strong>
+      <a href="https://maptools.com/learn/choosing-a-coordinate-system" target="_blank" rel="noopener">MapTools: Choosing a Coordinate System</a>
+      weighs latitude and longitude against UTM, USNG and MGRS, and why the square grids are
+      easier to plot. For the others:
+      <a href="https://www.fgdc.gov/usng" target="_blank" rel="noopener">the US National Grid</a> (FGDC),
+      <a href="https://www.arrl.org/grid-squares" target="_blank" rel="noopener">Maidenhead grid squares</a> (ARRL), and
+      <a href="https://maps.google.com/pluscodes/" target="_blank" rel="noopener">Plus Codes</a> (Google).
+      The rule they all agree on: use whatever the team on the other end of the radio uses.
+    </figcaption>
+  </figure>
+  <p>
+    Whichever format you used last on a given device greets you next time, on any mission &mdash; a
+    team that mostly works in MGRS doesn't have to reselect it every session. Every other format still
+    stays one tap away, because an unexpected call in a format your mission wasn't set up for should
+    never be a problem. Address lookup needs an actual internet connection; every coordinate format
+    works with the network completely gone.
+  </p>
+  <p>
+    The grid is on the map too. On the Map page, the layers box (top right) can lay a
+    <strong>USNG / MGRS grid</strong> over the map, drawn on the device so it works offline. When a
+    team reads a grid reference, you can find the square by eye before you&rsquo;ve finished typing.
+  </p>
+
+  <h2>Why a calculated code beats a looked-up one</h2>
+  <p>
+    Plus Codes and What3Words solve the same problem &mdash; turning an exact spot into something short
+    enough to read over the air &mdash; but in opposite ways. A Plus Code comes out of an open standard:
+    your device derives it from the coordinates itself, instantly, with nothing to look up. A
+    three-word address is friendlier to say out loud, but it only exists because a company's own
+    servers hand it out and translate it back on request &mdash; ask with no connection, and there's
+    nowhere to ask. In a command post that has already lost its network &mdash; the exact situation
+    this app is built around &mdash; that stops being academic. RangerTrak calculates the Plus Code for
+    every position you enter, for free, on the device, for exactly this reason.
+  </p>
+
+  <h2>One old-map caution</h2>
+  <p>
+    Every format above assumes a modern GPS position &mdash; WGS84, what a phone or handheld GPS
+    receiver gives you by default. A position read straight off an <strong>older paper topo
+    map</strong> may be surveyed against an older reference instead, NAD27, and the same-looking
+    numbers can land around 100 meters off from where you'd expect in much of the western US. If a position
+    looks slightly wrong next to what you can see on the map, suspect the datum before you suspect the
+    caller.
+  </p>
+
+  <h2>The mini-map's real job: the pin-in-the-water check</h2>
+  <figure class="sidenote">
+    <a href="img/entry-mini-map.jpg"><img src="img/entry-mini-map.jpg" srcset="img/entry-mini-map-480.jpg 480w, img/entry-mini-map-800.jpg 800w, img/entry-mini-map.jpg 994w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="994" height="870" loading="lazy"
+      alt="The Current Location map beside RangerTrak's entry form: a blue pin on a topographic
+           map at Grand Canyon Village, with the latitude, longitude and zoom level underneath." /></a>
+    <figcaption>The small map beside the entry form. The pin shows where the position you typed
+      actually lands.</figcaption>
+  </figure>
+  <p>
+    Next to the entry form is a small map showing exactly where whatever you just typed landed. Its
+    job is to catch the mistake before it costs anyone time: if the pin is sitting in the middle of
+    a lake, or on the wrong side of a ridge, read the coordinates back over the radio while the
+    caller is still on frequency. A transposed digit is a five-second fix now and a real problem
+    twenty minutes later. That little map is also a shortcut in its own right &mdash; click anywhere on
+    it and the coordinates fill themselves in, no typing at all.
+  </p>
+
+  <h2>Two maps, both offline, and a route worth following</h2>
+  <figure class="sidenote">
+    <a href="img/map-layers-and-trails.jpg"><img src="img/map-layers-and-trails.jpg" srcset="img/map-layers-and-trails-480.jpg 480w, img/map-layers-and-trails-800.jpg 800w, img/map-layers-and-trails.jpg 1168w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="1168" height="795" loading="lazy"
+      alt="RangerTrak's Map page on satellite imagery at the State Fair of Virginia demo, with the
+           layers box open at top right: base maps OpenStreetMap, OpenTopoMap and Satellite, and
+           overlays including Hillshade, Mile grid, USNG / MGRS grid, Range rings and Hiking
+           trails. Numbered report clusters are joined by coloured dashed route trails." /></a>
+    <figcaption>The layers box (top right) picks the base map and adds overlays, including the
+      USNG / MGRS grid. The dashed lines are route trails, joining each team&rsquo;s reports in
+      order. From the State Fair of Virginia demo.</figcaption>
+  </figure>
+  <p>
+    There are two maps behind the <strong>Map</strong> button, and both work offline, in
+    different ways. The <strong>Leaflet</strong> map is the default: topographic, with contour
+    lines, and the best detail anywhere in the world when you&rsquo;re online. To use it offline,
+    you save your area ahead of time. Flip the switch under it to the <strong>MapLibre</strong>
+    map, which draws from <strong>PMTiles</strong> map files kept on the device and never needs a
+    connection. A low-detail world map is built in, a demo mission brings street detail for its own
+    area while it&rsquo;s loaded, and you can load a map file with full street detail for yours.
+  </p>
+  <p>
+    Both maps draw every report as a color-coded marker, grouped into a numbered cluster where they
+    overlap. The Leaflet map also draws a <strong>route trail</strong> joining one person's reports
+    oldest to newest, so you can see which way a team has actually moved instead of reading a
+    scatter of dots and guessing.
+  </p>
+
+  <h2>Getting your own area onto the device</h2>
+  <figure class="sidenote">
+    <a href="img/map-save-and-engine.jpg"><img src="img/map-save-and-engine.jpg" srcset="img/map-save-and-engine-480.jpg 480w, img/map-save-and-engine.jpg 682w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="682" height="231" loading="lazy"
+      alt="The controls under RangerTrak's Map: Zoom to Extent, Zoom to offline tiles, Print map,
+           Add Location, a greyed-out Save this area for offline use, and Remove saved tiles.
+           A note reads: Satellite imagery is online only. Switch to OpenTopoMap to save for
+           offline use. Below, a switch reads Use MapLibre + PMTiles Map, instead of Leaflet Map." /></a>
+    <figcaption>Under the map. On satellite, <em>Save this area</em> is greyed out and says why.
+      The switch at the bottom changes to the MapLibre map.</figcaption>
+  </figure>
+  <p>
+    Each map has its own way. On the Leaflet map, <strong>Save this area for offline use</strong>
+    stores the area on screen at the zoom you&rsquo;re on plus two closer levels. It saves the
+    topographic map only: OpenStreetMap&rsquo;s servers don&rsquo;t allow bulk saving, and the
+    satellite view is online only.
+  </p>
+  <p>
+    On the MapLibre map, <strong>Load a custom .pmtiles file&hellip;</strong> keeps a map file for
+    your own area on the device, with full street detail. Before it loads anything, it checks that
+    the file really is a map file and shows its size, zoom range and coverage. Making the file takes
+    a free command-line tool, one command and about ten minutes; the walkthrough is in the
+    app&rsquo;s Help, under
+    <a href="https://rangertrak.org/help?tab=data#map-file-help" target="_blank" rel="noopener">Your
+    data &rarr; Make a map file for your area</a>.
+  </p>
+
+  <section class="try-it" aria-labelledby="try-heading">
+    <h2 id="try-heading">Try it in ten minutes</h2>
+    <ol>
+      <li>Load a demo mission if this device doesn't already have one: <strong>Mission</strong>
+        &rarr; Danger zone &rarr; pick a demo scenario &rarr; <strong>Load sample mission</strong>.
+        It replaces what&rsquo;s on the device, so use a spare browser if you have a real mission
+        there.</li>
+      <li>On the entry screen, use the coordinate switcher to enter a position in a format you don't
+        normally use, and read the other formats it fills in underneath.</li>
+      <li>Look at the small map beside the form. Click somewhere on it and watch the coordinates
+        change &mdash; that's the pin-in-the-water check working in reverse.</li>
+      <li>Open <strong>Map</strong> and find one ranger's route trail. Open the layers box and
+        turn on the <strong>USNG / MGRS grid</strong>. Then flip the switch to the MapLibre map and see the
+        same reports drawn from the demo's own PMTiles map file.</li>
+    </ol>
+    <p>Rather be led through it? Module 3 of the
+      <a href="https://rangertrak.org/tour/#m3" target="_blank" rel="noopener">RangerTrak Tour Guide</a>, <em>Where exactly?</em>, walks you through it hands-on.
+      New to RangerTrak? <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Start the tour</a>.</p>
+  </section>
+
+  <section class="tell-me" aria-labelledby="tell-heading">
+    <h2 id="tell-heading">Tell me</h2>
+    <ol>
+      <li><strong>What grid does your team actually read over the air that isn't here yet?</strong>
+        PLSS Township/Range/Section is the one I hear about most; a national grid from outside the US
+        is another.</li>
+      <li><strong>If you're outside the US:</strong> what formats and grids does your team actually
+        use, and what would you expect a tool like this to support?</li>
+      <li><strong>Did the pin ever land somewhere obviously wrong?</strong> Tell me what format you
+        typed and what you expected instead &mdash; that's the fastest way to find a real bug.</li>
+    </ol>
+    <p>
+      Use the <a href="../feedback.html">feedback form</a> (start with &ldquo;Blog 3&rdquo;),
+      <strong>Help</strong> &rarr; feedback inside the app, or email
+      <a class="js-mail" data-u="RangerTrak" data-d="steadyeoc.com" data-subject="Field%20Notes%203">RangerTrak [at] steadyeoc [dot] com</a>.
+    </p>
+  </section>
+
+  <h2>The series</h2>
+  <ol class="series-list">
+    <li><a href="01-the-paper-log-without-the-paper.html">The Paper Log, Without the Paper</a></li>
+    <li><a href="02-hot-warm-cold.html">Hot, Warm, Cold</a></li>
+    <li aria-current="page"><strong>However They Read It Out</strong> (this post)</li>
+    <li><a href="04-radio-log-to-ics-309-and-213.html">From Radio Log to Form 309 and ICS-213</a></li>
+    <li><a href="05-more-than-one-laptop.html">More Than One Laptop</a></li>
+    <li><a href="06-whats-missing-and-who-decides.html">What&rsquo;s Missing, and Who Decides</a></li>
+    <li><a href="07-your-roster-is-already-in-a-spreadsheet.html">Your Roster Is Already in a Spreadsheet</a></li>
+    <li><a href="08-shift-change.html">Shift Change: Op Periods, Scribes and Laptops</a></li>
+    <li><a href="09-after-the-mission.html">After the Mission: Summaries, AAR and the Final Report</a></li>
+    <li>Field Phones, Up Close</li>
+    <li>RangerView</li>
+    <li>People, Teams and Places: help me get this right</li>
+  </ol>
+  <p class="post-next">
+    <strong>Next: <a href="04-radio-log-to-ics-309-and-213.html">From Radio Log to Form 309 and ICS-213</a>.</strong>
+    The same reports, printed on FEMA&rsquo;s own ICS-213 and a real Form 309 Communications Log, with nothing
+    retyped.
+  </p>
+</main>
+</div>
+
+<footer class="site-footer">
+  <p>RangerTrak&trade; &mdash; &copy; 2019&ndash;2026 John Cornelison, AGPL v3</p>
+  <p>
+    <a href="../blog.html">Blog</a> &middot; <a href="../feed.xml">RSS</a> &middot;
+    <a href="../field-guide.html">Field Guide</a> &middot;
+    <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Tour</a> &middot; <a href="../feedback.html">Feedback</a> &middot;
+    <a class="js-mail" data-u="RangerTrak" data-d="steadyeoc.com">RangerTrak [at] steadyeoc [dot] com</a>
+    &middot;
+    <a href="../feedback.html#support">Support</a>
+  </p>
+  <p class="footer-privacy">This site counts visits with Cloudflare&rsquo;s cookie-free
+    analytics. The RangerTrak app keeps your mission on your device. When online, it fetches
+    map images and looks up addresses for report locations.
+    <a href="../privacy.html">Privacy</a></p>
+</footer>
+</body>
+</html>

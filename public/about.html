@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--
+  Part of the rangertrak.com front door - see index.html's header comment for the full
+  scope note.
+
+  Split off index.html on 2026-09-27 (John): the home page is meant to look simple at a
+  glance, so the detail that used to live there - what the app does, who it's for, its
+  things to be aware of, and the licence - moved one click in, to this page. Nothing here is new;
+  it is a straight move, same content rules as index.html (in-app Help is the single
+  source of truth, "Things to be aware of" matches the blog's "What it doesn't do yet", no real
+  names or download counts, screenshots are the app's fictional demo scenarios only).
+
+  Simple view / Full view (2026-10-20, John; E-207 / ADR D-62; the app now says Easy menus / Full menus, site renamed 2026-11-16): this page now covers only the
+  everyday workflow the app shows in Easy menus. Cards for controls on the app's
+  ADVANCED_FEATURES list (rangertrak-ORG-site/src/app/domain/view.ts) moved to full-view.html.
+-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What RangerTrak does - RangerTrak</title>
+<meta name="description" content="What RangerTrak does, who it's for, and things to be aware of. Free, open source, and works with no Internet once loaded.">
+<!-- Open Graph / Twitter. Added 2026-09-22: these three pages had no og tags at
+     all, so a shared link rendered with no title, description or picture. -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rangertrak.com/about.html">
+<meta property="og:title" content="What RangerTrak does - RangerTrak">
+<meta property="og:description" content="What RangerTrak does, who it's for, and things to be aware of. Free, open source, and works with no Internet once loaded.">
+<meta property="og:image" content="https://rangertrak.com/assets/og-rangertrak.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="RangerTrak: your team&rsquo;s radio reports, made actionable. rangertrak.com">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/styles.css">
+<script src="assets/lightbox.js" defer></script>
+<script src="assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="top-bar">
+  <div class="top-bar__inner">
+    <a class="brand" href="/">
+      <svg class="brand-icon" width="24" height="40" viewBox="0 0 155 260" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-linejoin="round">
+          <path d="M 52 239 L 18.4 175.8 A 38 38 0 1 1 85.6 175.8 Z" stroke-width="12" />
+          <path d="M 52 96 L 52 150" stroke-width="5" stroke-linecap="round" />
+        </g>
+        <rect x="44" y="142" width="16" height="58" rx="6" fill="currentColor" />
+        <circle cx="52" cy="88" r="8" fill="currentColor" />
+        <g fill="var(--chrome)">
+          <rect x="47.5" y="158" width="9" height="4" rx="2" />
+          <rect x="47.5" y="170" width="9" height="4" rx="2" />
+          <rect x="47.5" y="182" width="9" height="4" rx="2" />
+        </g>
+        <g class="brand-signal" fill="none" stroke-width="7" stroke-linecap="round"
+          vector-effect="non-scaling-stroke">
+          <path class="wave wave-1" transform="translate(52,88) scale(0.80) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+          <path class="wave wave-2" transform="translate(52,88) scale(1.30) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+          <path class="wave wave-3" transform="translate(52,88) scale(1.85) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+        </g>
+      </svg>
+      RangerTrak&trade;
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="top-nav" aria-label="Menu">&#9776;</button>
+    <noscript><style>.top-nav{display:flex!important;flex-wrap:wrap!important;}.nav-toggle{display:none!important;}</style></noscript>
+    <nav class="top-nav" id="top-nav" aria-label="Main">
+      <a href="/">Home</a>
+      <a href="about.html" aria-current="page">What it does</a>
+      <a href="blog.html">Blog</a>
+      <a href="field-guide.html">Field Guide</a>
+      <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Tour</a>
+      <a href="feedback.html">Feedback</a>
+      <a href="https://github.com/SteadyEOC/RangerTrak" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg class="icon-github" width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.02 1.93-.02 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg></a>
+      <a class="cta" href="https://rangertrak.org" target="_blank" rel="noopener">Open RangerTrak &rarr;</a>
+    </nav>
+  </div>
+</div>
+
+<div class="shell">
+<main id="main">
+
+  <h1>What RangerTrak does</h1>
+  <p class="lede">
+    The detail behind the home page: what it does, who it's built for, and the gaps it
+    doesn't hide. New to it? The <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">RangerTrak
+    Tour Guide</a> walks you through the app itself, one hands-on module at a time.
+  </p>
+
+  <nav class="features-nav" aria-label="Features pages">
+    <ul class="features-nav__pages">
+      <li><a href="about.html" aria-current="page"><span class="num">1</span>Everyday</a></li>
+      <li><a href="full-view.html"><span class="num">2</span>Full menus</a></li>
+      <li><a href="devices.html"><span class="num">3</span>More than one device</a></li>
+      <li><a href="practice.html"><span class="num">4</span>Practice and training</a></li>
+    </ul>
+    <ul class="features-nav__sections" aria-label="On this page">
+      <li><a href="#before">Before the mission</a></li>
+      <li><a href="#entry">Logging a report</a></li>
+      <li><a href="#watching">Watching the mission</a></li>
+      <li><a href="#shift-change">Shift change</a></li>
+      <li><a href="#after">After the mission</a></li>
+      <li><a href="#who-heading">Who it's for</a></li>
+      <li><a href="#compare-heading">Compared</a></li>
+      <li><a href="#honest-heading">Things to be aware of</a></li>
+    </ul>
+  </nav>
+
+  <figure>
+    <a href="press/rangertrak-bright-angel-search.jpg"><img src="img/bright-angel-search.jpg" srcset="img/bright-angel-search-480.jpg 480w, img/bright-angel-search-800.jpg 800w, img/bright-angel-search.jpg 1600w" sizes="min(calc(100vw - 2.5rem), 46rem)" width="1600" height="1300" fetchpriority="high"
+      alt="A vintage-style relief map of the Grand Canyon's South Rim around Bright Angel Trail, with a radio log down the left side. Numbered markers show where each report came from: the below-rim team finding the overdue hiker at the 3 Mile Resthouse, rim teams sweeping to Hopi and Mather Points, and a command post running on a generator with no Internet. Close-ups show the command post, a team with handy-talkies, and the end-of-mission handoff." /></a>
+    <figcaption>A search, start to finish: RangerTrak's Grand Canyon demo, drawn on the real terrain.
+      Every numbered report was radioed in and logged on one laptop with no Internet, its map area
+      saved ahead of time. The people are
+      fictional; the canyon isn't. Click for the full-size map.</figcaption>
+  </figure>
+
+  <section aria-labelledby="what-heading">
+    <h2 id="what-heading">What it does</h2>
+    <aside class="snapshot" aria-label="In short"><p>Your team&rsquo;s radio reports, made actionable.</p></aside>
+  <figure class="sidenote">
+      <a href="press/rangertrak-radio-log-ics309.png"><img src="img/radio-log-ics309-demo.jpg" srcset="img/radio-log-ics309-demo-480.jpg 480w, img/radio-log-ics309-demo-800.jpg 800w, img/radio-log-ics309-demo.jpg 1400w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="1400" height="1000" loading="lazy"
+      alt="RangerTrak's Radio Log page, titled Radio Log - ICS-309, from the Grand Canyon
+           demo, with Add entry and SitRep buttons above a sortable table of field reports:
+           message number, tactical name, callsign, to, address, latitude, longitude,
+           reported time, elapsed time shaded by how overdue each station is, and status
+           (Incident Check-in, Normal, Location Report, Need Rest/Food). Below are the
+           Export radio log entries and Print ICS-309 log cards." /></a>
+    <figcaption>The Radio Log: every report in one sortable, correctable table, which
+      prints as a Form 309 Communications Log. Screenshots are from the built-in Grand Canyon demo, with invented
+      people throughout; click any for full size, or see <a href="press.html">Press &amp; images</a>.</figcaption>
+  </figure>
+    <p>
+      RangerTrak runs in the browser. There is no server, no account and no login. Your mission
+      stays on your device. When online, the app fetches map images and looks up addresses for
+      report locations (<a href="privacy.html">privacy</a>). Each browser keeps its own copy, and copies
+      don&rsquo;t sync: see <a href="field-guide.html#one-copy-per-browser">one copy per
+      browser</a>. That copy is sturdy: once installed, the laptop or phone can be shut down,
+      restarted, or updated to the latest version of RangerTrak, and the mission is still there
+      when you open it again. Only clearing the browser&rsquo;s site data, or working in a private
+      window, loses it.
+    </p>
+    <p>
+      This page is a tour for new users as much as a list. Many of these are easy to miss just
+      looking at the screen, so it&rsquo;s worth a read before your first drill.
+    </p>
+    <p class="view-note">
+      A new install opens in <strong>Easy menus</strong>: the everyday workflow, and nothing
+      else until your mission needs it. That&rsquo;s what this page covers. The extras, such as
+      tactical call signs, photos, field phones and the printed map sheet, are in
+      <a href="full-view.html">Full menus</a>, one button away in the app.
+    </p>
+
+    <figure class="sidenote">
+        <a href="press/rangertrak-rangers-and-teams.png"><img src="img/rangers-and-teams-demo.jpg" srcset="img/rangers-and-teams-demo-480.jpg 480w, img/rangers-and-teams-demo-800.jpg 800w, img/rangers-and-teams-demo.jpg 1400w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="1400" height="1000" loading="lazy"
+        alt="RangerTrak's Rangers and Teams page under a yellow Confidential banner: a roster
+             table with a photo, ranger ID, call sign, full name, phone, team, role, last
+             contact and notes for each demo person. Overdue last contacts are shaded red, and
+             people not yet heard from say not checked in." /></a>
+      <figcaption>The roster, with last contact shaded against the check-in interval. Fake
+        images and user info: every name, number and face here is invented or
+        AI-generated.</figcaption>
+    </figure>
+    <h3 id="before" class="feature-group tone-signal">Before the mission</h3>
+    <p class="feature-group__intro">Five minutes on a connection, at home or at a meeting, decides whether RangerTrak works when the network goes.</p>
+    <div class="card-grid card-grid--fold tone-signal">
+      <div class="card">
+        <h4>Install it before you head out</h4>
+        <p>Open rangertrak.org once and install it, like any app. From then on it runs with no Internet at all. A device that has never loaded it gets nothing in the field.</p>
+      </div>
+      <div class="card">
+        <h4>The readiness dot</h4>
+        <p>A colored dot at the top of every page checks six things: mission named, a real roster loaded, operational period current, map tiles saved, the alternative map downloaded, storage protected. Hover or tap it to see what&rsquo;s missing; each item links to the fix. It never stops you working.</p>
+      </div>
+      <div class="card">
+        <h4>Mission and operational period</h4>
+        <p>Name the mission and set the operational period on the Mission page. Both appear in the header and on every printed ICS form, with the time elapsed and left in the period. Set a default location near your area and every new report starts from there. Changes save as you make them.</p>
+      </div>
+      <div class="card">
+        <h4>Roster</h4>
+        <p>List individuals or teams, with photos, phone numbers and call signs. No amateur license? Give them a tactical call sign, or leave it blank and RangerTrak uses their name. Photos load in bulk, matched by file name to each ranger&rsquo;s ID or call sign.</p>
+        <p>Start from the Excel or CSV list you already keep. RangerTrak guesses which column is which and lets you correct it, then shows who it will add and update before it changes anything. An import only adds and updates: nobody is deleted, and a blank cell never erases what&rsquo;s there. Load the CERT list, then the radio club&rsquo;s, and the roster grows each time. Imported the wrong list? <em>Undo last import</em>, on the Rangers page, puts the roster back within 24 hours and never touches the log. <em>Print roster</em> gives a contact sheet by team; it carries phone numbers, so keep it safe. <a href="https://github.com/SteadyEOC/RangerTrak/blob/main/LOADING-YOUR-ROSTER.md" target="_blank" rel="noopener">Loading your roster</a> has the steps.</p>
+      </div>
+      <div class="card">
+        <h4>It stays put</h4>
+        <p>Once RangerTrak is in your browser, it and your mission survive closing the browser, logging off and on, browser updates and RangerTrak&rsquo;s own updates. On an iPhone or iPad, add it to the Home Screen: Safari can clear a site that hasn&rsquo;t been used for a while. <em>Storage protection</em>, on the Mission page, is the guard.</p>
+      </div>
+      <div class="card">
+        <h4>Practise first</h4>
+        <p>Built-in demo missions, the Tour and an Exercise mode let you learn it before anyone needs it. See <a href="practice.html">Practice and training</a>.</p>
+      </div>
+    </div>
+
+    <h3 id="entry" class="feature-group tone-checkin">Logging a report</h3>
+    <p class="feature-group__intro">The entry screen is where the scribe spends the incident, and it&rsquo;s built for speed.</p>
+    <div class="card-grid card-grid--fold tone-checkin">
+      <div class="card">
+        <h4>Four questions, in radio order</h4>
+        <p>Who, where, when and what. Tab moves through them in the order a radio call comes in, and Ctrl+Enter (&#8984;+Enter on a Mac) logs it, so a whole report can be typed without touching the mouse.</p>
+      </div>
+      <div class="card">
+        <h4>Your team&rsquo;s location format</h4>
+        <p>Pick the coordinate format your team reads out, such as decimal degrees or USNG/MGRS, on the Mission page, and the entry screen and the map start on that one. The other formats, and a Maidenhead grid locator, fill in below, and you can click any of them to copy it. All of them work offline. A street address works too, but looking it up needs Internet.</p>
+      </div>
+      <div class="card">
+        <h4>Check it on the map</h4>
+        <p>The small map beside the form shows where the report landed. If the pin is in the water, read the coordinates back over the radio. You can also click the map to set the location.</p>
+      </div>
+      <div class="card">
+        <h4>Submit now, fix later</h4>
+        <p>Don&rsquo;t hold the radio to correct a report. Log it, then fix it on the Radio Log: correcting a latitude or longitude moves it on the map. The entry screen warns if a report&rsquo;s time is more than a few minutes in the future.</p>
+      </div>
+      <div class="card">
+        <h4>Who logged it</h4>
+        <p>Each report is stamped with the operator at the keyboard, and that never changes afterward, so a shift change doesn&rsquo;t reassign reports someone else logged.</p>
+      </div>
+      <div class="card">
+        <h4>Messages and resource requests</h4>
+        <p>Tick a box on Entry and the report also becomes an ICS-213 general message, or an ICS-213RR resource request: up to nine items, a priority, where to deliver and who to ask for. Both print from the Messages page on FEMA&rsquo;s own forms, with our message number in the margin. The 213RR is in Full menus only, not on field phones.</p>
+      </div>
+    </div>
+
+    <h3 id="watching" class="feature-group tone-location">Watching the mission</h3>
+    <div class="card-grid card-grid--fold tone-location">
+      <div class="card">
+        <h4>The Radio Log</h4>
+        <p>Every report in one table you can sort, filter and correct, newest at the top. Edits save themselves as soon as you leave the cell. Drag columns to reorder them. A strip above the table names every filter that&rsquo;s on, so nobody forgets rows are hidden; <em>Show everything</em> clears them. Export says how many rows it will save. On a phone it becomes a read-only list of cards.</p>
+      </div>
+      <div class="card">
+        <h4>Every team, at a glance</h4>
+        <p>Each ranger or team gets its own marker color and shape, the same every time. On the topographic map, lines join each team&rsquo;s reports oldest to newest, so you can see which way they&rsquo;re moving. Nearby reports group into clusters; click one to zoom in. On the default map, click a report to read its notes.</p>
+      </div>
+      <div class="card">
+        <h4>Overdue check-ins</h4>
+        <p>Set the expected check-in interval. The map, the roster and the Radio Log shade each team&rsquo;s time since last contact from green through amber to red. Nothing beeps or pops up, so someone has to be looking.</p>
+      </div>
+      <div class="card">
+        <h4>Thin out a crowded map</h4>
+        <p>Hide places or entries, turn on Ranger paths, a heat map or range rings, or show only each ranger&rsquo;s latest report, or only the ones that need attention. A strip along the top of the map lists whatever is hidden, so a thinned-out view is never mistaken for the whole picture.</p>
+      </div>
+      <div class="card">
+        <h4>A map with no Internet</h4>
+        <p>Before you head out, save the area on screen: the map keeps it, plus two closer zoom levels, for use with no Internet. <strong>Zoom to offline tiles</strong> shows which areas you&rsquo;ve saved. Select rows on the Radio Log and the map can show just those.</p>
+      </div>
+      <div class="card">
+        <h4>The 309 communications log</h4>
+        <p>The Radio Log prints as a Form 309 Communications Log, with the mission and operational period on every page.</p>
+      </div>
+    </div>
+
+    <figure class="sidenote">
+      <a href="img/guide/mission-summary.jpg"><img src="img/guide/mission-summary.jpg" srcset="img/guide/mission-summary-480.jpg 480w, img/guide/mission-summary-800.jpg 800w, img/guide/mission-summary.jpg 1400w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="1400" height="766" loading="lazy"
+        alt="The RangerTrak SitRep for the Vashon demo: the mission's name, op period and journal stamp, a Made by line naming the RangerTrak version, totals, and a bar chart of messages per hour with those needing attention in red." /></a>
+      <figcaption>The RangerTrak SitRep, from the Vashon demo: run it any time, print it for the debrief.</figcaption>
+    </figure>
+    <h3 id="shift-change" class="feature-group tone-chrome">Shift change</h3>
+    <p class="feature-group__intro">An operational period ends, a scribe goes off shift, a laptop needs to be swapped. Nothing should be lost on the way.</p>
+    <div class="card-grid card-grid--fold tone-chrome">
+      <div class="card">
+        <h4>The next operational period</h4>
+        <p>When a period ends, set the next one on the Mission page: its name, start and end. The header counts the time elapsed and left, and the readiness dot turns when a period has run out. The 309 and the map sheet both print the period, so Op 1&rsquo;s paper and Op 2&rsquo;s can&rsquo;t be mixed up.</p>
+      </div>
+      <div class="card">
+        <h4>RangerTrak SitRep</h4>
+        <p><strong>SitRep</strong>, on the Radio Log, the Mission page and AAR notes, is a situation report from this radio log (not your EOC&rsquo;s SitRep or an ICS-209). It shows where the mission stands at any moment: totals, a chart of messages per hour (the ones needing attention in red), a chart of traffic by team, counts by station, operator, status and source, the entries that need attention, and your AAR notes grouped by area. Pick this operational period, the whole log or your own dates. It only reads the log, so nothing is closed or locked: run it at each shift change as the hand-off brief, and again at the end for the debrief.</p>
+      </div>
+      <div class="card">
+        <h4>The next scribe, or the next laptop</h4>
+        <p>When the next scribe&rsquo;s device already has entries of its own, <em>Hand over to another scribe</em> on the Radio Log saves one file with the people, the places and every entry. The other device merges it in: nothing there is replaced, corrections come across, and merging twice makes no duplicates. Moving to a blank laptop instead? Back up the mission and restore it there.</p>
+      </div>
+    </div>
+
+    <h3 id="after" class="feature-group tone-normal">After the mission</h3>
+    <div class="card-grid card-grid--fold tone-normal">
+      <div class="card">
+        <h4>AAR notes</h4>
+        <p>An AAR (after-action review) note, from the <em>AAR/214</em> button at the top of every page, records something to improve in one line without leaving what you&rsquo;re doing. At the debrief, give each note an area, a recommendation and an owner, and if you like a capability element from FEMA&rsquo;s HSEEP (Planning, Organization, Equipment, Training or Exercise), then print an improvement-plan table modelled on HSEEP&rsquo;s or export a spreadsheet. Notes stay private on the device.</p>
+        <p>Feedback is different: it goes to RangerTrak&rsquo;s developers as a public GitHub issue, from Help &rarr; Contact us. A note marked <em>RangerTrak</em> can be passed to Feedback later, but only when you choose.</p>
+      </div>
+      <div class="card">
+        <h4>The mission journal</h4>
+        <p>RangerTrak keeps a journal of what was done to the mission&rsquo;s data on this device: loading a demo, restoring, importing, backing up, exporting, printing, clearing. Clearing doesn&rsquo;t erase it. The Log page says whether it is intact, and its newest short code is printed on the 309, the SitRep and the map sheet, so a printout can be matched to the device that made it.</p>
+      </div>
+      <div class="card">
+        <h4>Back up, report, clear up</h4>
+        <p>Back the whole mission up first, with an optional passphrase (reports with photos or video get a second file beside it). Reports and roster export to spreadsheets: the exported roster goes with the final report, and <em>Export changes</em> gives your coordinator just the people added or corrected at the desk. Then clear the reports, the roster, or both: a <em>What to clear</em> list shows what will go, lets you keep your AAR notes, and offers a backup first. If the device is going to someone outside your group, clear the roster for sure.</p>
+      </div>
+      <div class="card">
+        <h4>Help on every page</h4>
+        <p>Press Help at the top of any page for what that page does. The full Help page holds the rest: setup, your data, the FAQ and Contact us. Pick a color scheme, light or dark, from the top bar.</p>
+      </div>
+      <div class="card">
+        <h4>Things that surprise people</h4>
+        <p>Each browser keeps its own copy of the mission; copies don&rsquo;t sync. Only one tab saves at a time. Reloading loses nothing, because reports are already saved on the device. A private window erases everything when it closes.</p>
+      </div>
+    </div>
+
+    <p class="view-note">
+      That&rsquo;s the whole basic workflow: one laptop, a radio and a scribe. When you want more:
+      <a href="full-view.html">Full menus</a> for the extras on one device,
+      <a href="devices.html">More than one device</a> for phones, several scribes and big screens,
+      and <a href="practice.html">Practice and training</a> to learn it first.
+    </p>
+
+    <p>
+      For how each screen works, see the
+      <a href="https://rangertrak.org/help" target="_blank" rel="noopener">in-app Help</a>
+      &mdash; it always matches the app &mdash; or the <a href="field-guide.html">Field Guide</a>
+      on this site.
+    </p>
+  </section>
+
+  <section aria-labelledby="who-heading">
+    <h2 id="who-heading">Who it's for</h2>
+    <div class="photo-pair">
+      <figure>
+        <img src="img/photo-sar-map-briefing.jpg" srcset="img/photo-sar-map-briefing-480.jpg 480w, img/photo-sar-map-briefing-800.jpg 800w, img/photo-sar-map-briefing.jpg 1000w" sizes="(min-width: 40em) 15rem, calc(100vw - 2.5rem)" width="1000" height="750" loading="lazy"
+          alt="A search and rescue team gathered at a wall map of their search segments." />
+        <figcaption>Search and rescue. <span class="photo-credit">NPS photo, public domain.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="img/photo-cert-street.jpg" srcset="img/photo-cert-street-480.jpg 480w, img/photo-cert-street-800.jpg 800w, img/photo-cert-street.jpg 1000w" sizes="(min-width: 40em) 15rem, calc(100vw - 2.5rem)" width="1000" height="669" loading="lazy"
+          alt="Four volunteers in green CERT vests and caps confer over a clipboard on a
+               residential street." />
+        <figcaption>CERT. <span class="photo-credit">FEMA photo, public domain.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="img/photo-operations-meeting.jpg" srcset="img/photo-operations-meeting-480.jpg 480w, img/photo-operations-meeting-800.jpg 800w, img/photo-operations-meeting.jpg 1000w" sizes="(min-width: 40em) 15rem, calc(100vw - 2.5rem)" width="1000" height="750" loading="lazy"
+          alt="An operations meeting in a long portable building: firefighters at a table, maps
+               pinned along the wall, more crew standing at the back." />
+        <figcaption>Operations. <span class="photo-credit">USDA Forest Service photo (Dave Updike).</span></figcaption>
+      </figure>
+    </div>
+    <ul class="roles">
+      <li><strong>Scribe or net control at the command post.</strong> Sets up the mission and
+        roster, then spends the incident writing down reports as they come in by radio. The
+        app is built around this person&rsquo;s speed and accuracy.</li>
+      <li><strong>Field ranger or team.</strong> Usually a voice on the radio, and
+        RangerTrak&rsquo;s job is to make what they say fast and unambiguous to write down.
+        With a smartphone, they can also file their own reports.</li>
+      <li><strong>Analyst or Incident Commander.</strong> Uses the Radio Log and maps during
+        the incident, and exports afterward for the after-action record.</li>
+    </ul>
+
+    <blockquote class="testimonial">
+      &ldquo;(We) all agreed that this is a WOW program with high value added to SAR. I really
+      hope you continue to refine it!&rdquo;
+      <footer>&mdash; Michael Meyer, KB7MTM,
+        <a href="https://vashonbeprepared.org/partnerorganization/acs/" target="_blank" rel="noopener">Vashon ACS</a>
+      </footer>
+    </blockquote>
+  </section>
+
+  <section aria-labelledby="compare-heading" id="compare">
+    <h2 id="compare-heading">Compared with other net loggers</h2>
+    <p>
+      If your group already logs with something that works, keep it. Here is where RangerTrak
+      differs, so you can judge whether it fits a job your current tool doesn&rsquo;t.
+    </p>
+    <ul>
+      <li><strong>Net Control Manager (net-control.us).</strong> A free, hosted website built
+        for running amateur radio nets. It handles check-ins, preambles and roll calls, groups
+        and sub-nets, and produces ICS-214 and 309 reports. Many ARES and club nets use it
+        every week, and other people can follow the net online as it runs. It is a website, so
+        it needs an Internet connection.</li>
+      <li><strong>NetLogger.</strong> A Windows program that shares a live check-in list
+        between stations over the Internet. It is widely used for HF nets.</li>
+      <li><strong>Winlink Express.</strong> Sends messages and ICS forms by radio. It moves
+        traffic; it doesn&rsquo;t keep a running log of where your people are.</li>
+      <li><strong>fldigi and flmsg (NBEMS).</strong> Free programs that send ICS forms such as
+        the ICS-213 over HF or VHF digital modes, with no Internet. Like Winlink, they move
+        messages rather than keep the log.</li>
+      <li><strong>A shared spreadsheet.</strong> Familiar to everyone and easy to set up. It
+        knows nothing about teams, locations or ICS forms unless you build that in.</li>
+      <li><strong>A paper 309 log and a clipboard.</strong> Simple, proven, and needs no power.
+        Keep it as your backup whatever else you use.</li>
+    </ul>
+    <p>There are many more. DXZone keeps a
+      <a href="https://www.dxzone.com/catalog/Software/Logging/" target="_blank" rel="noopener">long
+      list of amateur radio logging software</a>, though most of it is for contacts and contests
+      rather than nets.</p>
+    <p><strong>RangerTrak is built for a different job:</strong> a field incident with teams moving across
+      ground, such as a search, a drill or a deployment.</p>
+    <ul>
+      <li><strong>No Internet needed.</strong> Once loaded, it runs on a laptop or phone with
+        no connection. A saved map area gives street detail offline too.</li>
+      <li><strong>Every report has a location.</strong> Address, coordinates or grid go on the
+        report and appear on the maps.</li>
+      <li><strong>Overdue teams are visible.</strong> The roster shades each team by how long
+        it has been since they last checked in.</li>
+      <li><strong>The data stays on your device.</strong> No account and no server. The log
+        becomes a 309 log or an ICS-213, or a spreadsheet, when you export it.</li>
+    </ul>
+    <p>Some groups may use both: their usual logger for the weekly net, and RangerTrak when
+      teams go into the field.</p>
+  </section>
+
+  <section aria-labelledby="honest-heading">
+    <h2 id="honest-heading">Things to be aware of</h2>
+    <ul>
+      <li><strong>It won&rsquo;t interrupt you.</strong> It shows you a quiet team, but nothing
+        sounds or pops up. Someone has to be looking.</li>
+      <li><strong>Offline street detail needs one quick step.</strong> Save your area on the
+        street map, or load a map file for your region. Only the demo missions bring their own.
+        Without it you get the low-detail world map. Markers are still in the right place, but the streets are missing.</li>
+      <li><strong>Address lookup needs Internet.</strong> Coordinates never do.</li>
+      <li><strong>One device, one log.</strong> Other devices can hand in reports or watch a
+        live read-only view, but there is no shared editing.</li>
+      <li><strong>Encryption is opt-in.</strong> Device encryption locks the roster, reports and
+        photos behind a passphrase, and mission backups can take one too. Both are off until you
+        turn them on. It protects a lost or stolen device, not an unlocked one, and spreadsheet
+        exports are always plain.</li>
+      <li><strong>English only, US forms.</strong> The ICS forms are the US versions.</li>
+    </ul>
+    <p>Which of these matters most to your team? Tell us on
+      <a href="feedback.html">the feedback form</a>.</p>
+  </section>
+
+  <section aria-labelledby="site-heading">
+    <h2 id="site-heading">Built for a weak signal</h2>
+    <figure class="photo-band">
+      <img src="img/photo-paradise-camp-fire.jpg" srcset="img/photo-paradise-camp-fire-480.jpg 480w, img/photo-paradise-camp-fire-800.jpg 800w, img/photo-paradise-camp-fire.jpg 1400w" sizes="min(calc(100vw - 2.5rem), 46rem)" width="1400" height="900" loading="lazy"
+        alt="A burned-out school bus and car on a road through scorched pines, a soldier on the
+             phone beside them, smoke in the air." />
+      <figcaption>Paradise, California, after the 2018 Camp Fire burned through most of the
+        town. Plan for no signal. <span class="photo-credit">California National Guard photo,
+        CC BY 2.0.</span></figcaption>
+    </figure>
+    <p>
+      This site scored a perfect 100 in every category of Google&rsquo;s PageSpeed test,
+      measured as a mid-range phone on a slow mobile connection (5 October 2026). That matters
+      when someone is reading the Field Guide from a staging area with one bar.
+    </p>
+    <ul class="score-badges" aria-label="PageSpeed Insights scores, mobile">
+      <li><span class="badge-key">Performance</span><span class="badge-val">100</span></li>
+      <li><span class="badge-key">Accessibility</span><span class="badge-val">100</span></li>
+      <li><span class="badge-key">Best Practices</span><span class="badge-val">100</span></li>
+      <li><span class="badge-key">SEO</span><span class="badge-val">100</span></li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="oss-heading">
+    <h2 id="oss-heading">Free and open source</h2>
+    <p>
+      RangerTrak is a free, open-source project from
+      <a href="https://steadyeoc.com" target="_blank" rel="noopener">SteadyEOC</a>.
+      It's licensed under the GNU Affero General Public License v3 &mdash; using it, including
+      at your EOC, exercise, or incident, is completely free and always will be. See the
+      <a href="https://github.com/SteadyEOC/RangerTrak/blob/main/LICENSE" target="_blank" rel="noopener">full license text</a>
+      or the <a href="https://github.com/SteadyEOC/RangerTrak" target="_blank" rel="noopener">source on GitHub</a>.
+    </p>
+    <div class="hero-ctas hero-ctas--start">
+      <a class="btn btn--primary" href="https://rangertrak.org" target="_blank" rel="noopener">Open RangerTrak</a>
+      <a class="btn btn--outline" href="feedback.html">Suggest an improvement or report a problem</a>
+    </div>
+  </section>
+
+</main>
+</div>
+
+<footer class="site-footer">
+  <p>RangerTrak&trade; &mdash; &copy; 2019&ndash;2026 John Cornelison, AGPL v3</p>
+  <p>
+    <a href="https://github.com/SteadyEOC/RangerTrak" target="_blank" rel="noopener">GitHub</a> &middot;
+    <a href="blog.html">Blog</a> &middot;
+    <a href="field-guide.html">Field Guide</a> &middot;
+    <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Tour</a> &middot;
+    <a href="feedback.html">Feedback</a> &middot;
+    <a href="press.html">Press &amp; images</a> &middot;
+    <a class="js-mail" data-u="RangerTrak" data-d="steadyeoc.com">RangerTrak [at] steadyeoc [dot] com</a>
+    &middot;
+    <a href="feedback.html#support">Support</a>
+  </p>
+  <p class="footer-privacy">This site counts visits with Cloudflare&rsquo;s cookie-free
+    analytics. The RangerTrak app keeps your mission on your device. When online, it fetches
+    map images and looks up addresses for report locations.
+    <a href="privacy.html">Privacy</a></p>
+</footer>
+
+</body>
+</html>

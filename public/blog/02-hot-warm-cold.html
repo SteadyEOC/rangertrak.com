@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--
+  GRAPHICS 2026-09-26 (blog session, at John's request): the mission bar (img/mission-bar.png)
+  and the readiness panel (img/readiness-panel.png), captured from live rangertrak.org with
+  the Grand Canyon demo loaded (fictional data only), headless Edge at 2x. The six-check list
+  moved from a bullet list into the rail sidenote with the panel image; the checks are
+  named in the paragraph and in the alt text. Recapture if the header changes.
+
+  PUBLISHED 2026-09-29 with the alpha (John: "we are going alpha today"; SteadyEOC may be
+  named, but steadyeoc.com is still near-empty, so it isn't linked - same rule as the app's
+  Help, E-121). Re-checked against origin/main 26ea6be (0.96.9, the alpha build) on
+  2026-09-29: readiness labels, Data safety, "Back up mission", OpenTopoMap-only saving,
+  5,000-tile cap, world map 15.0 MB. Mission bar and readiness panel recaptured the same day
+  (Op 1, "elapsed; ... left" wording). Map-file link now goes to Help -> Your data (.org is the
+  source of truth), not FIELD-GUIDE.md.
+
+  Labels re-checked against the app at 0.96.0 (2026-09-25): the six readiness checks are the
+  literal strings in shared/header/header.component.ts; "Save this area for offline use" is
+  mapLeaflet's saveText (5,000-tile cap per save); "Data safety", "Request persistent storage"
+  and "Back up mission" are on Mission's Data safety card; the optional backup passphrase is
+  E-122 (0.94.0). "Why it works this way" restates ADR D-32's reasoning, nothing more.
+  The built-in map's Vashon street detail is being removed (John, 2026-09-25); this post
+  never claims it. Re-check the \"roughly 15 MB\" download size against the release that drops it.
+-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hot, Warm, Cold - RangerTrak Field Notes</title>
+<meta name="description" content="Part 2 of Field Notes: the five minutes of preparation that decide whether RangerTrak works when the network goes down - and a test you can run with airplane mode.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hot, Warm, Cold: getting a device ready before the network goes">
+<meta property="og:description" content="Offline-first only helps if the device was prepared while it was still online. Part 2 of a short series - with an airplane-mode test to run on your own device.">
+<meta property="og:url" content="https://rangertrak.com/blog/02-hot-warm-cold.html">
+<meta property="og:image" content="https://rangertrak.com/blog/img/02-hero.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="840">
+<meta property="og:image:alt" content="Three starts, each with a readiness-dot colour: Cold start, red, first time on this device with no Internet, nothing loads; Warm start, amber, opened here before, it loads with map gaps; Hot start, green, prepared on purpose, works with the network gone.">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="article:published_time" content="2026-09-29">
+<link rel="alternate" type="application/rss+xml" title="RangerTrak Field Notes" href="../feed.xml">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/styles.css">
+<script src="../assets/lightbox.js" defer></script>
+<script src="../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="top-bar">
+  <div class="top-bar__inner">
+    <a class="brand" href="/">
+      <svg class="brand-icon" width="24" height="40" viewBox="0 0 155 260" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-linejoin="round">
+          <path d="M 52 239 L 18.4 175.8 A 38 38 0 1 1 85.6 175.8 Z" stroke-width="12" />
+          <path d="M 52 96 L 52 150" stroke-width="5" stroke-linecap="round" />
+        </g>
+        <rect x="44" y="142" width="16" height="58" rx="6" fill="currentColor" />
+        <circle cx="52" cy="88" r="8" fill="currentColor" />
+        <g fill="var(--chrome)">
+          <rect x="47.5" y="158" width="9" height="4" rx="2" />
+          <rect x="47.5" y="170" width="9" height="4" rx="2" />
+          <rect x="47.5" y="182" width="9" height="4" rx="2" />
+        </g>
+        <g class="brand-signal" fill="none" stroke-width="7" stroke-linecap="round"
+          vector-effect="non-scaling-stroke">
+          <path class="wave wave-1" transform="translate(52,88) scale(0.80) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+          <path class="wave wave-2" transform="translate(52,88) scale(1.30) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+          <path class="wave wave-3" transform="translate(52,88) scale(1.85) translate(-52,-88)"
+            d="M 74.94 55.23 A 40 40 0 0 1 82.64 113.71" />
+        </g>
+      </svg>
+      RangerTrak&trade;
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="top-nav" aria-label="Menu">&#9776;</button>
+    <noscript><style>.top-nav{display:flex!important;flex-wrap:wrap!important;}.nav-toggle{display:none!important;}</style></noscript>
+    <nav class="top-nav" id="top-nav" aria-label="Main">
+      <a href="/">Home</a>
+      <a href="../about.html">What it does</a>
+      <a href="../blog.html" aria-current="page">Blog</a>
+      <a href="../field-guide.html">Field Guide</a>
+      <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Tour</a>
+      <a href="../feedback.html">Feedback</a>
+      <a href="https://github.com/SteadyEOC/RangerTrak" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg class="icon-github" width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.02 1.93-.02 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg></a>
+      <a class="cta" href="https://rangertrak.org" target="_blank" rel="noopener">Open RangerTrak &rarr;</a>
+    </nav>
+  </div>
+</div>
+
+<div class="shell">
+<main id="main" class="post">
+  <p class="post-kicker">Field Notes &middot; Part 2</p>
+  <h1>Hot, Warm, Cold</h1>
+  <p class="post-meta">
+    By John Cornelison, <a href="https://www.qrz.com/db/KE7KDQ" target="_blank" rel="noopener">KE7KDQ</a> &middot; <time datetime="2026-09-29">September 29, 2026</time> &middot; about a 6-minute read
+  </p>
+
+  <figure class="post-hero">
+    <img src="img/02-hero.jpg" srcset="img/02-hero-480.jpg 480w, img/02-hero-800.jpg 800w, img/02-hero.jpg 1600w" sizes="min(calc(100vw - 2.5rem), 46rem)" width="1600" height="840"
+      alt="Three starts, each with a readiness-dot colour: Cold start, red, first time on this device with no Internet, nothing loads; Warm start, amber, opened here before, it loads with map gaps; Hot start, green, prepared on purpose, works with the network gone." />
+  </figure>
+
+  <div class="post-intro">
+    <p><strong>RangerTrak</strong> is a free, open-source radio log and map for the scribe at a
+      CERT, ACS/ARES, SAR or wildland-fire command post. Log who, where, when and what off the
+      radio; it maps them. It works offline once set up, and prints the Form 309 Communications Log and the ICS-213. I built it,
+      as the first tool from SteadyEOC, my one-person effort building software for teams that
+      have to keep working when the network doesn&rsquo;t. It&rsquo;s AGPL and will stay free. Try it at
+      <a href="https://rangertrak.org" target="_blank" rel="noopener">rangertrak.org</a>, no
+      account or install needed.</p>
+    <p><strong>The alpha is out today.</strong> Every planned feature is in. It&rsquo;s ready to
+      try in a drill or at your desk, not yet for a real call-out, and 1.0 is planned for
+      November. What breaks for you now is what gets fixed before then.</p>
+  </div>
+
+  <p>
+    &ldquo;Works offline&rdquo; is one of the most over-promised phrases in emergency software.
+    Here's the honest version for RangerTrak: <strong>it works with no internet at all, but only if
+    the device was prepared while it still had one.</strong> The difference between a prepared
+    device and an unprepared one isn't a slower experience. It's a working tool versus a blank
+    screen.
+  </p>
+  <p>
+    I think of it the way a generator gets tested: you find out whether it starts on a quiet
+    Tuesday, not during the outage. So this post is about three starting conditions, worth knowing
+    by name, and the five minutes that move a device from the worst to the best.
+  </p>
+
+  <h2>The three starts</h2>
+  <p>
+    <strong>Cold start: first time on this device, no internet.</strong> Nothing loads. The app has
+    to arrive from somewhere at least once, and no amount of good design gets around that. If
+    you're caught here, find any connection, even a phone hotspot for a minute, and load it.
+  </p>
+  <p>
+    <strong>Warm start: you've opened RangerTrak on this device before.</strong> The app itself will
+    load offline, and map areas you happened to look at are probably still there. Areas you never
+    viewed are blank. It mostly works, with gaps you'll discover at the worst possible moment.
+  </p>
+  <p>
+    <strong>Hot start: prepared on purpose.</strong> The app, your roster, your mission settings and
+    map coverage for your area are all already on the device. It works with the network completely
+    gone. This is the only one you want for a real callout.
+  </p>
+
+  <h2>Getting to hot, in five minutes</h2>
+  <figure class="sidenote">
+    <a href="../press/rangertrak-map.png"><img src="../img/map-grand-canyon-demo.jpg" srcset="../img/map-grand-canyon-demo-480.jpg 480w, ../img/map-grand-canyon-demo-800.jpg 800w, ../img/map-grand-canyon-demo.jpg 1400w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="1400" height="1512" loading="lazy"
+      alt="RangerTrak's Map page showing the Grand Canyon demo on OpenTopoMap. Under the map, the Offline maps box reads 'Nothing saved on this device yet', with buttons 'Save this area for offline use' and 'Remove saved tiles', and the line 'This view: ~272 tiles (zoom 14-16), ~4.0 MB'." /></a>
+    <figcaption>Step 5 on the demo mission. The button tells you what a save will cost before
+      you press it: here about 272 tiles, three zoom levels, 4 MB.</figcaption>
+  </figure>
+  <p>Do this at home or at a meeting, on the device that will actually sit on the table:</p>
+  <ol>
+    <li><strong>Install it.</strong> Accept RangerTrak's own install offer, or use your browser's
+      <em>Install app</em> / <em>Add to Home Screen</em>. An installed app gets its own icon and window,
+      and browsers are much more willing to keep its data.</li>
+    <li><strong>Protect the storage.</strong> On <strong>Mission</strong>, find the <strong>Data safety</strong> card and press
+      <strong>Request persistent storage</strong> if it's offered. Without it, a browser that runs
+      low on disk space is allowed to quietly clear your mission. That risk is highest on
+      iPhones and iPads, where every browser (Chrome included) runs on Safari&rsquo;s engine,
+      doesn&rsquo;t reliably honor this request, and can clear a site&rsquo;s data after
+      about a week unused. Safari on a Mac does the same. There, installing it (step 1) and
+      the backup (step 6) are your real protection.</li>
+    <li><strong>Name the mission and set the operating period</strong>, also on Mission.</li>
+    <li><strong>Load your roster</strong> on the <strong>Rangers</strong> page.</li>
+    <li><strong>Prime the maps.</strong> On <strong>Map</strong>, use the layer control in the
+      map's top-right corner to show <strong>OpenTopoMap</strong>. Saving is switched off on the
+      OpenStreetMap layer, because its volunteers ask people not to bulk-download. Pan to your
+      operating area at the widest zoom you'll need, and press <strong>Save this area for
+      offline use</strong> in the Offline maps box under the map. It saves that zoom plus two closer levels and tells you roughly how much
+      it will download first. It won't save more than a few thousand tiles at once, so save a big
+      area in pieces. Then flip the switch to the alternative map once. That downloads its built-in
+      world map to the device (roughly 15 MB), and the readiness list shows the download's
+      progress.</li>
+    <li><strong>Take a backup.</strong> On Mission, press <strong>Back up mission</strong> and put the
+      file somewhere other than this device. It asks for an optional passphrase. The file holds
+      your whole roster, names and phone numbers included, so use one if the file will travel.
+      Leave it blank and the file is written unencrypted, as it always was.</li>
+  </ol>
+
+  <h2>The dot in the corner is keeping score</h2>
+  <figure>
+    <a href="img/mission-bar.png"><img src="img/mission-bar.png" srcset="img/mission-bar-480.png 480w, img/mission-bar-800.png 800w, img/mission-bar.png 1360w" sizes="min(calc(100vw - 2.5rem), 46rem)" width="1360" height="218" loading="lazy"
+      alt="The right-hand end of RangerTrak's menu (Mission, Help), and under it the mission bar: an amber readiness dot, 'Op 1', '5:45:11 elapsed; 6:14:49 left', the date and time, then the AAR note and Guide buttons." /></a>
+    <figcaption>The mission bar sits under the menu on every page: the readiness dot, the
+      operating period's name, the time elapsed and left in it, and the clock. Amber here, on a demo mission that
+      has no saved maps yet.</figcaption>
+  </figure>
+  <figure class="sidenote">
+    <a href="img/readiness-panel.png"><img src="img/readiness-panel.png" srcset="img/readiness-panel-480.png 480w, img/readiness-panel-800.png 800w, img/readiness-panel.png 858w" sizes="(min-width: 66rem) 15rem, min(calc(100vw - 2.5rem), 46rem)" width="858" height="774" loading="lazy"
+      alt="The mission panel opened from the readiness dot: the demo mission's name and description, Op period Op 1 with its start and end times, then Mission readiness: amber. Ticked: Mission named, Real roster loaded, Operating period current. Crossed: Offline map tiles saved (Leaflet), Alternative map warmed (MapLibre), Storage protected from eviction." /></a>
+    <figcaption>Hover or tap the dot. The six checks, three still failing on this device; each
+      links to the thing that fixes it.</figcaption>
+  </figure>
+  <p>
+    You don't have to remember that list. The small colored dot in RangerTrak's mission bar tracks
+    six checks: mission named, a real roster loaded, the operating period current, offline map
+    tiles saved, the alternative map warmed, and storage protected. Hover over it or tap it and it
+    tells you which are still failing on this device.
+  </p>
+  <p>
+    Each one links straight to the thing that fixes it. Green means hot. It's a checklist that
+    checks itself, which beats a laminated card nobody reads.
+  </p>
+
+  <aside class="design-note" aria-labelledby="why-heading">
+    <h2 id="why-heading">Why it works this way</h2>
+    <p>The whole point of RangerTrak is to keep working when the network doesn&rsquo;t. But several ways a device can be unprepared fail silently. Nothing shows an error. You find out later, in the field, as a lost mission or a blank map. Every one of those checks could already be measured. What was missing was a way to see them, and that&rsquo;s the dot&rsquo;s whole job.</p>
+    <p>The dot never says &ldquo;you can&rsquo;t work.&rdquo; Whatever color it shows, you can still log a report. An indicator that acts like a gate gets ignored or switched off. So it reports how ready you are for the worst case, a total loss of network. It doesn&rsquo;t block you in the situation you&rsquo;re actually in.</p>
+    <p>The cost is real. Someone has to do the preparation while there&rsquo;s still a connection. No design removes that. The dot only makes it hard to forget.</p>
+  </aside>
+
+  <section class="try-it" aria-labelledby="try-heading">
+    <h2 id="try-heading">Try it: the airplane-mode test</h2>
+    <p>This is the single most useful thing in the whole series. It takes five minutes.</p>
+    <ol>
+      <li>Work through the steps above on a real device. Demo data is fine for the roster.</li>
+      <li>Close RangerTrak completely.</li>
+      <li><strong>Turn on airplane mode</strong>, and make sure Wi-Fi is off too.</li>
+      <li>Open RangerTrak again. Log a report. Open the Map and pan around your area. Open the
+        Radio Log.</li>
+      <li>Write down anything that was blank, slow, or broken. Then turn the network back on and
+        delete your test report.</li>
+    </ol>
+    <p>Rather be led through it? Module 6 of the
+      <a href="https://rangertrak.org/tour/#m6" target="_blank" rel="noopener">RangerTrak Tour Guide</a>, <em>Lights out</em>, walks you through it hands-on.
+      New to RangerTrak? <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Start the tour</a>.</p>
+    <p class="try-it__note">
+      The alternative map&rsquo;s built-in world map is low detail everywhere: enough to see
+      where you are, not which street you're on. (A demo mission brings street detail for its own
+      area while it&rsquo;s loaded; a real mission doesn&rsquo;t.) The area you saved in step 5 is your detailed
+      offline map. If you want street detail on the alternative map too, a coordinator can make a
+      map file for your area once and share it. The steps are in the app&rsquo;s Help, under
+      <a href="https://rangertrak.org/help?tab=data#map-file-help" target="_blank" rel="noopener">Your data &rarr; Make a map file for your area</a>. One thing that won't work in airplane mode: looking up a
+      street address. That needs the Internet. Every coordinate format works offline.
+    </p>
+  </section>
+
+  <section class="tell-me" aria-labelledby="tell-heading">
+    <h2 id="tell-heading">Tell me</h2>
+    <ol>
+      <li><strong>Did your device pass the airplane-mode test?</strong> What kind of device and browser
+        was it, and what went blank?</li>
+      <li><strong>Which readiness check was hardest to turn green</strong>, and why?</li>
+      <li><strong>Who in your team would do this preparation</strong>, and when: at a monthly meeting, at
+        deployment, never? That answer changes what I should build next.</li>
+    </ol>
+    <p>
+      Use the <a href="../feedback.html">feedback form</a> (start with &ldquo;Blog 2&rdquo;), <strong>Help</strong>
+      &rarr; feedback inside the app, or email
+      <a class="js-mail" data-u="RangerTrak" data-d="steadyeoc.com" data-subject="Field%20Notes%202">RangerTrak [at] steadyeoc [dot] com</a>.
+      Device and browser details are gold.
+    </p>
+  </section>
+
+  <h2>The series</h2>
+  <ol class="series-list">
+    <li><a href="01-the-paper-log-without-the-paper.html">The Paper Log, Without the Paper</a></li>
+    <li aria-current="page"><strong>Hot, Warm, Cold</strong> (this post)</li>
+    <li><a href="03-however-they-read-it-out.html">However They Read It Out: coordinates and maps</a></li>
+    <li><a href="04-radio-log-to-ics-309-and-213.html">From Radio Log to Form 309 and ICS-213</a></li>
+    <li><a href="05-more-than-one-laptop.html">More Than One Laptop</a></li>
+    <li><a href="06-whats-missing-and-who-decides.html">What&rsquo;s Missing, and Who Decides</a></li>
+    <li><a href="07-your-roster-is-already-in-a-spreadsheet.html">Your Roster Is Already in a Spreadsheet</a></li>
+    <li><a href="08-shift-change.html">Shift Change: Op Periods, Scribes and Laptops</a></li>
+    <li><a href="09-after-the-mission.html">After the Mission: Summaries, AAR and the Final Report</a></li>
+    <li>Field Phones, Up Close</li>
+    <li>RangerView</li>
+    <li>People, Teams and Places: help me get this right</li>
+  </ol>
+  <p class="post-next">
+    <strong>Next: <a href="03-however-they-read-it-out.html">However They Read It Out</a>.</strong> MGRS, UTM, Maidenhead, Plus Codes, or a street
+    address: taking a position however the field team reads it, and why a code your device can
+    calculate beats one it has to look up.
+  </p>
+</main>
+</div>
+
+<footer class="site-footer">
+  <p>RangerTrak&trade; &mdash; &copy; 2019&ndash;2026 John Cornelison, AGPL v3</p>
+  <p>
+    <a href="../blog.html">Blog</a> &middot;
+    <a href="../feed.xml">RSS</a> &middot;
+    <a href="../field-guide.html">Field Guide</a> &middot;
+    <a href="https://rangertrak.org/tour/" target="_blank" rel="noopener">Tour</a> &middot;
+    <a href="../feedback.html">Feedback</a> &middot;
+    <a class="js-mail" data-u="RangerTrak" data-d="steadyeoc.com">RangerTrak [at] steadyeoc [dot] com</a>
+    &middot;
+    <a href="../feedback.html#support">Support</a>
+  </p>
+  <p class="footer-privacy">This site counts visits with Cloudflare&rsquo;s cookie-free
+    analytics. The RangerTrak app keeps your mission on your device. When online, it fetches
+    map images and looks up addresses for report locations.
+    <a href="../privacy.html">Privacy</a></p>
+</footer>
+
+</body>
+</html>
