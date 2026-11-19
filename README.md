@@ -92,7 +92,7 @@ bump `version` in `package.json`, commit as `chore(release): x.y.z`, then
 `git tag -a vx.y.z -m "..."` and `git push --follow-tags`.
 
 
-## Licence
+## License
 
 Code (`worker.js`, the site's JS and CSS, `tools/`, `design/` scripts): **MIT**, see
 [`LICENSE`](LICENSE). Words and images: **CC BY 4.0**, see
