@@ -142,7 +142,7 @@ try {
         if (await evaluate(`!document.querySelector('.leaflet-tile:not(.leaflet-tile-loaded)')`) && i > 15) break
       }
       // Off-screen, Edge throttles animation frames, so Leaflet's tile fade-in never finishes and
-      // the base map stays grey. Show loaded tiles at full opacity.
+      // the base map stays gray. Show loaded tiles at full opacity.
       await evaluate(`(() => { const st = document.createElement('style'); st.textContent =
         '.leaflet-tile-loaded { opacity: 1 !important } .leaflet-tile { transition: none !important }';
         document.head.appendChild(st) })()`)

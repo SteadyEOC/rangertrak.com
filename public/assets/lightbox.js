@@ -3,7 +3,7 @@
  *
  * Dependency-free. Intercepts a plain <a href="img/x.png"><img ...></a> link (the site's
  * usual pattern for "click a screenshot to see it full size") and shows the image in a
- * centred <dialog> instead of navigating the browser to the bare file.
+ * centered <dialog> instead of navigating the browser to the bare file.
  *
  * Deliberately narrow:
  *   - Only links whose href ends in .png/.jpg/.jpeg/.webp/.svg are intercepted.
@@ -96,7 +96,7 @@
   }
 
   document.addEventListener('click', function (event) {
-    // Leave modified clicks alone - the browser's own "new tab" / "new window" behaviour
+    // Leave modified clicks alone - the browser's own "new tab" / "new window" behavior
     // must keep working.
     if (event.defaultPrevented || event.button !== 0 ||
         event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {

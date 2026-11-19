@@ -21,7 +21,7 @@
   --chrome-ink: #EAF1F8;
   --accent: #0B5FA8;
   --accent-ink: #FFFFFF;
-  /* RangerTrak's mark colour - the waves leaving the antenna. Not an accent:
+  /* RangerTrak's mark color - the waves leaving the antenna. Not an accent:
      it is 2.99:1 on white and would fail as link or button text. Use --accent
      for anything interactive. Kept identical in light and dark because it is
      the product's identity and has to match the favicon, the app's navbar and
@@ -38,7 +38,7 @@
   --danger-line: #E0A199;
   --danger-bg: #FCEDEB;
   /* Colored cards (John, 2026-09-30: "I love the colored version"). The app's own Radio Log
-     status colours, so a newcomer meets the palette they'll see in the app. No red: in the
+     status colors, so a newcomer meets the palette they'll see in the app. No red: in the
      app red means Urgent or overdue, so it is never decoration here. */
   --st-checkin: #2E5AA0;
   --st-location: #2E7266;
@@ -232,7 +232,7 @@ figcaption {
 .top-nav a[aria-current="page"] { text-decoration: underline; }
 
 /* The GitHub nav link is an icon only (its accessible name comes from aria-label/title,
-   not visible text) - centre it on the same line as the text links beside it. */
+   not visible text) - center it on the same line as the text links beside it. */
 .top-nav a[aria-label="GitHub"] {
   display: flex;
   align-items: center;
@@ -414,14 +414,14 @@ main.home > section:last-of-type { margin-bottom: 1.5rem; }
 /* The brand's signal orange: borders and dots only (2.99:1 on white, never text). */
 .tone-signal   { --tone: var(--signal);      --tone-bar: #12263F; }
 
-/* A feature group (about.html): coloured dot on the heading, coloured top edge on its cards. */
+/* A feature group (about.html): colored dot on the heading, colored top edge on its cards. */
 .feature-group[class*="tone-"]::before {
   content: ""; display: inline-block; width: .7em; height: .7em; border-radius: 50%;
   background: var(--tone); margin-right: .45em; vertical-align: .05em;
 }
 .card-grid[class*="tone-"] > .card { border-top: 4px solid var(--tone); }
 
-/* A card with a coloured title bar (home page setup cards, the RangerTrak card). */
+/* A card with a colored title bar (home page setup cards, the RangerTrak card). */
 .card--bar { padding: 0; overflow: hidden; border-color: var(--line-strong); }
 .card--bar > .card-bar {
   background: var(--tone-bar, #12263F); color: #FFFFFF;
@@ -456,7 +456,7 @@ main.home > section:last-of-type { margin-bottom: 1.5rem; }
   padding-bottom: .35em; margin-bottom: .7em; opacity: .85;
 }
 
-/* Feature list with status-coloured labels (the RangerTrak card). */
+/* Feature list with status-colored labels (the RangerTrak card). */
 .pill-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .55em; color: var(--ink-2); font-size: .95rem; }
 .pill-list li { display: grid; grid-template-columns: auto 1fr; gap: .6em; align-items: baseline; }
 .pill-list strong { color: var(--ink); }
@@ -535,7 +535,7 @@ blockquote.testimonial footer {
    (feedback.html: no names, phone numbers, addresses or real mission detail in a report
    that becomes a public GitHub issue). Deliberately quieter than a pure red/white error
    state - this is a standing caution to read once, not an inline validation error - and
-   the dark-mode colours are chosen to keep at least 4.5:1 contrast against --danger-bg. */
+   the dark-mode colors are chosen to keep at least 4.5:1 contrast against --danger-bg. */
 .warn-notice {
   background: var(--danger-bg);
   color: var(--danger-ink);
@@ -699,7 +699,7 @@ footer.site-footer p { margin: 0.4em 0; }
 
 /* Every page: the reading column on the left, a narrower rail on the right. The shell
    is as wide as the top bar (64rem), so the reading column starts at the same x on
-   every page instead of jumping between centred widths.
+   every page instead of jumping between centered widths.
 
    The rail holds ONE of two things per page, never both:
      - a rolling table of contents (.toc, sticky, scrollspy-lit) on long pages; or
@@ -852,7 +852,7 @@ details.fold[open] { padding-bottom: 0.5rem; }
 .shell h2[id] { scroll-margin-top: 4.5rem; }
 
 /* Two columns need 15rem of rail + 2.5rem of gap + a reading column that is still a
-   comfortable ~43rem. Below that, one centred column, as the site was before. */
+   comfortable ~43rem. Below that, one centered column, as the site was before. */
 @media (max-width: 66rem) {
   .shell { display: block; max-width: var(--max-width); }
   .rail { padding: 0 0 3rem; }
@@ -1040,7 +1040,7 @@ h2.h2-spaced { margin-top: 2.5rem; }
 
 /* Lighthouse score badges on the About page (PageSpeed, 2026-10-05). Two-part, shields.io
    style, but pure CSS: the CSP's img-src 'self' would block shields.io images. Green is the
-   app's "rest" status colour, per the colored-cards rule. */
+   app's "rest" status color, per the colored-cards rule. */
 .score-badges { list-style: none; margin: 1em 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5em; }
 .score-badges li { display: inline-flex; border-radius: 4px; overflow: hidden; font-size: .8rem; font-weight: 600; line-height: 1.6; }
 .score-badges .badge-key { background: var(--st-normal); color: var(--pill-ink); padding: 0 .55em; }
@@ -1124,7 +1124,7 @@ h2.h2-spaced { margin-top: 2.5rem; }
 
 /* ── Field Guide: a spiral-bound notebook (John, 2026-11-16) ────────────
    The page sits on a sheet with a row of wire coils down its left edge. Light touch: the
-   coils are a strip of one repeated SVG, mid-grey so they read in light and dark. Gone on
+   coils are a strip of one repeated SVG, mid-gray so they read in light and dark. Gone on
    a phone (no room) and in print. */
 main.binder {
   position: relative;

@@ -1,5 +1,5 @@
 // Load every page in headless InPrivate Edge and report Content-Security-Policy violations,
-// enforced or report-only, plus a few behaviour checks on the parts a CSP could break.
+// enforced or report-only, plus a few behavior checks on the parts a CSP could break.
 // Usage: node tools/csp-test.mjs [origin]   (default https://rangertrak.com; or a wrangler dev URL)
 // Run it against the live site too: Cloudflare injects its analytics beacon only there.
 // Never a visible window. It does not submit the feedback form (that would file a real issue);
