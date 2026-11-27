@@ -11,6 +11,14 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+- 2026-11-27: howsmy.site check items (A 93). Canonical link on every page (its og:url);
+  shorter home search description (148 characters); JSON-LD on the home page (Organization,
+  WebSite, WebApplication); `robots.txt` naming the sitemap; `/.well-known/security.txt`
+  (GitHub private vulnerability reporting, expires 2027-11-27); `Permissions-Policy` header.
+  `/assets/*` now cached for a year (immutable) and `/img/*` for a week: the deploy runs the new
+  `tools/stamp-assets.js`, which adds `?v=<hash>` to asset links in the deployed HTML only.
+  `check-site.js` checks all of these, and allows `application/ld+json` blocks.
+
 - 2026-11-16: design-review pass (John). The site now says **Easy menus / Full menus**, as the
   app does (field guide, `full-view.html`, about, home, press; URL kept, dated posts unchanged).
   New share card `og-rangertrak.png` with the home H1 line, from a source in `design/og/`

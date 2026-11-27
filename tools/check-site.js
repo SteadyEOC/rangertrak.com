@@ -267,7 +267,8 @@ async function main() {
       for (const file of walk(pub)) {
         const html = fs.readFileSync(file, 'utf8')
         const name = path.relative(pub, file)
-        if (/<script(?![^>]*\bsrc=)[^>]*>/i.test(html)) problems.push(`${name}: inline <script> (move it to assets/)`)
+        // application/ld+json is a data block the browser never runs, so the CSP allows it.
+        if (/<script(?![^>]*\b(?:src=|type="application\/ld\+json"))[^>]*>/i.test(html)) problems.push(`${name}: inline <script> (move it to assets/)`)
         if (/<[a-z][^>]*\sstyle="/i.test(html)) problems.push(`${name}: style="" attribute (use a class)`)
         if (/<[a-z][^>]*\son[a-z]+="/i.test(html)) problems.push(`${name}: on*="" handler (use addEventListener)`)
         for (const m of html.matchAll(/<style>([\s\S]*?)<\/style>/gi)) {
@@ -294,6 +295,49 @@ async function main() {
     }
   } catch (err) {
     fail('CSP', String(err))
+  }
+
+  // 6. Search and caching basics from the howsmy.site check (2026-11-27).
+  try {
+    const fs = require('node:fs')
+    const path = require('node:path')
+    const pub = path.join(__dirname, '..', 'public')
+    const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) =>
+      e.isDirectory() ? walk(path.join(d, e.name)) : e.name.endsWith('.html') ? [path.join(d, e.name)] : [])
+
+    // Every indexable page names its preferred address, and it matches its og:url.
+    const bad = []
+    for (const file of walk(pub)) {
+      const html = fs.readFileSync(file, 'utf8')
+      if (/<meta name="robots" content="noindex">/.test(html)) continue
+      const canon = (html.match(/<link rel="canonical" href="([^"]+)">/) || [])[1]
+      const og = (html.match(/<meta property="og:url" content="([^"]+)">/) || [])[1]
+      if (!canon || canon !== og) bad.push(`${path.relative(pub, file)}: canonical ${canon || '(none)'} vs og:url ${og || '(none)'}`)
+    }
+    if (bad.length) fail('canonical link on every page', bad.join('\n        '))
+    else pass('canonical link on every page, matching og:url')
+
+    if (/^Sitemap: https:\/\/rangertrak\.com\/sitemap\.xml$/m.test(fs.readFileSync(path.join(pub, 'robots.txt'), 'utf8'))) pass('robots.txt names the sitemap')
+    else fail('robots.txt names the sitemap', 'no "Sitemap: https://rangertrak.com/sitemap.xml" line')
+
+    const sec = fs.readFileSync(path.join(pub, '.well-known', 'security.txt'), 'utf8')
+    const expires = new Date((sec.match(/^Expires: (.+)$/m) || [])[1])
+    const days = (expires - Date.now()) / 86400000
+    if (!(days > 30)) fail('security.txt Expires is over 30 days away', `Expires ${isNaN(days) ? '(missing)' : expires.toISOString()}; move it a year out`)
+    else pass(`security.txt valid for ${Math.floor(days)} more days`)
+
+    // Live: assets are cached for a year, which is only safe if the links carry ?v=.
+    const res = await fetch(`${ORIGIN}/?cache-bust=${Date.now()}`, { headers: { 'cache-control': 'no-cache' } })
+    const home = await res.text()
+    if (/href="assets\/styles\.css\?v=[0-9a-f]{10}"/.test(home)) pass('live asset links are versioned (?v=hash)')
+    else fail('live asset links are versioned (?v=hash)', 'styles.css linked without ?v=; did the deploy skip tools/stamp-assets.js? /assets/* is cached for a year')
+    if (res.headers.get('permissions-policy')) pass('Permissions-Policy header sent')
+    else fail('Permissions-Policy header sent', 'missing on /')
+    const st = await fetch(`${ORIGIN}/.well-known/security.txt`, { redirect: 'manual' })
+    if (st.status === 200 && /^Contact: /m.test(await st.text())) pass('/.well-known/security.txt served')
+    else fail('/.well-known/security.txt served', `HTTP ${st.status}`)
+  } catch (err) {
+    fail('search and caching basics', String(err))
   }
 
   console.log('')

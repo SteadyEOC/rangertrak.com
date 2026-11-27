@@ -50,6 +50,11 @@ jobs:
       - name: Minify styles.css
         run: npx esbuild public/assets/styles.css --minify --outfile=public/assets/styles.css --allow-overwrite
 
+      # After the minify, so the hash is of the file actually deployed. public/_headers caches
+      # /assets/* for a year; this gives each changed file a new URL. Runner checkout only.
+      - name: Version asset links (?v=hash)
+        run: node tools/stamp-assets.js
+
       - name: Deploy
         uses: cloudflare/wrangler-action@v4
         with:

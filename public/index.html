@@ -49,7 +49,9 @@
 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>RangerTrak - offline field-report mapping for radio-only teams</title>
-<meta name="description" content="RangerTrak turns your team's radio reports into a live log and map for CERT, ACS, SAR and wildland-fire teams reachable only by voice radio. Free, open source, and works with no Internet once loaded.">
+<!-- Search-result description kept under 160 characters (howsmy.site, 2026-11-27: the
+     199-character one was cut off). og:description below keeps the longer wording. -->
+<meta name="description" content="RangerTrak turns radio reports into a live log and map for CERT, ACS, SAR and wildland-fire teams. Free, open source, and works offline once loaded.">
 <!-- Open Graph / Twitter. Added 2026-09-22: these three pages had no og tags at
      all, so a shared link rendered with no title, description or picture. -->
 <meta property="og:type" content="website">
@@ -61,6 +63,45 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="RangerTrak: your team&rsquo;s radio reports, made actionable. rangertrak.com">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://rangertrak.com/">
+<!-- Structured data for search engines (2026-11-27). A data block, not a script: the
+     browser never runs it, so the CSP's script-src does not apply, and tools/check-site.js
+     allows application/ld+json while still refusing any other inline script. Every claim
+     here is stated elsewhere on the site: free (D-18), AGPL-3.0-or-later, runs in a browser. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://rangertrak.com/#org",
+      "name": "RangerTrak",
+      "url": "https://rangertrak.com/",
+      "logo": "https://rangertrak.com/apple-touch-icon.png",
+      "sameAs": ["https://github.com/SteadyEOC/RangerTrak", "https://rangertrak.org/"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://rangertrak.com/#site",
+      "name": "RangerTrak",
+      "url": "https://rangertrak.com/",
+      "publisher": { "@id": "https://rangertrak.com/#org" }
+    },
+    {
+      "@type": "WebApplication",
+      "name": "RangerTrak",
+      "url": "https://rangertrak.org/",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any modern web browser; works offline once loaded",
+      "description": "Turns a team's radio reports into a live log and map for CERT, ACS, SAR and wildland-fire teams reachable only by voice radio.",
+      "license": "https://www.gnu.org/licenses/agpl-3.0.html",
+      "isAccessibleForFree": true,
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "publisher": { "@id": "https://rangertrak.com/#org" }
+    }
+  ]
+}
+</script>
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/styles.css">
 <script src="assets/lightbox.js" defer></script>

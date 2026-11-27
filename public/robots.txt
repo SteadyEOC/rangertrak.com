@@ -1,0 +1,5 @@
+# Everything on rangertrak.com is public; nothing is hidden from crawlers.
+User-agent: *
+Allow: /
+
+Sitemap: https://rangertrak.com/sitemap.xml

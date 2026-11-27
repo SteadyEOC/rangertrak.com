@@ -14,6 +14,9 @@
 # No Trusted Types: lightbox.js and site.js set fixed SVG markup with innerHTML, and the
 # beacon is not ours to vouch for.
 #
+# Permissions-Policy (2026-11-27): this site uses no camera, microphone, location or payment
+# API (the app at rangertrak.org does, and sets its own headers), so they are switched off.
+#
 # HSTS is not set here - it is a zone setting in the Cloudflare dashboard
 # (SSL/TLS > Edge Certificates): set by John on 2026-10-05 to one year, with
 # includeSubDomains and preload. The domain is not submitted to hstspreload.org.
@@ -23,3 +26,21 @@
   Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'sha256-FyTd96rd3vX7xvteiRXeIIqHcTdccM28IF5mrc96M6Q='; img-src 'self'; font-src 'self'; connect-src 'self' https://rangertrak.org https://cloudflareinsights.com; form-action 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'
   Cross-Origin-Opener-Policy: same-origin
   Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+
+# Caching (2026-11-27). Workers sends "max-age=0, must-revalidate" by default, so every visit
+# re-checked every file. Pages stay that way, so an edit to a post shows at once.
+#
+# /assets/* is cached for a year as immutable. That is safe only because the deploy workflow
+# runs tools/stamp-assets.js, which adds ?v=<content hash> to every assets/ reference in the
+# deployed HTML, so a changed file gets a new URL. Source files keep plain links so the site
+# still opens from disk. tools/check-site.js fails if the live home page's links lack ?v=.
+# og-rangertrak.png is fetched by link-preview crawlers by its plain URL: if it changes,
+# give it a new file name.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Screenshots are not versioned, so a week, not a year. Replace one under a new name if it
+# must change at once.
+/img/*
+  Cache-Control: public, max-age=604800

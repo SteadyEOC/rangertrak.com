@@ -1,0 +1,8 @@
+# Security contact for rangertrak.com and the RangerTrak app (rangertrak.org).
+# Reports go to GitHub private vulnerability reporting, so no email address is published
+# (rangertrak.com sends and receives no mail). Renew Expires before it passes:
+# tools/check-site.js fails within 30 days of it.
+Contact: https://github.com/SteadyEOC/RangerTrak/security/advisories/new
+Expires: 2027-11-27T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://rangertrak.com/.well-known/security.txt
